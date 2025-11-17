@@ -4,6 +4,7 @@ camera_optics_calculator_input.py
 Interactieve rekenhulp voor camera-optica.
 Alle invoer gebeurt via input() en resultaten worden overzichtelijk weergegeven.
 Eenheden: mm (millimeter), nm (nanometer voor golflengte).
+
 """
 
 import math
