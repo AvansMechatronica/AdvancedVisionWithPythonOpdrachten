@@ -16,7 +16,8 @@ Welkom bij de Python Vision-optica opdrachten
    :maxdepth: 2
    :caption: Contents:
 
-   documentation/main.md
+   documentation/inleiding.md
+   documentation/opdracht_1.md
 
 
 
