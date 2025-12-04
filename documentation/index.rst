@@ -13,11 +13,33 @@ Welkom bij de Advanced Vision With Python opdrachten
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Inhoudsopgave:
 
    documentation/inleiding.md
-   documentation/opdracht_1.md
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Optica:
+
+   documentation/optica.md
+
+.. toctree::
+   :maxdepth: 3
+   :caption: OpenCV:
+
+   documentation/opencv.md
+
+.. toctree::
+   :maxdepth: 3
+   :caption: AI:
+
+   documentation/ai.md
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Referenties:
+
    documentation/referenties.md
    documentation/internal_use.md
 
