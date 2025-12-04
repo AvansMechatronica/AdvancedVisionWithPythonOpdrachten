@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Python Vision-optica opdrachten'
+project = 'Advanced Vision With Python opdrachten'
 copyright = 'Gerard Harkema'
 author = 'Gerard Harkema'
 release = '0.1'

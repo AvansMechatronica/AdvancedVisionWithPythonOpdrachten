@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welkom bij de Python Vision-optica opdrachten
-=============================================
+Welkom bij de Advanced Vision With Python opdrachten
+====================================================
 
 **Welkom bij de Python Vision-optica opdrachten** 
 
@@ -14,7 +14,7 @@ Welkom bij de Python Vision-optica opdrachten
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Inhoudsopgave:
 
    documentation/inleiding.md
    documentation/opdracht_1.md
