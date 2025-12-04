@@ -18,6 +18,8 @@ Welkom bij de Python Vision-optica opdrachten
 
    documentation/inleiding.md
    documentation/opdracht_1.md
+   documentation/referenties.md
+   documentation/internal_use.md
 
 
 

@@ -10,7 +10,9 @@ Je gaat een Python-tool maken die de brandpuntsafstand van een lenzenstelsel ber
 
 Met deze waarden berekent de tool de brandpuntsafstand (f) van de lens met behulp van de formule:
 
-f = (sensorbreedte * werkafstand) / beeldbreedte
+$$
+f = \frac{\text{sensorbreedte} \times \text{werkafstand}}{\text{beeldbreedte}}
+$$
 
 De tool moet de volgende stappen uitvoeren:
 1.	Vraag de gebruiker om de beeldbreedte, sensorbreedte en werkafstand in te voeren.
