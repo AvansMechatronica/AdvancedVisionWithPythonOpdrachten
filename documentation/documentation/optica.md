@@ -14,7 +14,7 @@ In dit hoofdstuk leer je over:
 
 ## Opdrachten
 
-### Opdracht 1: Brandpuntsafstand
+### Opdracht 1: [Brandpuntsafstand](opdracht_1.md)
 <!-- Hier komt de inhoud van opdracht 1 -->
 
 ### Opdracht 2: Voorwerpafstand
