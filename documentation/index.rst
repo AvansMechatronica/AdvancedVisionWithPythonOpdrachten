@@ -43,9 +43,9 @@ Welkom bij de Advanced Vision With Python opdrachten
    :maxdepth: 2
    :caption: Referenties:
 
+   documentation/installatie_python.md
    documentation/referenties.md
    documentation/internal_use.md
-
 
 
 # License

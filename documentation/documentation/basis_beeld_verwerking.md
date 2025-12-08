@@ -1,7 +1,7 @@
 # Basis beeldverwerking
 
-In deze module leer je de basisprincipes van beeldverwerking met behulp van de OpenCV bibliotheek in Python. We behandelen het inlezen, weergeven, bewerken en analyseren van afbeeldingen. Er worden in deze opdrachten allen verwijzingen gegeven naar welke functies je zou kunnen toepassen. Zelf dien je dan uit te zoeken hoe je deze functies precies toepast. 
-Je kunt hiervoor de officiële documentatie van OpenCV raadplegen: https://www.geeksforgeeks.org/python/opencv-python-tutorial/
+In deze module leer je de basisprincipes van beeldverwerking met behulp van de OpenCV bibliotheek in Python. We behandelen het inlezen, weergeven, bewerken en analyseren van afbeeldingen. Er worden in deze opdrachten allemaal verwijzingen gegeven naar welke functies je zou kunnen toepassen. Zelf dien je dan uit te zoeken hoe je deze functies precies toepast. 
+Je kunt hiervoor de officiële documentatie van OpenCV raadplegen: https://docs.opencv.org/
 
 ## Opdrachten
 
