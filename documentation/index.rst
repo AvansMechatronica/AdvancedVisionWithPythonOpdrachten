@@ -38,6 +38,10 @@ Welkom bij de Advanced Vision With Python opdrachten
    :caption: AI:
 
    documentation/ai.md
+   documentation/ai_verzamelen_afbeeldingen.md
+   documentation/ai_labelen_afbeeldingen.md
+   documentation/ai_trainen_netwerk.md
+   documentation/ai_uitrollen_netwerk.md
 
 .. toctree::
    :maxdepth: 2
