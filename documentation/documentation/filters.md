@@ -1,4 +1,4 @@
-# Filters en transformatie
+# Filters
 
 
 ## Inleiding

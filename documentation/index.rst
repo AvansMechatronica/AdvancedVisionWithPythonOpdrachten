@@ -29,9 +29,11 @@ Welkom bij de Advanced Vision With Python opdrachten
    :caption: OpenCV:
 
    documentation/basis_beeld_verwerking.md
-   documentation/filters_en_transformaties.md
+   documentation/morphology.md
+   documentation/filters.md
    documentation/feature_detectie.md
    documentation/object_detectie.md
+   documentation/daheng.md
 
 .. toctree::
    :maxdepth: 3

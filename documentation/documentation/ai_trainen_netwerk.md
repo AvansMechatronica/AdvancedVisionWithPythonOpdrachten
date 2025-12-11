@@ -45,6 +45,7 @@ pip install -r requirements.txt
 - `DetectImageFromFile.py`: Script om het getrainde met een willekeurige afbeelding van jouw computer te testen.
 
 - `WebcamVideoStream.py`: Script om het getrainde model te testen met de webcam video stream.
+
 :::
 
 :::{tab-item} In de Cloud Trainen
