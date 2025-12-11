@@ -31,6 +31,7 @@ import cv2
 ```python
 cv2.imread()
 ```
+> Tip: je kunt het bestand wat je wilt lezen ook met een grafische bestandskiezer selecteren. Hiervoor kun je de `filename_to_load= easygui.fileopenbox()` functie uit de `easygui` bibliotheek gebruiken. 
 
 * Toon de afbeelding in een nieuw venster, gebruikmakend van
 ```python
@@ -78,6 +79,7 @@ Schrijf een script dat de bewerkte afbeelding opslaat. Volg de onderstaande stap
 ```python
 cv2.imwrite()
 ```
+< Tip: je kunt het bestand wat je wilt opslaan ook met een grafische bestandskiezer selecteren. Hiervoor kun je de `filename_to_save= easygui.filesavebox()` functie uit de `easygui` bibliotheek gebruiken.
 
 ### Opdracht 4: Informatie over de afbeelding verkrijgen
 Schrijf een script dat informatie over de afbeelding verkrijgt en weergeeft. Volg de onderstaande stappen:

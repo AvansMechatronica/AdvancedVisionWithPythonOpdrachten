@@ -1,4 +1,5 @@
-# Opdracht 1: Rekentool brandpuntsafstand
+# Rekentool brandpuntsafstand
+## Inleiding
 
 Je gaat een Python-tool maken die de brandpuntsafstand van een lenzenstelsel berekent. De tool vraagt de gebruiker om drie waarden in te voeren:
 
@@ -29,21 +30,24 @@ beeldbreedte = float(input("Voer de beeldbreedte in (mm of cm): "))
 print("Beeldbreedte: ", beeldbreedte)
 ```
 
-## Opdracht a: 
+
+## Opdrachten
+
+## Opdracht 1: 
 Implementatieer de tool in Python. Zorg ervoor dat je de invoer van de gebruiker correct verwerkt en dat de berekening nauwkeurig is.
 
-## Opdracht b:
+## Opdracht 2:
 Test de tool met verschillende invoerwaarden om ervoor te zorgen dat deze correct werkt. Documenteer je testgevallen en de bijbehorende resultaten.
 
-## Opdracht c(uitdaging):
+## Opdracht 3(uitdaging):
 Maak het programma zodanig dat je steeds weer een nieuwe berekening kunt uitvoeren, zonder dat het programma stopt.
 > Tip: maak gebruik van een while statement.
 
-## Opdracht d(uitdaging):
+## Opdracht 4(uitdaging):
 Maak het programma zodanig dat het programma stopt zodra je een ‘x’ hebt ingevoerd.
 > Tip: maak gebruik van een if statement.
 
-## Opdracht e(extra-uitdaging):
+## Opdracht 5(extra-uitdaging):
 Maak voor je programma een grafische-userinterface b.v. met de  'easygui' bibliotheek. 
 
 > Tip: zie https://pypi.org/project/easygui/

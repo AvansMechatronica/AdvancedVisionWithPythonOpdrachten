@@ -14,20 +14,20 @@ In dit hoofdstuk leer je over:
 
 ## Opdrachten
 
-### Opdracht 1: [Rekentool Brandpuntsafstand](optica_opdracht_1.md)
+### Opdrachten [Rekentool Brandpuntsafstand](brandpuntsafstand.md)
 <!-- Hier komt de inhoud van opdracht 1 -->
 
-### Opdracht 2: Voorwerpafstand
+### Opdrachten  Voorwerpafstand
 <!-- Hier komt de inhoud van opdracht 2 -->
 
-### Opdracht 3: F-stop berekeningen
+### Opdrachten  F-stop berekeningen
 <!-- Hier komt de inhoud van opdracht 3 -->
 
-### Opdracht 4: Kleinste detail
+### Opdrachten  Kleinste detail
 <!-- Hier komt de inhoud van opdracht 4 -->
 
-### Opdracht 5: Line rate
+### Opdrachten  Line rate
 <!-- Hier komt de inhoud van opdracht 5 -->
 
-### Opdracht 6: Gamma correctie
+### Opdrachten  Gamma correctie
 <!-- Hier komt de inhoud van opdracht 6 -->
