@@ -30,7 +30,6 @@ beeldbreedte = float(input("Voer de beeldbreedte in (mm of cm): "))
 print("Beeldbreedte: ", beeldbreedte)
 ```
 
-
 ## Opdrachten
 
 ## Opdracht 1: 
@@ -50,7 +49,7 @@ Maak het programma zodanig dat het programma stopt zodra je een ‘x’ hebt ing
 ## Opdracht 5(extra-uitdaging):
 Maak voor je programma een grafische-userinterface b.v. met de  'easygui' bibliotheek. 
 
-> Tip: zie https://pypi.org/project/easygui/
+> Tip: zie [EasyGUI](https://pypi.org/project/easygui/)
 
 > Opmerking: Voor deze opdrachten is het belangrijk dat je de basisprincipes van Python begrijpt, zoals variabelen, gebruikersinvoer, en eenvoudige wiskundige berekeningen. Als je nog niet vertrouwd bent met deze concepten, raad ik aan om eerst een inleidende Python-cursus te volgen voordat je aan deze opdrachten begint.
 

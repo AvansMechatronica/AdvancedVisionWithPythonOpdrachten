@@ -23,6 +23,8 @@ Welkom bij de Advanced Vision With Python opdrachten
    :caption: Optica:
 
    documentation/optica.md
+   documentation/brandpuntsafstand.md
+   documentation/brandpuntsafstand_extended.md
 
 .. toctree::
    :maxdepth: 3
