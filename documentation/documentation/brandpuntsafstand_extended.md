@@ -8,7 +8,7 @@ Maak een Python-script dat de gebruiker vraagt om de beeldbreedte, werkafstand e
 Gebruik de volgende formule om de sensorgrootte te berekenen:
 
 $$
-\text{sensor\_breedte} = \frac{\text{beeld\_breedte} \times \text{brandpunts\_afstand}}{\text{werk\_afstand}}
+\text{sensor_breedte} = \frac{\text{beeld_breedte} \times \text{brandpunts_afstand}}{\text{werk_afstand}}
 $$
 
 ## Opdracht 2: Sensorgrootte berekenen met functie
