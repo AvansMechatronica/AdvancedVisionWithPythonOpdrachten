@@ -3,7 +3,7 @@
 In deze uitgebreide versie van de brandpuntsafstand tool, ga je een Python-script schrijven dat niet alleen de brandpuntsafstand berekent, maar ook de sensorgrootte bepaalt op basis van de ingevoerde waarden. Je leert hoe je functies kunt gebruiken, invoervalidatie kunt implementeren, en hoe je een eenvoudige gebruikersinterface kunt maken.
 
 
-## Opdracht 1: Bereken de sensorgroote in mm
+## Opdracht 1: Bereken de sensorgrootte in mm
 Maak een Python-script dat de gebruiker vraagt om de beeldbreedte, werkafstand en brandpuntsafstand in millimeters. 
 Gebruik de volgende formule om de sensorgrootte te berekenen:
 
@@ -23,12 +23,12 @@ def bereken_sensor_breedte(beeld_breedte, werk_afstand, brandpunts_afstand)
 ## Opdracht 3:
 Maak het hoofdprogramma dusdagig dat het programma pas wordt afgesloten als de gebruiker ervoor kiest om te stoppen. Na elke berekening moet de gebruiker worden gevraagd of hij/zij nog een berekening wil uitvoeren.
 
-## opdracht 5: Validatie van invoer
+## Opdracht 5:
 Voeg invoervalidatie toe aan je script om ervoor te zorgen dat de gebruiker alleen positieve numerieke waarden invoert voor beeld_breedte, werk_afstand en brandpunts_afstand. Als de gebruiker ongeldige invoer geeft, moet het script een foutmelding weergeven en de gebruiker opnieuw om invoer vragen.
 > Tip: Maak gebruik van `if` of `while` statements om de invoer te valideren.
 
 ## Opdracht 6 (uitdaging):
-Er zijn een aantal voogedefineerde sensorformaten met hun bijbehorende breedtes in millimeters. Voeg deze informatie toe aan je script als een dictionary:
+Er zijn een aantal voorgedefinieerde sensorformaten met hun bijbehorende breedtes in millimeters. Voeg deze informatie toe aan je script als een dictionary:
 
 ```python
 sensor_size = {
