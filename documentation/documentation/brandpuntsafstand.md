@@ -22,7 +22,7 @@ De tool moet de volgende stappen uitvoeren:
 
 Deze opdracht helpt je om vertrouwd te raken met het verwerken van gebruikersinvoer, het uitvoeren van berekeningen en het weergeven van resultaten in Python.
 
-Je maakt nog alleen maar gebruik van de input en print functies van Python.`
+Je maakt nog alleen maar gebruik van de input en print functies van Python.
 
 ```python
 # Voorbeeld van hoe input en output eruit kunnen zien
@@ -32,22 +32,22 @@ print("Beeldbreedte: ", beeldbreedte)
 
 ## Opdrachten
 
-## Opdracht 1: 
-Implementatieer de tool in Python. Zorg ervoor dat je de invoer van de gebruiker correct verwerkt en dat de berekening nauwkeurig is.
+### Opdracht 1: Basis implementatie
+Implementeer de tool in Python. Zorg ervoor dat je de invoer van de gebruiker correct verwerkt en dat de berekening nauwkeurig is.
 
-## Opdracht 2:
+### Opdracht 2: Testen en documentatie
 Test de tool met verschillende invoerwaarden om ervoor te zorgen dat deze correct werkt. Documenteer je testgevallen en de bijbehorende resultaten.
 
-## Opdracht 3(uitdaging):
+### Opdracht 3 (uitdaging): Herhaaldelijke berekeningen
 Maak het programma zodanig dat je steeds weer een nieuwe berekening kunt uitvoeren, zonder dat het programma stopt.
 > Tip: maak gebruik van een while statement.
 
-## Opdracht 4(uitdaging):
-Maak het programma zodanig dat het programma stopt zodra je een ‘x’ hebt ingevoerd.
+### Opdracht 4 (uitdaging): Programma stoppen
+Maak het programma zodanig dat het programma stopt zodra je een 'x' hebt ingevoerd.
 > Tip: maak gebruik van een if statement.
 
-## Opdracht 5(extra-uitdaging):
-Maak voor je programma een grafische-userinterface b.v. met de  'easygui' bibliotheek. 
+### Opdracht 5 (extra-uitdaging): Grafische interface
+Maak voor je programma een grafische-userinterface b.v. met de 'easygui' bibliotheek.
 
 > Tip: zie [EasyGUI](https://pypi.org/project/easygui/)
 
@@ -66,5 +66,4 @@ beeld_breedte = easygui.enterbox(
 
 easygui.msgbox(f"Beeldbreedte: {beeld_breedte}", "Invoer Bevestigd")
 ```
-
 
