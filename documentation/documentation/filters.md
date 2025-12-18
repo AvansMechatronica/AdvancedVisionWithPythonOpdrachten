@@ -7,12 +7,11 @@ Filters zijn essentiële hulpmiddelen in de beeldverwerking die worden gebruikt 
 
 ## Opdrachten
 
-Download voor deze opdrachten de afbeelding `stars_1.png` vanaf de volgende link:
-> Juiste bestand URL nog maken!!!!!!
-https://raw.githubusercontent.com/AvansMechatronica/CursusSupport/main/images/stars_1.png
+Download voor deze opdrachten de afbeelding `sudoku.jpg` vanaf de volgende link:[sudoku.jpg](https://raw.githubusercontent.com/AvansMechatronica/CursusSupport/main/images/sudoku.jpg)
+
 
 ### Opdracht 1: Afbeelding inlezen en weergeven met GUI
-Maak een Python script dat de afbeelding `stars_1.png` inleest en weergeeft. Gebruik hiervoor de OpenCV bibliotheek.
+Maak een Python script dat de afbeelding `sudoku.jpg` inleest en weergeeft. Gebruik hiervoor de OpenCV bibliotheek.
 Maak hiervoor een grafische gebruikersinterface (GUI) met bv. easygui, waarin de gebruiker een afbeelding kan selecteren vanaf zijn computer.
 
 ### Opdracht 2: Color conversie naar grijswaarden

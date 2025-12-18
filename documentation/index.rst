@@ -33,8 +33,8 @@ Welkom bij de Advanced Vision With Python opdrachten
    documentation/basis_beeld_verwerking.md
    documentation/morphology.md
    documentation/filters.md
+   documentation/blob_detectie.md
    documentation/feature_detectie.md
-   documentation/object_detectie.md
    documentation/daheng.md
 
 .. toctree::
