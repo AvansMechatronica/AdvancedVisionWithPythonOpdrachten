@@ -7,9 +7,9 @@ In deze sectie behandelen we de concepten en technieken die worden gebruikt voor
 
 ## Opdrachten
 
-
 Download voor deze opdrachten de afbeelding `pills-in-strip.jpg` vanaf de volgende link:[pills-in-strip.jpg](https://raw.githubusercontent.com/AvansMechatronica/CursusSupport/main/images/pills-in-strip.jpg)
 
+> Om je pythonscript leesbaar en onderhpoudbaar te houden, is het aan te raden om functies te gebruiken voor verschillende onderdelen van je code. Bijvoorbeeld een functie voor het inlezen en weergeven van de afbeelding, een functie voor het uitvoeren van de kleurconversie, en aparte functies voor elke blobdetectiemethode.
 
 ### Opdracht 1: Afbeelding inlezen en weergeven met GUI
 Maak een Python script dat de afbeelding `pills-in-strip.jpg` inleest en weergeeft. Gebruik hiervoor de OpenCV bibliotheek.

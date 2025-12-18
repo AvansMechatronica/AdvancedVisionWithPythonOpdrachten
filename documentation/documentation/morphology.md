@@ -12,6 +12,8 @@ Download voor deze opdrachten de afbeelding `stars_1.png` vanaf de volgende link
 
 https://raw.githubusercontent.com/AvansMechatronica/CursusSupport/main/images/stars_1.png
 
+> Om je pythonscript leesbaar en onderhoudbaar te houden, is het aan te raden om functies te gebruiken voor verschillende onderdelen van je code. Bijvoorbeeld een functie voor het inlezen en weergeven van de afbeelding, een functie voor het uitvoeren van de kleurconversie, en aparte functies voor elke morfologische bewerking.
+
 ### Opdracht 1: Afbeelding inlezen en weergeven
 Maak een Python script dat de afbeelding `stars_1.png` inleest en weergeeft. Gebruik hiervoor de OpenCV bibliotheek.
 
