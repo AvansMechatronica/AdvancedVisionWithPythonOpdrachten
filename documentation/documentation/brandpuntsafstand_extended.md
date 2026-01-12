@@ -12,7 +12,7 @@ $$
 $$
 
 ## Opdracht 2: Sensorgrootte berekenen met functie
-Herschrijf de code van opdracht 1 zodat de berekening van de sensor_breedte in een functie wordt uitgevoerd. De functie moet drie parameters accepteren: beeld_breedte, werk_afstand en brandpunts_afstand. De functie moet de berekende sensorgrootte retourneren. De functie kan als volgt worden gedefinieerd:
+Herschrijf de code van de [vorige opdracht](./brandpuntsafstand.md) zodat de berekening van de sensor_breedte in een functie wordt uitgevoerd. De functie moet drie parameters accepteren: beeld_breedte, werk_afstand en brandpunts_afstand. De functie moet de berekende sensorgrootte retourneren. De functie kan als volgt worden gedefinieerd:
 
 ```python
 def bereken_sensor_breedte(beeld_breedte, werk_afstand, brandpunts_afstand)
@@ -27,7 +27,7 @@ Maak het hoofdprogramma dusdagig dat het programma pas wordt afgesloten als de g
 Voeg invoervalidatie toe aan je script om ervoor te zorgen dat de gebruiker alleen positieve numerieke waarden invoert voor beeld_breedte, werk_afstand en brandpunts_afstand. Als de gebruiker ongeldige invoer geeft, moet het script een foutmelding weergeven en de gebruiker opnieuw om invoer vragen.
 > Tip: Maak gebruik van `if` of `while` statements om de invoer te valideren.
 
-## Opdracht 5: Sensor-matching met dictionary
+## Opdracht 5 (uitdaging): Sensor-matching met dictionary
 Er zijn een aantal voorgedefinieerde sensorformaten met hun bijbehorende breedtes in millimeters. Voeg deze informatie toe aan je script als een dictionary:
 
 ```python
