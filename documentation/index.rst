@@ -32,6 +32,7 @@ Welkom bij de Advanced Vision With Python opdrachten
    :caption: OpenCV:
 
    documentation/basis_beeld_verwerking.md
+   documentation/contrast_verbetering.md
    documentation/morphology.md
    documentation/filters.md
    documentation/blob_detectie.md
