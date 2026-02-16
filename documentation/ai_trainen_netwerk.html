@@ -1,0 +1,218 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="nl" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trainen van een Neuraal Netwerk &mdash; Advanced Vision With Python opdrachten 0.1 documentatie</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a57088fb"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/translations.js?v=e4d38c6a"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Zoeken" href="../search.html" />
+    <link rel="next" title="Uitrollen van een Neuraal Netwerk" href="ai_uitrollen_netwerk.html" />
+    <link rel="prev" title="Labelen van Afbeeldingen" href="ai_labelen_afbeeldingen.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Advanced Vision With Python opdrachten
+              <img src="../_static/avans-hogeschool-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Zoek in documentatie" aria-label="Zoek in documentatie" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigatiemenu">
+              <p class="caption" role="heading"><span class="caption-text">Inhoudsopgave:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="inleiding.html">Inleiding</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Optica:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="optica.html">Optica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand.html">Rekentool brandpuntsafstand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand_extended.html">Rekentool brandpuntsafstand 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optica_rekentool.html">Rekentool optica</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OpenCV:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basis_beeld_verwerking.html">Basis beeldverwerking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrast_verbetering.html">Contras verbetering/gamma correctie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="morphology.html">Morphology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blob_detectie.html">Blob detectie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feature_detectie.html">Feature detectie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daheng.html">Gebruik van de Daheng camera met Python (Prakticum)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">AI:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ai.html">AI (Artificial Intelligence)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_verzamelen_afbeeldingen.html">Verzamelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_labelen_afbeeldingen.html">Labelen van Afbeeldingen</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Trainen van een Neuraal Netwerk</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#inleiding">Inleiding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opdrachten">Opdrachten</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ai_uitrollen_netwerk.html">Uitrollen van een Neuraal Netwerk</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referenties:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installatie_python.html">Installatie Python en PyCharm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referenties.html">Referenties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internal_use.html">Werken met wiskunde in Sphinx</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Navigatiemenu voor mobiel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Advanced Vision With Python opdrachten</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Paginanavigatie">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Trainen van een Neuraal Netwerk</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/documentation/ai_trainen_netwerk.md.txt" rel="nofollow"> Bekijk paginabron</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="trainen-van-een-neuraal-netwerk">
+<h1>Trainen van een Neuraal Netwerk<a class="headerlink" href="#trainen-van-een-neuraal-netwerk" title="Link to this heading"></a></h1>
+<section id="inleiding">
+<h2>Inleiding<a class="headerlink" href="#inleiding" title="Link to this heading"></a></h2>
+<p>In deze sectie leer je hoe je een neuraal netwerk kunt trainen met behulp van de verzamelde en gelabelde afbeeldingen. We zullen gebruik maken van populaire machine learning bibliotheken zoals TensorFlow of PyTorch om het netwerk te bouwen, trainen en evalueren. We maken gebruik van het YoloV8 model voor deze opdrachten.</p>
+<p>Er zijn twee mogelijkheden om een neuraal netwerk te trainen: lokaal op je eigen computer of in de cloud met behulp van een colab notebook. In deze sectie zullen we beide methoden bespreken, zodat je kunt kiezen welke het beste bij jouw situatie past.</p>
+</section>
+<section id="opdrachten">
+<h2>Opdrachten<a class="headerlink" href="#opdrachten" title="Link to this heading"></a></h2>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Lokaal Trainen</label><div class="sd-tab-content docutils">
+<p class="rubric" id="opdracht-1-installeren-van-benodigde-software">Opdracht 1: Installeren van Benodigde Software</p>
+<ol class="arabic simple">
+<li><p class="sd-card-text">Zorg ervoor dat je Python en pip op je computer hebt geïnstalleerd.<br />
+clone de volgende repository:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">AvansMechatronica</span><span class="o">/</span><span class="n">yoloV8_training</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p class="sd-card-text">In deze repository vind je alle benodigde python scripts om lokaal een YoloV8 model te trainen.</p>
+<blockquote>
+<div><p class="sd-card-text">Je kunt ook een “fork”van de repository maken als je dat prettiger vindt. De beschrijving hiervoor is te vinden op: https://docs.github.com/en/get-started/quickstart/fork-a-repo</p>
+</div></blockquote>
+<p class="sd-card-text">In de repository vindt je volgende scripts:</p>
+<ul class="simple">
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>: Installeer alle benodigde python pakketten.Gebruik daarvoor het volgende commando in de terminal:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p class="sd-card-text">Let op: In onderstaande scripts zul je nog wel wijzigingen moeten aanbrengen om ze te laten werken met jouw dataset.</p>
+</div></blockquote>
+<blockquote>
+<div><p class="sd-card-text">Let op: Voor het trainen van een YoloV8 model is een NVIDIA GPU met de juiste CUDA drivers sterk aanbevolen. Zonder GPU kan het trainen van het model erg lang duren.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">CudaCheck.py</span></code>: Script om te controleren of de juiste CUDA drivers zijn geïnstalleerd. Wanneer dit script een foutmelding geeft, dan moet je de juiste CUDA drivers installeren. Zie hiervoor de NVIDIA website: https://developer.nvidia.com/cuda-downloads. Dit werkt alleen met NVIDIA GPU’s.</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">TrainModel.py</span></code>: Script om het YoloV8 model te trainen met jouw dataset. Na de training zal er een getraind model worden opgeslagen in de map <code class="docutils literal notranslate"><span class="pre">runs/train/</span></code>. Het model heeft de naam <code class="docutils literal notranslate"><span class="pre">weights/best.pt</span></code>. Dit bestand heb je later nodig om het model te testen of te gebruiken in je opdracht.</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">GetDatasetFromRoboflow.py</span></code>: Script om de dataset te downloaden van Roboflow. Vul hier jouw API key en dataset informatie in.</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">DetectImageFromTrainingSet.py</span></code>: Script om het getrainde model te testen op afbeeldingen uit de trainingsset.</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">DetectImageFromFile.py</span></code>: Script om het getrainde met een willekeurige afbeelding van jouw computer te testen.</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">WebcamVideoStream.py</span></code>: Script om het getrainde model te testen met de webcam video stream.</p></li>
+</ul>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+In de Cloud Trainen</label><div class="sd-tab-content docutils">
+<p class="sd-card-text">In colab is al een omgeving ingericht om een YoloV8 model te trainen. Volg de onderstaande stappen om aan de slag te gaan: https://drive.google.com/file/d/1M_Fnquk3dmfuBLfpjgMGVwj35Em1-wfP/view?usp=sharing</p>
+<p class="rubric" id="opdracht-1-openen-van-het-colab-notebook">Opdracht 1: Openen van het Colab Notebook</p>
+<ol class="arabic simple">
+<li><p class="sd-card-text">Open de bovenstaande link naar het colab notebook in je webbrowser.</p></li>
+<li><p class="sd-card-text">Maak een kopie van het notebook door naar ‘Bestand’ &gt; ‘Kopie maken’ te gaan. Dit zorgt ervoor dat je een eigen versie hebt waarin je wijzigingen kunt aanbrengen.</p></li>
+<li><p class="sd-card-text">Volg de instructies in het notebook om de benodigde pakketten te installeren, je dataset te uploaden, en het model te trainen.</p></li>
+<li><p class="sd-card-text">Na de training zal het getrainde model worden opgeslagen in je Google Drive. Zorg ervoor dat je dit bestand downloadt en bewaart, aangezien je het later nodig zult hebben om het model te testen of te gebruiken in je opdracht.</p></li>
+<li><p class="sd-card-text">Download het getrainde model (<code class="docutils literal notranslate"><span class="pre">best.pt</span></code>) van je Google Drive naar je lokale computer voor later gebruik.</p></li>
+</ol>
+<blockquote>
+<div><p class="sd-card-text">Tip: je kunt de runtime van colab instellen op GPU om de training te versnellen. Ga hiervoor naar ‘Runtime’ &gt; ‘Wijzig runtime type’ en selecteer ‘GPU’ als hardware accelerator.</p>
+</div></blockquote>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Voettekst">
+        <a href="ai_labelen_afbeeldingen.html" class="btn btn-neutral float-left" title="Labelen van Afbeeldingen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Vorige</a>
+        <a href="ai_uitrollen_netwerk.html" class="btn btn-neutral float-right" title="Uitrollen van een Neuraal Netwerk" accesskey="n" rel="next">Volgende <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Gerard Harkema.</p>
+  </div>
+
+  Gebouwd met <a href="https://www.sphinx-doc.org/">Sphinx</a> met een
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thema</a>
+    geleverd door <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

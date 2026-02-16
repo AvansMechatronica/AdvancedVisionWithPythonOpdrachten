@@ -1,0 +1,361 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="nl" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basis beeldverwerking &mdash; Advanced Vision With Python opdrachten 0.1 documentatie</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a57088fb"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/translations.js?v=e4d38c6a"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Zoeken" href="../search.html" />
+    <link rel="next" title="Contras verbetering/gamma correctie" href="contrast_verbetering.html" />
+    <link rel="prev" title="Rekentool optica" href="optica_rekentool.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Advanced Vision With Python opdrachten
+              <img src="../_static/avans-hogeschool-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Zoek in documentatie" aria-label="Zoek in documentatie" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigatiemenu">
+              <p class="caption" role="heading"><span class="caption-text">Inhoudsopgave:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="inleiding.html">Inleiding</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Optica:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="optica.html">Optica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand.html">Rekentool brandpuntsafstand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand_extended.html">Rekentool brandpuntsafstand 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optica_rekentool.html">Rekentool optica</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OpenCV:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Basis beeldverwerking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#opdrachten">Opdrachten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-1-beelden-inlezen-en-weergeven">Opdracht 1: Beelden inlezen en weergeven</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-2-elementen-aan-de-afbeelding-toevoegen">Opdracht 2: Elementen aan de afbeelding toevoegen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-3-beeld-opslaan">Opdracht 3: Beeld opslaan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-4-informatie-over-de-afbeelding-verkrijgen">Opdracht 4: Informatie over de afbeelding verkrijgen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-5-beeld-scalen">Opdracht 5: Beeld scalen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-6-beeld-conversie-naar-grijswaarden">Opdracht 6: Beeld conversie naar grijswaarden</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-7-histogram-van-de-afbeelding-weergeven">Opdracht 7: Histogram van de afbeelding weergeven</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contrast_verbetering.html">Contras verbetering/gamma correctie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="morphology.html">Morphology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blob_detectie.html">Blob detectie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feature_detectie.html">Feature detectie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daheng.html">Gebruik van de Daheng camera met Python (Prakticum)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">AI:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ai.html">AI (Artificial Intelligence)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_verzamelen_afbeeldingen.html">Verzamelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_labelen_afbeeldingen.html">Labelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_trainen_netwerk.html">Trainen van een Neuraal Netwerk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_uitrollen_netwerk.html">Uitrollen van een Neuraal Netwerk</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referenties:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installatie_python.html">Installatie Python en PyCharm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referenties.html">Referenties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internal_use.html">Werken met wiskunde in Sphinx</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Navigatiemenu voor mobiel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Advanced Vision With Python opdrachten</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Paginanavigatie">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Basis beeldverwerking</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/documentation/basis_beeld_verwerking.md.txt" rel="nofollow"> Bekijk paginabron</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="basis-beeldverwerking">
+<h1>Basis beeldverwerking<a class="headerlink" href="#basis-beeldverwerking" title="Link to this heading"></a></h1>
+<p>In deze module leer je de basisprincipes van beeldverwerking met behulp van de OpenCV bibliotheek in Python. We behandelen het inlezen, weergeven, bewerken en analyseren van afbeeldingen. Er worden in deze opdrachten allemaal verwijzingen gegeven naar welke functies je zou kunnen toepassen. Zelf dien je dan uit te zoeken hoe je deze functies precies toepast.
+Je kunt hiervoor de officiële documentatie van OpenCV raadplegen: https://docs.opencv.org/</p>
+<section id="opdrachten">
+<h2>Opdrachten<a class="headerlink" href="#opdrachten" title="Link to this heading"></a></h2>
+<section id="opdracht-1-beelden-inlezen-en-weergeven">
+<h3>Opdracht 1: Beelden inlezen en weergeven<a class="headerlink" href="#opdracht-1-beelden-inlezen-en-weergeven" title="Link to this heading"></a></h3>
+<p>Maak een pythhon script in pyCharm die een afbeelding inleest, en vervolgens in een nieuw venster weergeeft.
+Doe dat in de volgende stappen:</p>
+<ol class="arabic">
+<li><p>Maak een nieuw python project aan in PyCharm op een voor jou bekende plaats op je computer.</p></li>
+<li><p>Maak in het project een nieuwe map met de naam <code class="docutils literal notranslate"><span class="pre">images</span></code>.</p></li>
+<li><p>Installeer de OpenCV bibliotheek via pip als je dat nog niet gedaan hebt (in de terminal van PyCharm):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>opencv-python
+</pre></div>
+</div>
+</li>
+<li><p>Download de afbeelding <code class="docutils literal notranslate"><span class="pre">00-puppy.jpg</span></code> vanaf de volgende link:
+https://raw.githubusercontent.com/AvansMechatronica/CursusSupport/main/images/00-puppy.jpg</p>
+<p>Sla de afbeelding op in de <code class="docutils literal notranslate"><span class="pre">images</span></code> map.</p>
+</li>
+<li><p>Maak een nieuw python bestand aan met de naam <code class="docutils literal notranslate"><span class="pre">opencv_image_display.py</span></code>.</p></li>
+<li><p>Voeg python code toe die de volgende stappen uitvoert:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Importeer de OpenCV bibliotheek met</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cv2</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Lees de afbeelding in een varaible <code class="docutils literal notranslate"><span class="pre">img</span></code> vanuit de <code class="docutils literal notranslate"><span class="pre">images</span></code> map, gebruikmakend van</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">()</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Tip: je kunt het bestand wat je wilt lezen ook met een grafische bestandskiezer selecteren. Hiervoor kun je de <code class="docutils literal notranslate"><span class="pre">filename_to_load=</span> <span class="pre">easygui.fileopenbox()</span></code> functie uit de <code class="docutils literal notranslate"><span class="pre">easygui</span></code> bibliotheek gebruiken.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Toon de afbeelding in een nieuw venster, gebruikmakend van</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Wacht tot een toets wordt ingedrukt met</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Sluit alle geopende vensters met</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p>Test je script door het uit te voeren en controleer of de afbeelding correct wordt weergegeven in een nieuw venster. Wat valt je op over de kleuren van de afbeelding?</p></li>
+</ol>
+<blockquote>
+<div><p>OpenCV leest afbeeldingen standaard in het BGR-kleurformaat in, wat kan resulteren in afwijkende kleuren bij weergave.</p>
+</div></blockquote>
+<p>Je kunt de kleuren corrigeren door de afbeelding om te zetten naar het RGB-kleurformaat met behulp van de volgende functie:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">img_rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Gebruik voor de conversie de <code class="docutils literal notranslate"><span class="pre">cv2.COLOR_BGR2RGB</span></code> parameter in de <code class="docutils literal notranslate"><span class="pre">cv2.cvtColor()</span></code> functie.</p>
+<ol class="arabic simple" start="8">
+<li><p>Pas je script aan om de afbeelding in het RGB-kleurformaat weer te geven en test het opnieuw.</p></li>
+</ol>
+</section>
+<section id="opdracht-2-elementen-aan-de-afbeelding-toevoegen">
+<h3>Opdracht 2: Elementen aan de afbeelding toevoegen<a class="headerlink" href="#opdracht-2-elementen-aan-de-afbeelding-toevoegen" title="Link to this heading"></a></h3>
+<p>Bewerk de afbeelding door tekst en een rechthoek toe te voegen. Volg de onderstaande stappen:</p>
+<ol class="arabic simple">
+<li><p>Open het eerder gemaakte <code class="docutils literal notranslate"><span class="pre">opencv_image_display.py</span></code> bestand.</p></li>
+<li><p>Voeg rechthoek toe aan de afbeelding met behulp van</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">()</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Voeg tekst toe aan de afbeelding met behulp van</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">()</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Test je script door het uit te voeren en controleer of de rechthoek en tekst correct worden weergegeven op de afbeelding.</p></li>
+</ol>
+</section>
+<section id="opdracht-3-beeld-opslaan">
+<h3>Opdracht 3: Beeld opslaan<a class="headerlink" href="#opdracht-3-beeld-opslaan" title="Link to this heading"></a></h3>
+<p>Schrijf een script dat de bewerkte afbeelding opslaat. Volg de onderstaande stappen:</p>
+<ol class="arabic simple">
+<li><p>Open het eerder gemaakte <code class="docutils literal notranslate"><span class="pre">opencv_image_display.py</span></code> bestand.</p></li>
+<li><p>Voeg code toe om de bewerkte afbeelding op te slaan in de <code class="docutils literal notranslate"><span class="pre">images</span></code> map met een nieuwe naam, bijvoorbeeld <code class="docutils literal notranslate"><span class="pre">00-puppy-edited.jpg</span></code>, gebruikmakend van</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>&lt; Tip: je kunt het bestand wat je wilt opslaan ook met een grafische bestandskiezer selecteren. Hiervoor kun je de <code class="docutils literal notranslate"><span class="pre">filename_to_save=</span> <span class="pre">easygui.filesavebox()</span></code> functie uit de <code class="docutils literal notranslate"><span class="pre">easygui</span></code> bibliotheek gebruiken.</p>
+</section>
+<section id="opdracht-4-informatie-over-de-afbeelding-verkrijgen">
+<h3>Opdracht 4: Informatie over de afbeelding verkrijgen<a class="headerlink" href="#opdracht-4-informatie-over-de-afbeelding-verkrijgen" title="Link to this heading"></a></h3>
+<p>Schrijf een script dat informatie over de afbeelding verkrijgt en weergeeft. Volg de onderstaande stappen:</p>
+<ol class="arabic simple">
+<li><p>Open het eerder gemaakte <code class="docutils literal notranslate"><span class="pre">opencv_image_display.py</span></code> bestand.</p></li>
+<li><p>Voeg code toe om de volgende informatie over de afbeelding te verkrijgen:</p>
+<ul class="simple">
+<li><p>Afmetingen (hoogte, breedte, aantal kanalen)</p></li>
+<li><p>Datatype van de pixelwaarden
+gebruik daarvoor de volgende code:</p></li>
+</ul>
+</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dimensions</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">height</span> <span class="o">=</span> <span class="n">dimensions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">width</span> <span class="o">=</span> <span class="n">dimensions</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">channels</span> <span class="o">=</span> <span class="n">dimensions</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Print deze informatie naar de console.</p></li>
+<li><p>Test je script door het uit te voeren en controleer of de juiste informatie wordt weergegeven in de console.</p></li>
+<li><p>Maak van deze functionalistet een functie genaamd <code class="docutils literal notranslate"><span class="pre">print_image_info(img)</span></code> die je kunt hergebruiken in andere opdrachten die hierop volgen</p></li>
+</ol>
+</section>
+<section id="opdracht-5-beeld-scalen">
+<h3>Opdracht 5: Beeld scalen<a class="headerlink" href="#opdracht-5-beeld-scalen" title="Link to this heading"></a></h3>
+<p>Schrijf een script dat de afbeelding schaalt naar een nieuwe grootte. Volg de onderstaande stappen:</p>
+<ol class="arabic simple">
+<li><p>Open het eerder gemaakte <code class="docutils literal notranslate"><span class="pre">opencv_image_display.py</span></code> bestand.</p></li>
+<li><p>Voeg code toe om de afbeelding te schalen naar een nieuwe grootte, bijvoorbeeld 300x300 pixels, met behulp van</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">()</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Toon de geschaalde afbeelding in een nieuw venster.</p></li>
+<li><p>Test je script door het uit te voeren en controleer of de afbeelding correct is geschaald en weergegeven. Doe dat voor verschillende schalingsfactoren. Gebryuik ook de <code class="docutils literal notranslate"><span class="pre">print_image_info(img)</span></code> functie om de nieuwe afmetingen van de afbeelding te controleren.</p></li>
+</ol>
+</section>
+<section id="opdracht-6-beeld-conversie-naar-grijswaarden">
+<h3>Opdracht 6: Beeld conversie naar grijswaarden<a class="headerlink" href="#opdracht-6-beeld-conversie-naar-grijswaarden" title="Link to this heading"></a></h3>
+<p>Schrijf een script dat de afbeelding converteert naar grijswaarden. Volg de onderstaande stappen:</p>
+<ol class="arabic simple">
+<li><p>Open het eerder gemaakte <code class="docutils literal notranslate"><span class="pre">opencv_image_display.py</span></code> bestand.</p></li>
+<li><p>Voeg code toe om de afbeelding te converteren naar grijswaarden met behulp van</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">img_gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Zoek zelf uit weleke parameter je hiervoor moet gebruiken.</p>
+<ol class="arabic simple" start="3">
+<li><p>Toon de grijswaarden afbeelding in een nieuw venster.</p></li>
+<li><p>Test je script door het uit te voeren en controleer of de afbeelding correct is geconverteerd en weergegeven.</p></li>
+</ol>
+</section>
+<section id="opdracht-7-histogram-van-de-afbeelding-weergeven">
+<h3>Opdracht 7: Histogram van de afbeelding weergeven<a class="headerlink" href="#opdracht-7-histogram-van-de-afbeelding-weergeven" title="Link to this heading"></a></h3>
+<p>Schrijf een script dat het histogram van de afbeelding weergeeft. Volg de onderstaande stappen:</p>
+<ol class="arabic">
+<li><p>Maak een nieuw python bestand aan met de naam <code class="docutils literal notranslate"><span class="pre">opencv_image_histogram.py</span></code>.</p></li>
+<li><p>Download de afbeelding <code class="docutils literal notranslate"><span class="pre">auto.jpg</span></code> vanaf de volgende link:
+https://github.com/AvansMechatronica/CursusSupport/blob/main/images/auto.jpg</p>
+<p>Sla de afbeelding op in een nieuwe map <code class="docutils literal notranslate"><span class="pre">images</span></code> binnen je project.</p>
+</li>
+<li><p>Maak het programma zo dat de aflbeelding van d auto in grijswaarden wordt getoond</p></li>
+<li><p>Voeg code toe om het histogram van de afbeelding te berekenen en weer te geven met behulp van</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Druk de waardes van het histogram af in de console.</p>
+<ol class="arabic" start="5">
+<li><p>Gebruik eventueel de <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> bibliotheek om het histogram grafisch weer te geven. Installeer deze bibliotheek via pip als je dat nog niet gedaan hebt:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>matplotlib
+</pre></div>
+</div>
+<p>Zet vervolgens de volgende code op de juiste plek in je script om het histogram weer te geven:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">histogram</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histogram&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Pixelwaarde&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Aantal pixels&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Test je script door het uit te voeren en controleer of het histogram correct wordt weergegeven.</p></li>
+<li><p>Test het programma ook met de volgende afbeedlingen:</p>
+<ul class="simple">
+<li><p>https://github.com/AvansMechatronica/CursusSupport/blob/main/images/veel%20contrast.jpg</p></li>
+<li><p>https://github.com/AvansMechatronica/CursusSupport/blob/main/images/weinig%20contrast.jpg</p></li>
+</ul>
+</li>
+</ol>
+<p>Wat valt je op aan de histogrammen van deze afbeeldingen? Hoe verhouden deze zich tot de visuele waarneming van de afbeeldingen?</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Voettekst">
+        <a href="optica_rekentool.html" class="btn btn-neutral float-left" title="Rekentool optica" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Vorige</a>
+        <a href="contrast_verbetering.html" class="btn btn-neutral float-right" title="Contras verbetering/gamma correctie" accesskey="n" rel="next">Volgende <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Gerard Harkema.</p>
+  </div>
+
+  Gebouwd met <a href="https://www.sphinx-doc.org/">Sphinx</a> met een
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thema</a>
+    geleverd door <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
