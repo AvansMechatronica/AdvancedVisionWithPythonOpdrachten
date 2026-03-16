@@ -50,7 +50,7 @@ pip install -r requirements.txt
 
 :::{tab-item} In de Cloud Trainen
 
-In colab is al een omgeving ingericht om een YoloV8 model te trainen. Volg de onderstaande stappen om aan de slag te gaan: https://drive.google.com/file/d/1M_Fnquk3dmfuBLfpjgMGVwj35Em1-wfP/view?usp=sharing
+In colab is al een omgeving ingericht om een YoloV8 model te trainen. Volg de onderstaande stappen om aan de slag te gaan: [YoloV8Traning colab notebook](https://drive.google.com/file/d/1M_Fnquk3dmfuBLfpjgMGVwj35Em1-wfP/view?usp=sharing)
 
 ### Opdracht 1: Openen van het Colab Notebook
 1. Open de bovenstaande link naar het colab notebook in je webbrowser.  
