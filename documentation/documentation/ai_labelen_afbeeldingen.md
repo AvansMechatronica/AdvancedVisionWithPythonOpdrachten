@@ -11,7 +11,19 @@ Ook kun je in Roboflow je dataset voorbereiden voor training, zoals het splitsen
 
 Tevens kun je in Roboflow modellen trainen en evalueren, waardoor het een alles-in-één oplossing is voor je computer vision projecten.
 
-> Helaas is Roboflow niet gratis. Je kunt echter een gratis account aanmaken waarmee je een beperkt aantal afbeeldingen kunt labelen en beheren. Dit is meestal voldoende voor kleine projecten of om de tool uit te proberen voordat je besluit om te upgraden naar een betaald plan.
+
+## Roboflow
+:::{caution}
+Helaas is Roboflow niet gratis. Je kunt echter een gratis account aanmaken waarmee je een beperkt aantal afbeeldingen kunt labelen en beheren. Dit is meestal voldoende voor kleine projecten of om de tool uit te proberen voordat je besluit om te upgraden naar een betaald plan.
+:::
+
+## Alternaitief voor Roboflow
+Wil je geen gebruikmaken van Roboflow, dan zijn er ook andere tools beschikbaar voor het labelen van afbeeldingen, zoals LabelImg, VoTT, en RectLabel. Deze tools zijn meestal gratis en kunnen lokaal op je computer worden geïnstalleerd. Ze bieden vergelijkbare functionaliteiten voor het labelen van afbeeldingen, maar hebben mogelijk een minder uitgebreide set functies in vergelijking met Roboflow.
+Een voorbeeld hiervan is [makesense.ai](https://www.makesense.ai/), een gratis online tool voor het labelen van afbeeldingen die eenvoudig te gebruiken is en geen account vereist. Je kunt je afbeeldingen uploaden, labelen en vervolgens de gelabelde dataset downloaden in verschillende formaten, waaronder YoloV8.
+
+:::{note}
+De uitleg van makesense.ai is niet opgenomen in deze handleiding, maar je kunt de website bezoeken en de instructies volgen om je afbeeldingen te labelen als je deze tool wilt gebruiken.
+:::
 
 ## Opdrachten
 
@@ -31,7 +43,9 @@ Tevens kun je in Roboflow modellen trainen en evalueren, waardoor het een alles-
 
 ### Opdracht 4: Proeftraining
 1. Nadat je alle afbeeldingen hebt gelabeld, kun je een proeftraining uitvoeren in Roboflow om te zien hoe goed je labels zijn. Zoek zelf uit hoe je dit doet in Roboflow.
-> Helaas kun je maar een beperkt aantal proeftrainingen uitvoeren met een gratis account.
+:::{caution}
+Helaas kun je maar een beperkt aantal proeftrainingen uitvoeren met een gratis account.
+:::
 
 ### Opdracht 5: Exporteren van de Dataset
 Exporteer de gelabelde dataset in een formaat dat compatibel is met het machine learning framework dat je gaat gebruiken (YoloV8) voor het trainen van je neuraal netwerk. 
@@ -48,3 +62,4 @@ Er zijn hiervoor twee opties:
     project = rf.workspace().project("YOUR_PROJECT_NAME")   
     dataset = project.version(YOUR_VERSION_NUMBER).download("yolov8")
     ```
+    
