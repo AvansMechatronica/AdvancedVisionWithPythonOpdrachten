@@ -13,6 +13,7 @@ Tevens kun je in Roboflow modellen trainen en evalueren, waardoor het een alles-
 
 
 ## Roboflow
+Voor het labelen van je afbeeldingen kun je gebruikmaken van Roboflow, een online platform dat speciaal is ontworpen voor het beheren en labelen van datasets voor computer vision projecten. Roboflow biedt een intuïtieve interface waarmee je snel en efficiënt afbeeldingen kunt labelen.
 :::{caution}
 Helaas is Roboflow niet gratis. Je kunt echter een gratis account aanmaken waarmee je een beperkt aantal afbeeldingen kunt labelen en beheren. Dit is meestal voldoende voor kleine projecten of om de tool uit te proberen voordat je besluit om te upgraden naar een betaald plan.
 :::
