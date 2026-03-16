@@ -1,0 +1,227 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="nl" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blob detectie &mdash; Advanced Vision With Python opdrachten 0.1 documentatie</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a57088fb"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/translations.js?v=e4d38c6a"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Zoeken" href="../search.html" />
+    <link rel="next" title="Feature detectie" href="feature_detectie.html" />
+    <link rel="prev" title="Filters" href="filters.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Advanced Vision With Python opdrachten
+              <img src="../_static/avans-hogeschool-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Zoek in documentatie" aria-label="Zoek in documentatie" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigatiemenu">
+              <p class="caption" role="heading"><span class="caption-text">Inhoudsopgave:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="inleiding.html">Inleiding</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Optica:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="optica.html">Optica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand.html">Rekentool brandpuntsafstand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand_extended.html">Rekentool brandpuntsafstand 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optica_rekentool.html">Rekentool optica</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OpenCV:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="basis_beeld_verwerking.html">Basis beeldverwerking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrast_verbetering.html">Contras verbetering/gamma correctie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="morphology.html">Morphology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Blob detectie</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#inleiding">Inleiding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opdrachten">Opdrachten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-1-afbeelding-inlezen-en-weergeven-met-gui">Opdracht 1: Afbeelding inlezen en weergeven met GUI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-2-grijswaarden-conversie">Opdracht 2: Grijswaarden conversie</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-3-blob-detectie-met-simpleblobdetector">Opdracht 3: Blob detectie met SimpleBlobDetector</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#opdracht-3a-parameterafstemming-simpleblobdetector">Opdracht 3a: Parameterafstemming SimpleBlobDetector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opdracht-3b-overlay-van-gedetecteerde-blobs">Opdracht 3b: Overlay van gedetecteerde blobs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opdracht-3c-blob-eigenschappen-weergeven">Opdracht 3c: Blob eigenschappen weergeven</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opdracht-3d-bepalen-van-het-zwaartelpunt-van-blobs">Opdracht 3d: Bepalen van het zwaartelpunt van blobs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-4-blob-detectie-met-laplacian-of-gaussian-log">Opdracht 4: Blob detectie met Laplacian of Gaussian (LoG)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-5-blob-detectie-met-difference-of-gaussian-dog">Opdracht 5: Blob detectie met Difference of Gaussian (DoG)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-6-blob-detectie-met-determinant-of-hessian-doh">Opdracht 6: Blob detectie met Determinant of Hessian (DoH)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-7-vergelijking-van-blobdetectiemethoden">Opdracht 7: Vergelijking van blobdetectiemethoden</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-8-blob-detectie-op-eigen-afbeeldingen">Opdracht 8: Blob detectie op eigen afbeeldingen</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="feature_detectie.html">Feature detectie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daheng.html">Gebruik van de Daheng camera met Python (Prakticum)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">AI:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ai.html">AI (Artificial Intelligence)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_verzamelen_afbeeldingen.html">Verzamelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_labelen_afbeeldingen.html">Labelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_trainen_netwerk.html">Trainen van een Neuraal Netwerk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_uitrollen_netwerk.html">Uitrollen van een Neuraal Netwerk</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referenties:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installatie_python.html">Installatie Python en PyCharm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referenties.html">Referenties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internal_use.html">Werken met wiskunde in Sphinx</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Navigatiemenu voor mobiel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Advanced Vision With Python opdrachten</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Paginanavigatie">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Blob detectie</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/documentation/blob_detectie.md.txt" rel="nofollow"> Bekijk paginabron</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="blob-detectie">
+<h1>Blob detectie<a class="headerlink" href="#blob-detectie" title="Link to this heading"></a></h1>
+<p>In deze sectie behandelen we de concepten en technieken die worden gebruikt voor het detecteren van blobs in afbeeldingen. Blobs zijn gebieden in een afbeelding die verschillen van hun omgeving op basis van eigenschappen zoals helderheid, kleur of textuur. We zullen verschillende methoden voor blobdetectie bespreken, waaronder eenvoudige drempelwaarden, Laplacian of Gaussian (LoG), Difference of Gaussian (DoG) en Determinant of Hessian (DoH). Daarnaast zullen we praktische voorbeelden geven van hoe deze technieken kunnen worden geïmplementeerd met behulp van de OpenCV bibliotheek.</p>
+<section id="inleiding">
+<h2>Inleiding<a class="headerlink" href="#inleiding" title="Link to this heading"></a></h2>
+</section>
+<section id="opdrachten">
+<h2>Opdrachten<a class="headerlink" href="#opdrachten" title="Link to this heading"></a></h2>
+<p>Download voor deze opdrachten de afbeelding <code class="docutils literal notranslate"><span class="pre">pills-in-strip.jpg</span></code> vanaf de volgende link:<a class="reference external" href="https://raw.githubusercontent.com/AvansMechatronica/CursusSupport/main/images/pills-in-strip.jpg">pills-in-strip.jpg</a></p>
+<blockquote>
+<div><p>Om je pythonscript leesbaar en onderhpoudbaar te houden, is het aan te raden om functies te gebruiken voor verschillende onderdelen van je code. Bijvoorbeeld een functie voor het inlezen en weergeven van de afbeelding, een functie voor het uitvoeren van de kleurconversie, en aparte functies voor elke blobdetectiemethode.</p>
+</div></blockquote>
+<section id="opdracht-1-afbeelding-inlezen-en-weergeven-met-gui">
+<h3>Opdracht 1: Afbeelding inlezen en weergeven met GUI<a class="headerlink" href="#opdracht-1-afbeelding-inlezen-en-weergeven-met-gui" title="Link to this heading"></a></h3>
+<p>Maak een Python script dat de afbeelding <code class="docutils literal notranslate"><span class="pre">pills-in-strip.jpg</span></code> inleest en weergeeft. Gebruik hiervoor de OpenCV bibliotheek.
+Maak hiervoor een grafische gebruikersinterface (GUI) met bv. easygui, waarin de gebruiker een afbeelding kan selecteren vanaf zijn computer.</p>
+</section>
+<section id="opdracht-2-grijswaarden-conversie">
+<h3>Opdracht 2: Grijswaarden conversie<a class="headerlink" href="#opdracht-2-grijswaarden-conversie" title="Link to this heading"></a></h3>
+<p>Voer op de ingelezen afbeelding een kleurconversie naar een grijswaarden afbeelding uit. Gebruik hiervoor de functie <code class="docutils literal notranslate"><span class="pre">cv2.cvtColor()</span></code> met de parameter <code class="docutils literal notranslate"><span class="pre">cv2.COLOR_BGR2GRAY</span></code>. Geef de resulterende grijswaarden afbeelding weer.</p>
+</section>
+<section id="opdracht-3-blob-detectie-met-simpleblobdetector">
+<h3>Opdracht 3: Blob detectie met SimpleBlobDetector<a class="headerlink" href="#opdracht-3-blob-detectie-met-simpleblobdetector" title="Link to this heading"></a></h3>
+<p>Gebruik de OpenCV <code class="docutils literal notranslate"><span class="pre">SimpleBlobDetector</span></code> om blobs in de grijswaarden afbeelding te detecteren. Stel de parameters van de detector in om blobs te vinden op basis van grootte, circulariteit en andere kenmerken. Geef de gedetecteerde blobs weer door cirkels rond hen te tekenen op de originele afbeelding.</p>
+<section id="opdracht-3a-parameterafstemming-simpleblobdetector">
+<h4>Opdracht 3a: Parameterafstemming SimpleBlobDetector<a class="headerlink" href="#opdracht-3a-parameterafstemming-simpleblobdetector" title="Link to this heading"></a></h4>
+<p>Experimenteer met verschillende instellingen van de <code class="docutils literal notranslate"><span class="pre">SimpleBlobDetector</span></code> parameters, zoals <code class="docutils literal notranslate"><span class="pre">minThreshold</span></code>, <code class="docutils literal notranslate"><span class="pre">maxThreshold</span></code>, <code class="docutils literal notranslate"><span class="pre">filterByArea</span></code>, <code class="docutils literal notranslate"><span class="pre">minArea</span></code>, <code class="docutils literal notranslate"><span class="pre">filterByCircularity</span></code>, en andere. Observeer hoe deze wijzigingen de gedetecteerde blobs beïnvloeden en documenteer je bevindingen.</p>
+</section>
+<section id="opdracht-3b-overlay-van-gedetecteerde-blobs">
+<h4>Opdracht 3b: Overlay van gedetecteerde blobs<a class="headerlink" href="#opdracht-3b-overlay-van-gedetecteerde-blobs" title="Link to this heading"></a></h4>
+<p>Pas je script aan zodat de gedetecteerde blobs worden weergegeven als een overlay op de originele afbeelding. Gebruik verschillende kleuren of vormen om de blobs te markeren, afhankelijk van hun eigenschappen zoals grootte of circulariteit. Geef zowel de originele afbeelding als de afbeelding met de overlay weer in de GUI.</p>
+</section>
+<section id="opdracht-3c-blob-eigenschappen-weergeven">
+<h4>Opdracht 3c: Blob eigenschappen weergeven<a class="headerlink" href="#opdracht-3c-blob-eigenschappen-weergeven" title="Link to this heading"></a></h4>
+<p>Breid je script uit om de eigenschappen van elke gedetecteerde blob weer te geven, zoals hun coördinaten, grootte en circulariteit.</p>
+</section>
+<section id="opdracht-3d-bepalen-van-het-zwaartelpunt-van-blobs">
+<h4>Opdracht 3d: Bepalen van het zwaartelpunt van blobs<a class="headerlink" href="#opdracht-3d-bepalen-van-het-zwaartelpunt-van-blobs" title="Link to this heading"></a></h4>
+<p>Voeg functionaliteit toe aan je script om het zwaartepunt van elke gedetecteerde blob te berekenen en weer te geven. Markeer het zwaartepunt op de originele afbeelding en geef de coördinaten ervan weer in de GUI.</p>
+</section>
+</section>
+<section id="opdracht-4-blob-detectie-met-laplacian-of-gaussian-log">
+<h3>Opdracht 4: Blob detectie met Laplacian of Gaussian (LoG)<a class="headerlink" href="#opdracht-4-blob-detectie-met-laplacian-of-gaussian-log" title="Link to this heading"></a></h3>
+<p>Implementeer blobdetectie met behulp van de Laplacian of Gaussian (LoG) methode. Gebruik de functie <code class="docutils literal notranslate"><span class="pre">cv2.GaussianBlur()</span></code> om de afbeelding te vervagen en vervolgens de Laplacian operator toe te passen met <code class="docutils literal notranslate"><span class="pre">cv2.Laplacian()</span></code>. Identificeer de lokale maxima in het resultaat als blobs en geef deze weer op de originele afbeelding.</p>
+</section>
+<section id="opdracht-5-blob-detectie-met-difference-of-gaussian-dog">
+<h3>Opdracht 5: Blob detectie met Difference of Gaussian (DoG)<a class="headerlink" href="#opdracht-5-blob-detectie-met-difference-of-gaussian-dog" title="Link to this heading"></a></h3>
+<p>Implementeer blobdetectie met behulp van de Difference of Gaussian (DoG) methode. Maak twee vervaagde versies van de grijswaarden afbeelding met verschillende sigma-waarden en trek deze van elkaar af. Identificeer de lokale maxima in het resultaat als blobs en geef deze weer op de originele afbeelding.</p>
+</section>
+<section id="opdracht-6-blob-detectie-met-determinant-of-hessian-doh">
+<h3>Opdracht 6: Blob detectie met Determinant of Hessian (DoH)<a class="headerlink" href="#opdracht-6-blob-detectie-met-determinant-of-hessian-doh" title="Link to this heading"></a></h3>
+<p>Implementeer blobdetectie met behulp van de Determinant of Hessian (DoH) methode. Bereken de Hessiaan matrix van de grijswaarden afbeelding en bepaal de determinant op elk pixel. Identificeer de lokale maxima in het resultaat als blobs en geef deze weer op de originele afbeelding.</p>
+</section>
+<section id="opdracht-7-vergelijking-van-blobdetectiemethoden">
+<h3>Opdracht 7: Vergelijking van blobdetectiemethoden<a class="headerlink" href="#opdracht-7-vergelijking-van-blobdetectiemethoden" title="Link to this heading"></a></h3>
+<p>Vergelijk de resultaten van de verschillende blobdetectiemethoden (SimpleBlobDetector, LoG, DoG, DoH) en beschrijf de voor- en nadelen van elke methode. Welke methode presteert het beste voor de gegeven afbeelding en waarom?</p>
+</section>
+<section id="opdracht-8-blob-detectie-op-eigen-afbeeldingen">
+<h3>Opdracht 8: Blob detectie op eigen afbeeldingen<a class="headerlink" href="#opdracht-8-blob-detectie-op-eigen-afbeeldingen" title="Link to this heading"></a></h3>
+<p>Gebruik eigen afbeeldingen met verschillende kenmerken (zoals ruis, scherpe randen, zachte randen) en pas de verschillende blobdetectiemethoden toe. Analyseer en beschrijf hoe de verschillende methoden de afbeeldingen beïnvloeden en welke het meest effectief zijn voor jouw afbeeldingen.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Voettekst">
+        <a href="filters.html" class="btn btn-neutral float-left" title="Filters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Vorige</a>
+        <a href="feature_detectie.html" class="btn btn-neutral float-right" title="Feature detectie" accesskey="n" rel="next">Volgende <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Gerard Harkema.</p>
+  </div>
+
+  Gebouwd met <a href="https://www.sphinx-doc.org/">Sphinx</a> met een
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thema</a>
+    geleverd door <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

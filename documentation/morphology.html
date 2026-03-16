@@ -1,0 +1,232 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="nl" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Morphology &mdash; Advanced Vision With Python opdrachten 0.1 documentatie</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a57088fb"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/translations.js?v=e4d38c6a"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Zoeken" href="../search.html" />
+    <link rel="next" title="Filters" href="filters.html" />
+    <link rel="prev" title="Contras verbetering/gamma correctie" href="contrast_verbetering.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Advanced Vision With Python opdrachten
+              <img src="../_static/avans-hogeschool-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Zoek in documentatie" aria-label="Zoek in documentatie" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigatiemenu">
+              <p class="caption" role="heading"><span class="caption-text">Inhoudsopgave:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="inleiding.html">Inleiding</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Optica:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="optica.html">Optica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand.html">Rekentool brandpuntsafstand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand_extended.html">Rekentool brandpuntsafstand 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optica_rekentool.html">Rekentool optica</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OpenCV:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="basis_beeld_verwerking.html">Basis beeldverwerking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrast_verbetering.html">Contras verbetering/gamma correctie</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Morphology</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#inleiding">Inleiding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opdrachten">Opdrachten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-1-afbeelding-inlezen-en-weergeven">Opdracht 1: Afbeelding inlezen en weergeven</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-2-grijswaarden-conversie">Opdracht 2: Grijswaarden conversie</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-3-drempelbewerking">Opdracht 3: Drempelbewerking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-4-structurerend-element-aanmaken">Opdracht 4: Structurerend element aanmaken</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-5-erosie-toepassen">Opdracht 5: Erosie toepassen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-6-dilatatie-toepassen">Opdracht 6: Dilatatie toepassen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-7-opening-toepassen">Opdracht 7: Opening toepassen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-8-sluiting-toepassen">Opdracht 8: Sluiting toepassen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-9-resultaten-vergelijken">Opdracht 9: Resultaten vergelijken</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-10-eigen-afbeeldingen-analyseren">Opdracht 10: Eigen afbeeldingen analyseren</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-11-uitdaging-interactief-gui-script">Opdracht 11 (uitdaging): Interactief GUI-script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blob_detectie.html">Blob detectie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feature_detectie.html">Feature detectie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daheng.html">Gebruik van de Daheng camera met Python (Prakticum)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">AI:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ai.html">AI (Artificial Intelligence)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_verzamelen_afbeeldingen.html">Verzamelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_labelen_afbeeldingen.html">Labelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_trainen_netwerk.html">Trainen van een Neuraal Netwerk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_uitrollen_netwerk.html">Uitrollen van een Neuraal Netwerk</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referenties:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installatie_python.html">Installatie Python en PyCharm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referenties.html">Referenties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internal_use.html">Werken met wiskunde in Sphinx</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Navigatiemenu voor mobiel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Advanced Vision With Python opdrachten</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Paginanavigatie">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Morphology</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/documentation/morphology.md.txt" rel="nofollow"> Bekijk paginabron</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="morphology">
+<h1>Morphology<a class="headerlink" href="#morphology" title="Link to this heading"></a></h1>
+<p>In deze sectie behandelen we morfologische bewerkingen die vaak worden gebruikt in de beeldverwerking. Morfologie is een verzameling van niet-lineaire bewerkingen die gebaseerd zijn op de vorm van structuren in een afbeelding. De meest gebruikte morfologische operaties zijn erosie, dilatatie, opening en sluiting.</p>
+<section id="inleiding">
+<h2>Inleiding<a class="headerlink" href="#inleiding" title="Link to this heading"></a></h2>
+<p>Morfologische bewerkingen zijn technieken in de beeldverwerking die gebaseerd zijn op de vorm en structuur van objecten in een afbeelding. Ze worden vaak toegepast op binaire afbeeldingen om ruis te verwijderen, objecten te scheiden of juist te verbinden, en om de structuur van objecten te analyseren. De belangrijkste morfologische operaties zijn erosie (het verkleinen van objecten), dilatatie (het vergroten van objecten), opening (ruis verwijderen) en sluiting (gaten opvullen). Deze bewerkingen zijn essentieel bij het voorbereiden van afbeeldingen voor verdere analyse, zoals objectherkenning of contourdetectie.</p>
+</section>
+<section id="opdrachten">
+<h2>Opdrachten<a class="headerlink" href="#opdrachten" title="Link to this heading"></a></h2>
+<p>Download voor deze opdrachten de afbeelding <code class="docutils literal notranslate"><span class="pre">stars_1.png</span></code> vanaf de volgende link:</p>
+<p>https://raw.githubusercontent.com/AvansMechatronica/CursusSupport/main/images/stars_1.png</p>
+<blockquote>
+<div><p>Om je pythonscript leesbaar en onderhoudbaar te houden, is het aan te raden om functies te gebruiken voor verschillende onderdelen van je code. Bijvoorbeeld een functie voor het inlezen en weergeven van de afbeelding, een functie voor het uitvoeren van de kleurconversie, en aparte functies voor elke morfologische bewerking.</p>
+</div></blockquote>
+<section id="opdracht-1-afbeelding-inlezen-en-weergeven">
+<h3>Opdracht 1: Afbeelding inlezen en weergeven<a class="headerlink" href="#opdracht-1-afbeelding-inlezen-en-weergeven" title="Link to this heading"></a></h3>
+<p>Maak een Python script dat de afbeelding <code class="docutils literal notranslate"><span class="pre">stars_1.png</span></code> inleest en weergeeft. Gebruik hiervoor de OpenCV bibliotheek.</p>
+</section>
+<section id="opdracht-2-grijswaarden-conversie">
+<h3>Opdracht 2: Grijswaarden conversie<a class="headerlink" href="#opdracht-2-grijswaarden-conversie" title="Link to this heading"></a></h3>
+<p>Voer op de ingelezen afbeelding een color conversie naar een grijswaarden afbeelding uit. Gebruik hiervoor de functie <code class="docutils literal notranslate"><span class="pre">cv2.cvtColor()</span></code> met de parameter <code class="docutils literal notranslate"><span class="pre">cv2.COLOR_BGR2GRAY</span></code>. Geef de resulterende grijswaarden afbeelding weer.</p>
+</section>
+<section id="opdracht-3-drempelbewerking">
+<h3>Opdracht 3: Drempelbewerking<a class="headerlink" href="#opdracht-3-drempelbewerking" title="Link to this heading"></a></h3>
+<p>Voer een drempelbewerking (thresholding) uit op de grijswaarden afbeelding om een binaire afbeelding te verkrijgen. Gebruik hiervoor de functie <code class="docutils literal notranslate"><span class="pre">cv2.threshold()</span></code>. Experimenteer met verschillende drempelwaarden en geef de binaire afbeelding weer.</p>
+</section>
+<section id="opdracht-4-structurerend-element-aanmaken">
+<h3>Opdracht 4: Structurerend element aanmaken<a class="headerlink" href="#opdracht-4-structurerend-element-aanmaken" title="Link to this heading"></a></h3>
+<p>Maak een structurerend element (kernel) aan met behulp van numpy, bijvoorbeeld een vierkante kernel van 5x5 pixels:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="opdracht-5-erosie-toepassen">
+<h3>Opdracht 5: Erosie toepassen<a class="headerlink" href="#opdracht-5-erosie-toepassen" title="Link to this heading"></a></h3>
+<p>Voer een erosie uit op de binaire afbeelding met behulp van de functie <code class="docutils literal notranslate"><span class="pre">cv2.erode()</span></code>. Experimenteer met verschillende structurerende elementen (kernels) en geef de geërodeerde afbeelding weer.</p>
+</section>
+<section id="opdracht-6-dilatatie-toepassen">
+<h3>Opdracht 6: Dilatatie toepassen<a class="headerlink" href="#opdracht-6-dilatatie-toepassen" title="Link to this heading"></a></h3>
+<p>Voer een dilatatie uit op de binaire afbeelding met behulp van de functie <code class="docutils literal notranslate"><span class="pre">cv2.dilate()</span></code>. Experimenteer met verschillende structurerende elementen (kernels) en geef de gedilateerde afbeelding weer.</p>
+</section>
+<section id="opdracht-7-opening-toepassen">
+<h3>Opdracht 7: Opening toepassen<a class="headerlink" href="#opdracht-7-opening-toepassen" title="Link to this heading"></a></h3>
+<p>Voer een opening uit op de binaire afbeelding met behulp van de functie <code class="docutils literal notranslate"><span class="pre">cv2.morphologyEx()</span></code> met de parameter <code class="docutils literal notranslate"><span class="pre">cv2.MORPH_OPEN</span></code>. Geef de resulterende afbeelding weer.</p>
+</section>
+<section id="opdracht-8-sluiting-toepassen">
+<h3>Opdracht 8: Sluiting toepassen<a class="headerlink" href="#opdracht-8-sluiting-toepassen" title="Link to this heading"></a></h3>
+<p>Voer een sluiting uit op de binaire afbeelding met behulp van de functie <code class="docutils literal notranslate"><span class="pre">cv2.morphologyEx()</span></code> met de parameter <code class="docutils literal notranslate"><span class="pre">cv2.MORPH_CLOSE</span></code>. Geef de resulterende afbeelding weer.</p>
+</section>
+<section id="opdracht-9-resultaten-vergelijken">
+<h3>Opdracht 9: Resultaten vergelijken<a class="headerlink" href="#opdracht-9-resultaten-vergelijken" title="Link to this heading"></a></h3>
+<p>Vergelijk de resultaten van de verschillende morfologische bewerkingen en beschrijf de effecten die ze hebben op de binaire afbeelding. Welke bewerking is het meest geschikt voor het verwijderen van ruis? Welke bewerking is het meest geschikt voor het verbinden van objecten in de afbeelding?</p>
+</section>
+<section id="opdracht-10-eigen-afbeeldingen-analyseren">
+<h3>Opdracht 10: Eigen afbeeldingen analyseren<a class="headerlink" href="#opdracht-10-eigen-afbeeldingen-analyseren" title="Link to this heading"></a></h3>
+<p>Gebruik eigen afbeeldingen met verschillende kenmerken (zoals ruis, gaten, verbonden objecten) en pas de morfologische bewerkingen toe. Analyseer en beschrijf hoe de verschillende bewerkingen de afbeeldingen beïnvloeden.</p>
+</section>
+<section id="opdracht-11-uitdaging-interactief-gui-script">
+<h3>Opdracht 11 (uitdaging): Interactief GUI-script<a class="headerlink" href="#opdracht-11-uitdaging-interactief-gui-script" title="Link to this heading"></a></h3>
+<p>Maak een interactief (GUI)script waarbij je de volgende invoervelden hebt:</p>
+<ul class="simple">
+<li><p>Selectie van het bestand (gebruik bijvoorbeeld <code class="docutils literal notranslate"><span class="pre">easygui.fileopenbox()</span></code>).</p></li>
+<li><p>Invoer van dremplewaarde voor de binaire drempelbewerking.</p></li>
+<li><p>Keuze van de morfologische bewerking (erosie, dilatatie, opening, sluiting).</p></li>
+<li><p>Keuze van de grootte van het structurerend element (kernel).<br />
+Voer de geselecteerde morfologische bewerking uit op de afbeelding met de opgegeven kernel grootte en geef het resultaat weer.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Voettekst">
+        <a href="contrast_verbetering.html" class="btn btn-neutral float-left" title="Contras verbetering/gamma correctie" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Vorige</a>
+        <a href="filters.html" class="btn btn-neutral float-right" title="Filters" accesskey="n" rel="next">Volgende <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Gerard Harkema.</p>
+  </div>
+
+  Gebouwd met <a href="https://www.sphinx-doc.org/">Sphinx</a> met een
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thema</a>
+    geleverd door <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

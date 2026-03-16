@@ -1,0 +1,207 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="nl" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rekentool brandpuntsafstand 2.0 &mdash; Advanced Vision With Python opdrachten 0.1 documentatie</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a57088fb"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/translations.js?v=e4d38c6a"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Zoeken" href="../search.html" />
+    <link rel="next" title="Rekentool optica" href="optica_rekentool.html" />
+    <link rel="prev" title="Rekentool brandpuntsafstand" href="brandpuntsafstand.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Advanced Vision With Python opdrachten
+              <img src="../_static/avans-hogeschool-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Zoek in documentatie" aria-label="Zoek in documentatie" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigatiemenu">
+              <p class="caption" role="heading"><span class="caption-text">Inhoudsopgave:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="inleiding.html">Inleiding</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Optica:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="optica.html">Optica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand.html">Rekentool brandpuntsafstand</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Rekentool brandpuntsafstand 2.0</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#opdracht-1-bereken-de-sensorgrootte-in-mm">Opdracht 1: Bereken de sensorgrootte in mm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opdracht-2-sensorgrootte-berekenen-met-functie">Opdracht 2: Sensorgrootte berekenen met functie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opdracht-3-herhaalde-berekeningen">Opdracht 3: Herhaalde berekeningen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opdracht-4-invoervalidatie">Opdracht 4: Invoervalidatie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opdracht-5-uitdaging-sensor-matching-met-dictionary">Opdracht 5 (uitdaging): Sensor-matching met dictionary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opdracht-6-grafische-gebruikersinterface">Opdracht 6: Grafische gebruikersinterface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="optica_rekentool.html">Rekentool optica</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OpenCV:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basis_beeld_verwerking.html">Basis beeldverwerking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrast_verbetering.html">Contras verbetering/gamma correctie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="morphology.html">Morphology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blob_detectie.html">Blob detectie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feature_detectie.html">Feature detectie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daheng.html">Gebruik van de Daheng camera met Python (Prakticum)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">AI:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ai.html">AI (Artificial Intelligence)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_verzamelen_afbeeldingen.html">Verzamelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_labelen_afbeeldingen.html">Labelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_trainen_netwerk.html">Trainen van een Neuraal Netwerk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_uitrollen_netwerk.html">Uitrollen van een Neuraal Netwerk</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referenties:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installatie_python.html">Installatie Python en PyCharm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referenties.html">Referenties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internal_use.html">Werken met wiskunde in Sphinx</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Navigatiemenu voor mobiel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Advanced Vision With Python opdrachten</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Paginanavigatie">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Rekentool brandpuntsafstand 2.0</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/documentation/brandpuntsafstand_extended.md.txt" rel="nofollow"> Bekijk paginabron</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="rekentool-brandpuntsafstand-2-0">
+<h1>Rekentool brandpuntsafstand 2.0<a class="headerlink" href="#rekentool-brandpuntsafstand-2-0" title="Link to this heading"></a></h1>
+<p>In deze uitgebreide versie van de brandpuntsafstand tool, ga je een Python-script schrijven dat niet alleen de brandpuntsafstand berekent, maar ook de sensorgrootte bepaalt op basis van de ingevoerde waarden. Je leert hoe je functies kunt gebruiken, invoervalidatie kunt implementeren, en hoe je een eenvoudige gebruikersinterface kunt maken.</p>
+<section id="opdracht-1-bereken-de-sensorgrootte-in-mm">
+<h2>Opdracht 1: Bereken de sensorgrootte in mm<a class="headerlink" href="#opdracht-1-bereken-de-sensorgrootte-in-mm" title="Link to this heading"></a></h2>
+<p>Maak een Python-script dat de gebruiker vraagt om de beeldbreedte, werkafstand en brandpuntsafstand in millimeters.
+Gebruik de volgende formule om de sensorgrootte te berekenen:</p>
+<div class="math notranslate nohighlight">
+\[
+	ext{sensor\_breedte} = \frac{\text{beeld\_breedte} \times \text{brandpunts\_afstand}}{\text{werk\_afstand}}
+\]</div>
+</section>
+<section id="opdracht-2-sensorgrootte-berekenen-met-functie">
+<h2>Opdracht 2: Sensorgrootte berekenen met functie<a class="headerlink" href="#opdracht-2-sensorgrootte-berekenen-met-functie" title="Link to this heading"></a></h2>
+<p>Herschrijf de code van de <a class="reference internal" href="brandpuntsafstand.html"><span class="std std-doc">vorige opdracht</span></a> zodat de berekening van de sensor_breedte in een functie wordt uitgevoerd. De functie moet drie parameters accepteren: beeld_breedte, werk_afstand en brandpunts_afstand. De functie moet de berekende sensorgrootte retourneren. De functie kan als volgt worden gedefinieerd:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bereken_sensor_breedte</span><span class="p">(</span><span class="n">beeld_breedte</span><span class="p">,</span> <span class="n">werk_afstand</span><span class="p">,</span> <span class="n">brandpunts_afstand</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Let op: In de functie mogen geen invoer- of uitvoeropdrachten worden gebruikt. Alle invoer moet buiten de functie worden verzameld en alle uitvoer moet buiten de functie worden weergegeven.</p>
+</div></blockquote>
+</section>
+<section id="opdracht-3-herhaalde-berekeningen">
+<h2>Opdracht 3: Herhaalde berekeningen<a class="headerlink" href="#opdracht-3-herhaalde-berekeningen" title="Link to this heading"></a></h2>
+<p>Maak het hoofdprogramma dusdagig dat het programma pas wordt afgesloten als de gebruiker ervoor kiest om te stoppen. Na elke berekening moet de gebruiker worden gevraagd of hij/zij nog een berekening wil uitvoeren.</p>
+</section>
+<section id="opdracht-4-invoervalidatie">
+<h2>Opdracht 4: Invoervalidatie<a class="headerlink" href="#opdracht-4-invoervalidatie" title="Link to this heading"></a></h2>
+<p>Voeg invoervalidatie toe aan je script om ervoor te zorgen dat de gebruiker alleen positieve numerieke waarden invoert voor beeld_breedte, werk_afstand en brandpunts_afstand. Als de gebruiker ongeldige invoer geeft, moet het script een foutmelding weergeven en de gebruiker opnieuw om invoer vragen.</p>
+<blockquote>
+<div><p>Tip: Maak gebruik van <code class="docutils literal notranslate"><span class="pre">if</span></code> of <code class="docutils literal notranslate"><span class="pre">while</span></code> statements om de invoer te valideren.</p>
+</div></blockquote>
+</section>
+<section id="opdracht-5-uitdaging-sensor-matching-met-dictionary">
+<h2>Opdracht 5 (uitdaging): Sensor-matching met dictionary<a class="headerlink" href="#opdracht-5-uitdaging-sensor-matching-met-dictionary" title="Link to this heading"></a></h2>
+<p>Er zijn een aantal voorgedefinieerde sensorformaten met hun bijbehorende breedtes in millimeters. Voeg deze informatie toe aan je script als een dictionary:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sensor_size</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;1/4 inch&quot;</span><span class="p">:</span> <span class="mf">3.6</span><span class="p">,</span>
+    <span class="s2">&quot;1/3 inch&quot;</span><span class="p">:</span> <span class="mf">4.8</span><span class="p">,</span>
+    <span class="s2">&quot;1/2 inch&quot;</span><span class="p">:</span> <span class="mf">6.4</span><span class="p">,</span>
+    <span class="s2">&quot;1/1.8 inch&quot;</span><span class="p">:</span> <span class="mf">7.1</span><span class="p">,</span>
+    <span class="s2">&quot;2/3 inch&quot;</span><span class="p">:</span> <span class="mf">8.8</span><span class="p">,</span>
+    <span class="s2">&quot;1 inch&quot;</span><span class="p">:</span> <span class="mf">12.8</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Wijzig je programma zodat het, na het berekenen van de sensorgrootte, het meest overeenkomstige sensorformaat uit de dictionary zoekt en dit formaat samen met de berekende sensorgrootte weergeeft.</p>
+</section>
+<section id="opdracht-6-grafische-gebruikersinterface">
+<h2>Opdracht 6: Grafische gebruikersinterface<a class="headerlink" href="#opdracht-6-grafische-gebruikersinterface" title="Link to this heading"></a></h2>
+<p>Maak een grafische gebruikersinterface (GUI) voor je programma met behulp van een bibliotheek zoals Tkinter of EasyGUI. De GUI moet invoervelden bevatten voor beeld_breedte, werk_afstand en brandpunts_afstand, evenals een knop om de berekening uit te voeren en een gebied om de resultaten weer te geven.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Voettekst">
+        <a href="brandpuntsafstand.html" class="btn btn-neutral float-left" title="Rekentool brandpuntsafstand" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Vorige</a>
+        <a href="optica_rekentool.html" class="btn btn-neutral float-right" title="Rekentool optica" accesskey="n" rel="next">Volgende <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Gerard Harkema.</p>
+  </div>
+
+  Gebouwd met <a href="https://www.sphinx-doc.org/">Sphinx</a> met een
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thema</a>
+    geleverd door <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

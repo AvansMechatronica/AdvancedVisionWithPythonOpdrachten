@@ -1,0 +1,222 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="nl" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Filters &mdash; Advanced Vision With Python opdrachten 0.1 documentatie</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a57088fb"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/translations.js?v=e4d38c6a"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Zoeken" href="../search.html" />
+    <link rel="next" title="Blob detectie" href="blob_detectie.html" />
+    <link rel="prev" title="Morphology" href="morphology.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Advanced Vision With Python opdrachten
+              <img src="../_static/avans-hogeschool-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Zoek in documentatie" aria-label="Zoek in documentatie" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigatiemenu">
+              <p class="caption" role="heading"><span class="caption-text">Inhoudsopgave:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="inleiding.html">Inleiding</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Optica:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="optica.html">Optica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand.html">Rekentool brandpuntsafstand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand_extended.html">Rekentool brandpuntsafstand 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optica_rekentool.html">Rekentool optica</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OpenCV:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="basis_beeld_verwerking.html">Basis beeldverwerking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrast_verbetering.html">Contras verbetering/gamma correctie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="morphology.html">Morphology</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Filters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#inleiding">Inleiding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opdrachten">Opdrachten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-1-afbeelding-inlezen-en-weergeven-met-gui">Opdracht 1: Afbeelding inlezen en weergeven met GUI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-2-color-conversie-naar-grijswaarden">Opdracht 2: Color conversie naar grijswaarden</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-3-gemiddelde-filter">Opdracht 3: Gemiddelde filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-4-gaussiaanse-filter">Opdracht 4: Gaussiaanse filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-5-mediane-filter">Opdracht 5: Mediane filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-6-sobel-randdetectie">Opdracht 6: Sobel-randdetectie</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-7-laplace-randdetectie">Opdracht 7: Laplace-randdetectie</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-8-filteranalyse-en-vergelijking">Opdracht 8: Filteranalyse en vergelijking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-9-filters-op-eigen-afbeeldingen">Opdracht 9: Filters op eigen afbeeldingen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-10-uitdaging-interactieve-filterapplicatie-gui">Opdracht 10 (uitdaging): Interactieve filterapplicatie GUI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="blob_detectie.html">Blob detectie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feature_detectie.html">Feature detectie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daheng.html">Gebruik van de Daheng camera met Python (Prakticum)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">AI:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ai.html">AI (Artificial Intelligence)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_verzamelen_afbeeldingen.html">Verzamelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_labelen_afbeeldingen.html">Labelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_trainen_netwerk.html">Trainen van een Neuraal Netwerk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_uitrollen_netwerk.html">Uitrollen van een Neuraal Netwerk</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referenties:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installatie_python.html">Installatie Python en PyCharm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referenties.html">Referenties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internal_use.html">Werken met wiskunde in Sphinx</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Navigatiemenu voor mobiel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Advanced Vision With Python opdrachten</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Paginanavigatie">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Filters</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/documentation/filters.md.txt" rel="nofollow"> Bekijk paginabron</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="filters">
+<h1>Filters<a class="headerlink" href="#filters" title="Link to this heading"></a></h1>
+<p>In deze sectie behandelen we verschillende soorten filters die vaak worden gebruikt in de beeldverwerking. Filters worden toegepast om bepaalde kenmerken van een afbeelding te benadrukken of te onderdrukken, zoals ruis, randen of texturen. We zullen zowel lineaire als niet-lineaire filters bespreken, evenals hun toepassingen en implementaties met behulp van de OpenCV bibliotheek.</p>
+<section id="inleiding">
+<h2>Inleiding<a class="headerlink" href="#inleiding" title="Link to this heading"></a></h2>
+<p>Filters zijn essentiële hulpmiddelen in de beeldverwerking die worden gebruikt om afbeeldingen te verbeteren of specifieke kenmerken te extraheren. Lineaire filters, zoals gemiddelde- en Gaussiaanse filters, worden vaak gebruikt voor ruisonderdrukking en het gladmaken van afbeeldingen. Niet-lineaire filters, zoals mediane filters, zijn effectief bij het verwijderen van impulsruis zonder de randen van objecten te vervagen. Daarnaast zijn er speciale filters zoals Sobel- en Laplace-filters die worden gebruikt voor randdetectie. In deze sectie zullen we deze verschillende soorten filters verkennen, hun werking uitleggen en praktische voorbeelden geven van hoe ze kunnen worden toegepast met behulp van OpenCV.</p>
+</section>
+<section id="opdrachten">
+<h2>Opdrachten<a class="headerlink" href="#opdrachten" title="Link to this heading"></a></h2>
+<p>Download voor deze opdrachten de afbeelding <code class="docutils literal notranslate"><span class="pre">sudoku.jpg</span></code> vanaf de volgende link:<a class="reference external" href="https://raw.githubusercontent.com/AvansMechatronica/CursusSupport/main/images/sudoku.jpg">sudoku.jpg</a></p>
+<blockquote>
+<div><p>Om je pythonscript leesbaar en onderhoudbaar te houden, is het aan te raden om functies te gebruiken voor verschillende onderdelen van je code. Bijvoorbeeld een functie voor het inlezen en weergeven van de afbeelding, een functie voor het uitvoeren van de kleurconversie, en aparte functies voor elke filtermethode.</p>
+</div></blockquote>
+<section id="opdracht-1-afbeelding-inlezen-en-weergeven-met-gui">
+<h3>Opdracht 1: Afbeelding inlezen en weergeven met GUI<a class="headerlink" href="#opdracht-1-afbeelding-inlezen-en-weergeven-met-gui" title="Link to this heading"></a></h3>
+<p>Maak een Python script dat de afbeelding <code class="docutils literal notranslate"><span class="pre">sudoku.jpg</span></code> inleest en weergeeft. Gebruik hiervoor de OpenCV bibliotheek.
+Maak hiervoor een grafische gebruikersinterface (GUI) met bv. easygui, waarin de gebruiker een afbeelding kan selecteren vanaf zijn computer.</p>
+</section>
+<section id="opdracht-2-color-conversie-naar-grijswaarden">
+<h3>Opdracht 2: Color conversie naar grijswaarden<a class="headerlink" href="#opdracht-2-color-conversie-naar-grijswaarden" title="Link to this heading"></a></h3>
+<p>Voer op de ingelezen afbeelding een color conversie naar een grijswaarden afbeelding uit. Gebruik hiervoor de functie <code class="docutils literal notranslate"><span class="pre">cv2.cvtColor()</span></code> met de parameter <code class="docutils literal notranslate"><span class="pre">cv2.COLOR_BGR2GRAY</span></code>. Geef de resulterende grijswaarden afbeelding weer.</p>
+</section>
+<section id="opdracht-3-gemiddelde-filter">
+<h3>Opdracht 3: Gemiddelde filter<a class="headerlink" href="#opdracht-3-gemiddelde-filter" title="Link to this heading"></a></h3>
+<p>Pas een gemiddelde filter toe op de grijswaarden afbeelding om ruis te verminderen. Gebruik hiervoor de functie <code class="docutils literal notranslate"><span class="pre">cv2.blur()</span></code> met een kernelgrootte van (5,5). Geef de gefilterde afbeelding weer.</p>
+</section>
+<section id="opdracht-4-gaussiaanse-filter">
+<h3>Opdracht 4: Gaussiaanse filter<a class="headerlink" href="#opdracht-4-gaussiaanse-filter" title="Link to this heading"></a></h3>
+<p>Pas een Gaussiaanse filter toe op de grijswaarden afbeelding om ruis te verminderen. Gebruik hiervoor de functie <code class="docutils literal notranslate"><span class="pre">cv2.GaussianBlur()</span></code> met een kernelgrootte van (5,5) en een sigma van 0. Geef de gefilterde afbeelding weer.</p>
+</section>
+<section id="opdracht-5-mediane-filter">
+<h3>Opdracht 5: Mediane filter<a class="headerlink" href="#opdracht-5-mediane-filter" title="Link to this heading"></a></h3>
+<p>Pas een mediane filter toe op de grijswaarden afbeelding om impulsruis te verwijderen. Gebruik hiervoor de functie <code class="docutils literal notranslate"><span class="pre">cv2.medianBlur()</span></code> met een kernelgrootte van 5. Geef de gefilterde afbeelding weer.</p>
+</section>
+<section id="opdracht-6-sobel-randdetectie">
+<h3>Opdracht 6: Sobel-randdetectie<a class="headerlink" href="#opdracht-6-sobel-randdetectie" title="Link to this heading"></a></h3>
+<p>Voer een Sobel-randdetectie uit op de grijswaarden afbeelding. Gebruik hiervoor de functie <code class="docutils literal notranslate"><span class="pre">cv2.Sobel()</span></code> om de randen in zowel de x- als y-richting te detecteren. Combineer de resultaten en geef de resulterende afbeelding weer.</p>
+</section>
+<section id="opdracht-7-laplace-randdetectie">
+<h3>Opdracht 7: Laplace-randdetectie<a class="headerlink" href="#opdracht-7-laplace-randdetectie" title="Link to this heading"></a></h3>
+<p>Voer een Laplace-randdetectie uit op de grijswaarden afbeelding. Gebruik hiervoor de functie <code class="docutils literal notranslate"><span class="pre">cv2.Laplacian()</span></code>. Geef de resulterende afbeelding weer.</p>
+</section>
+<section id="opdracht-8-filteranalyse-en-vergelijking">
+<h3>Opdracht 8: Filteranalyse en vergelijking<a class="headerlink" href="#opdracht-8-filteranalyse-en-vergelijking" title="Link to this heading"></a></h3>
+<p>Vergelijk de resultaten van de verschillende filters (gemiddelde, Gaussiaans, mediaan, Sobel, Laplace) en beschrijf de effecten die ze hebben op de afbeelding. Welke filter is het meest effectief voor het verminderen van ruis? Welke filter is het meest effectief voor het detecteren van randen?</p>
+</section>
+<section id="opdracht-9-filters-op-eigen-afbeeldingen">
+<h3>Opdracht 9: Filters op eigen afbeeldingen<a class="headerlink" href="#opdracht-9-filters-op-eigen-afbeeldingen" title="Link to this heading"></a></h3>
+<p>Gebruik eigen afbeeldingen met verschillende kenmerken (zoals ruis, scherpe randen, zachte randen) en pas de verschillende filters toe. Analyseer en beschrijf hoe de verschillende filters de afbeeldingen beïnvloeden.</p>
+</section>
+<section id="opdracht-10-uitdaging-interactieve-filterapplicatie-gui">
+<h3>Opdracht 10 (uitdaging): Interactieve filterapplicatie GUI<a class="headerlink" href="#opdracht-10-uitdaging-interactieve-filterapplicatie-gui" title="Link to this heading"></a></h3>
+<p>Maak een interactief (GUI)script waarbij je de volgende invoervelden hebt:</p>
+<ul class="simple">
+<li><p>Selectie van het bestand (gebruik bijvoorbeeld <code class="docutils literal notranslate"><span class="pre">easygui.fileopenbox()</span></code>).</p></li>
+<li><p>Keuze van het type filter (gemiddelde, Gaussiaans, mediaan, Sobel, Laplace).</p></li>
+<li><p>Invoer van de benodigde parameters voor het gekozen filter (zoals kernelgrootte, sigma, etc.).
+Voer het geselecteerde filter uit op de afbeelding met de opgegeven parameters en geef het resultaat weer.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Voettekst">
+        <a href="morphology.html" class="btn btn-neutral float-left" title="Morphology" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Vorige</a>
+        <a href="blob_detectie.html" class="btn btn-neutral float-right" title="Blob detectie" accesskey="n" rel="next">Volgende <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Gerard Harkema.</p>
+  </div>
+
+  Gebouwd met <a href="https://www.sphinx-doc.org/">Sphinx</a> met een
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thema</a>
+    geleverd door <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

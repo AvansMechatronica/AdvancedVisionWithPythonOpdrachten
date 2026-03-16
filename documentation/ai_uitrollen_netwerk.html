@@ -1,0 +1,211 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="nl" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uitrollen van een Neuraal Netwerk &mdash; Advanced Vision With Python opdrachten 0.1 documentatie</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a57088fb"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/translations.js?v=e4d38c6a"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Zoeken" href="../search.html" />
+    <link rel="next" title="Installatie Python en PyCharm" href="installatie_python.html" />
+    <link rel="prev" title="Trainen van een Neuraal Netwerk" href="ai_trainen_netwerk.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Advanced Vision With Python opdrachten
+              <img src="../_static/avans-hogeschool-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Zoek in documentatie" aria-label="Zoek in documentatie" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigatiemenu">
+              <p class="caption" role="heading"><span class="caption-text">Inhoudsopgave:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="inleiding.html">Inleiding</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Optica:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="optica.html">Optica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand.html">Rekentool brandpuntsafstand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand_extended.html">Rekentool brandpuntsafstand 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optica_rekentool.html">Rekentool optica</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OpenCV:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basis_beeld_verwerking.html">Basis beeldverwerking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrast_verbetering.html">Contras verbetering/gamma correctie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="morphology.html">Morphology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blob_detectie.html">Blob detectie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feature_detectie.html">Feature detectie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daheng.html">Gebruik van de Daheng camera met Python (Prakticum)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">AI:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ai.html">AI (Artificial Intelligence)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_verzamelen_afbeeldingen.html">Verzamelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_labelen_afbeeldingen.html">Labelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_trainen_netwerk.html">Trainen van een Neuraal Netwerk</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Uitrollen van een Neuraal Netwerk</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#inleiding">Inleiding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opdrachten">Opdrachten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-1-voorbereiden-van-het-getrainde-model">Opdracht 1: Voorbereiden van het Getrainde Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-2-detectie-van-objecten-in-afbeeldingen-uit-een-bestand">Opdracht 2: Detectie van objecten in Afbeeldingen uit een Bestand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-3-detectie-van-objecten-in-een-live-webcam-stream">Opdracht 3: Detectie van objecten in een Live Webcam Stream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referenties:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installatie_python.html">Installatie Python en PyCharm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referenties.html">Referenties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internal_use.html">Werken met wiskunde in Sphinx</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Navigatiemenu voor mobiel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Advanced Vision With Python opdrachten</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Paginanavigatie">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Uitrollen van een Neuraal Netwerk</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/documentation/ai_uitrollen_netwerk.md.txt" rel="nofollow"> Bekijk paginabron</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="uitrollen-van-een-neuraal-netwerk">
+<h1>Uitrollen van een Neuraal Netwerk<a class="headerlink" href="#uitrollen-van-een-neuraal-netwerk" title="Link to this heading"></a></h1>
+<section id="inleiding">
+<h2>Inleiding<a class="headerlink" href="#inleiding" title="Link to this heading"></a></h2>
+<p>In deze sectie leer je hoe je een getraind neuraal netwerk kunt uitrollen en gebruiken voor inferentie (voorspellingen) op beelden uit een bestand of van een live video stream, zoals een webcam. We maken gebruik van het YoloV8 model voor deze opdrachten.</p>
+</section>
+<section id="opdrachten">
+<h2>Opdrachten<a class="headerlink" href="#opdrachten" title="Link to this heading"></a></h2>
+<section id="opdracht-1-voorbereiden-van-het-getrainde-model">
+<h3>Opdracht 1: Voorbereiden van het Getrainde Model<a class="headerlink" href="#opdracht-1-voorbereiden-van-het-getrainde-model" title="Link to this heading"></a></h3>
+<p>Zorg ervoor dat je het getrainde model (<code class="docutils literal notranslate"><span class="pre">best.pt</span></code>) hebt dat je hebt verkregen na het trainen van je neuraal netwerk. Dit bestand is essentieel voor het uitvoeren van inferentie. Je hebt dit al verkregen in de vorige sectie over het trainen van een neuraal netwerk. Zoek het bestand op je computer.</p>
+<blockquote>
+<div><p>Als je getraind hebt met behulp van een colab notebook, zorg er dan voor dat je het model hebt gedownload van je Google Drive naar je lokale computer.</p>
+</div></blockquote>
+</section>
+<section id="opdracht-2-detectie-van-objecten-in-afbeeldingen-uit-een-bestand">
+<h3>Opdracht 2: Detectie van objecten in Afbeeldingen uit een Bestand<a class="headerlink" href="#opdracht-2-detectie-van-objecten-in-afbeeldingen-uit-een-bestand" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Maak een Python script genaamd <code class="docutils literal notranslate"><span class="pre">DetectFromFile.py</span></code>.</p></li>
+<li><p>Importeer de benodigde bibliotheken, zoals <code class="docutils literal notranslate"><span class="pre">ultralytics</span></code> voor YoloV8 en <code class="docutils literal notranslate"><span class="pre">cv2</span></code> voor beeldverwerking.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ultralytics</span> <span class="kn">import</span> <span class="n">YOLO</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Laad het getrainde model (<code class="docutils literal notranslate"><span class="pre">best.pt</span></code>) in je script. Gebruik hiervoor de volgende functie:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">YOLO</span><span class="p">(</span><span class="s1">&#39;bestandspad_naar_best.pt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Schrijf code om een afbeelding te laden vanaf je computer en voer inferentie uit met het geladen model.</p></li>
+<li><p>Detecteer de objecten met de volgende functie:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">model</span><span class="p">()</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Druk de resultaten af in een terminal en evalueer de waardes uit de resultaten. Gebruik hiervoor de volgende code:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p>Gebruik de resultaten om de gedetecteerde objecten van bounding boxes te voorzien en daarbij het label en confidence score weer te geven.</p></li>
+</ol>
+</section>
+<section id="opdracht-3-detectie-van-objecten-in-een-live-webcam-stream">
+<h3>Opdracht 3: Detectie van objecten in een Live Webcam Stream<a class="headerlink" href="#opdracht-3-detectie-van-objecten-in-een-live-webcam-stream" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Maak een Python script genaamd <code class="docutils literal notranslate"><span class="pre">DetectFromWebcam.py</span></code>.</p></li>
+<li><p>Maak het programma zodanig dat je de webcam van je computer gebruikt om een live video stream te verkrijgen, waarbij live inferentie wordt uitgevoerd met het getrainde model.</p></li>
+</ol>
+<p>Je hebt nu geleerd hoe je een getraind neuraal netwerk kunt uitrollen en gebruiken voor objectdetectie in zowel afbeeldingen uit een bestand als in een live webcam stream. Experimenteer met verschillende beelden en video streams om de prestaties van je model te evalueren!</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Voettekst">
+        <a href="ai_trainen_netwerk.html" class="btn btn-neutral float-left" title="Trainen van een Neuraal Netwerk" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Vorige</a>
+        <a href="installatie_python.html" class="btn btn-neutral float-right" title="Installatie Python en PyCharm" accesskey="n" rel="next">Volgende <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Gerard Harkema.</p>
+  </div>
+
+  Gebouwd met <a href="https://www.sphinx-doc.org/">Sphinx</a> met een
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thema</a>
+    geleverd door <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
