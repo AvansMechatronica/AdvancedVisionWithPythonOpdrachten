@@ -10,7 +10,7 @@ De opdrachten in deze workshop werken alleen met versie 3.12 van Python.
 
 :::{tab-item} Microsoft store
 
-::{card}
+
 Open een windows console of PowerShell en voer het volgende commando uit om Python te installeren:
 
 ```powershell
@@ -18,13 +18,11 @@ winget install --id Python.Python.3.12 --source winget --force
 ``` 
 ![image](../images/cmd-install-python.png)
 
-::
 
 :::
 
 :::{tab-item} Python Website
 
-::{card}
 Download de laatste versie van Python van af de [Python-website](https://www.python.org/downloads/).
 Voer de installatie uit!
 >Let op: 
@@ -33,7 +31,6 @@ Voer de installatie uit!
 
 ![image](../images/PythonPath.png)
 
-::
 
 :::
 
