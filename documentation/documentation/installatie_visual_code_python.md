@@ -1,8 +1,7 @@
 # Installatie Python en Visual Code
 ## Installatie Python
 
-
-:::{warning} Belangrijk
+:::{warning}
 De opdrachten in deze workshop werken alleen met versie 3.12 van Python.
 :::
 
@@ -23,7 +22,7 @@ winget install --id Python.Python.3.12 --source winget --force
 
 :::{tab-item} Python Website
 
-Download de laatste versie van Python van af de [Python-website](https://www.python.org/downloads/).
+Download de versie 3.12 van Python van af de [Python-website](https://www.python.org/downloads/).
 Voer de installatie uit!
 >Let op: 
 >* Vink "Add Python to PATH" aan (belangrijk!)

@@ -49,9 +49,19 @@ Maak het programma zodanig dat het programma stopt zodra je een 'x' hebt ingevoe
 ### Opdracht 5 (extra-uitdaging): Grafische interface
 Maak voor je programma een grafische-userinterface b.v. met de 'easygui' bibliotheek.
 
-> Tip: zie [EasyGUI](https://pypi.org/project/easygui/)
 
-> Opmerking: Voor deze opdrachten is het belangrijk dat je de basisprincipes van Python begrijpt, zoals variabelen, gebruikersinvoer, en eenvoudige wiskundige berekeningen. Als je nog niet vertrouwd bent met deze concepten, raad ik aan om eerst een inleidende Python-cursus te volgen voordat je aan deze opdrachten begint.
+:::{note}
+Voordat je easygui gebruikt, moet je ervoor zorgen dat de bibliotheek is geïnstalleerd. Je kunt dit doen met de volgende opdracht in een terminal van Visual Code uit te voeren:
+
+```bash
+pip install easygui
+``` 
+:::
+
+:::{tip}
+zie [EasyGUI](https://pypi.org/project/easygui/)
+:::
+
 
 ```python
 # Voorbeeld van hoe input en output eruit kunnen zien in easygui
