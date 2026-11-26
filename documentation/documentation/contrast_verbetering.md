@@ -1,37 +1,97 @@
-# Contras verbetering/gamma correctie
+# Werkcollege 2: Histogram en contrast
 
+Deze opdrachten horen bij **werkcollege 2 - Histogram en contrast**. In het werkcollege maak je opdracht 1 (gamma met een schuifregelaar) en opdracht 2 (munten drempelen) in het Colab-notebook *Werkcollege 2 - Histogram en contrast*. Op deze pagina doe je hetzelfde lokaal, met schuifregelaars in een OpenCV-venster.
 
-## Inleing
-In deze opdracht gaan we de contrast van een afbeelding verbeteren. We kunnen dit doen door middel van gamma correctie. Gamma correctie is een niet-lineaire operatie die wordt gebruikt om de helderheid van een afbeelding aan te passen. Het wordt vaak gebruikt om de details in donkere of lichte gebieden van een afbeelding te verbeteren.
-De formule voor gamma correctie is als volgt:
+In de vision-pipeline zit je bij **voorbewerken** (contrast verbeteren zodat details zichtbaar worden) en **segmenteren** (met een drempel scheid je voorwerp en achtergrond).
 
-```math
-output\_pixel = 255 \times \left(\frac{input\_pixel}{255}\right)^{\gamma}
+## Leerdoelen
+
+Na deze opdrachten kun je:
+
+- een histogram lezen en zien of een beeld te donker, te licht of te vlak is;
+- contrast verbeteren met gamma-correctie en histogram-egalisatie;
+- een drempelwaarde kiezen uit het histogram en zo een binair beeld maken;
+- Otsu automatisch een drempel laten kiezen.
+
+## Schuifregelaars lokaal: trackbars
+
+In Colab gebruik je `interact`. Lokaal maak je een schuifregelaar met `cv2.createTrackbar`. Dit patroon gebruik je in alle volgende werkcolleges:
+
+```python
+import cv2
+
+grijs = cv2.imread("images/pennies.jpg", cv2.IMREAD_GRAYSCALE)
+
+cv2.namedWindow("drempel")
+cv2.createTrackbar("t", "drempel", 128, 255, lambda x: None)
+
+while True:
+    t = cv2.getTrackbarPos("t", "drempel")
+    _, zw = cv2.threshold(grijs, t, 255, cv2.THRESH_BINARY_INV)
+    cv2.imshow("drempel", zw)
+    if cv2.waitKey(30) & 0xFF == 27:   # Esc om te stoppen
+        break
+cv2.destroyAllWindows()
 ```
 
-Waarbij `input_pixel` de waarde van een pixel in de originele afbeelding is, `output_pixel` de waarde van de pixel in de aangepaste afbeelding is, en `gamma` een parameter is die bepaalt hoe sterk de contrastverbetering is. Een gamma-waarde kleiner dan 1 zal de details in donkere gebieden verbeteren, terwijl een gamma-waarde groter dan 1 de details in lichte gebieden zal verbeteren.
-
-Om gamma correctie toe te passen in Python, kunnen we de volgende code gebruiken:
-
+> Een trackbar kent alleen gehele getallen. Wil je gamma van 0,2 tot 3,0 instellen? Laat de trackbar lopen van 2 tot 30 en deel door 10.
 
 ## Opdrachten
 
-Download voor deze opdrachten de afbeelding `veel contrast.jpg` vanaf de volgende link: [veel contrast.jpg](https://raw.githubusercontent.com/AvansMechatronica/CursusSupport/main/images/veel%20contrast.jpg)
+### Opdracht 1: Histogram lezen (10 min)
 
-> Om je pythonscript leesbaar en onderhoudbaar te houden, is het aan te raden om functies te gebruiken voor verschillende onderdelen van je code.
+1. Lees `weinig contrast.jpg` en `veel contrast.jpg` in als grijsbeeld.
+2. Bereken van beide het histogram met `cv2.calcHist([grijs], [0], None, [256], [0, 256])` en teken het met `matplotlib`.
+3. Waar ligt de berg? Hoe breed is hij? Hoe zie je aan het histogram dat een beeld weinig contrast heeft?
 
-### Opdracht 1: Afbeelding inlezen en weergeven met GUI
-Maak een Python script dat de afbeelding `veel contrast.jpg` inleest en weergeeft. Gebruik hiervoor de OpenCV bibliotheek.
-Maak hiervoor een grafische gebruikersinterface (GUI) met bv. easygui, waarin de gebruiker een afbeelding kan selecteren vanaf zijn computer.
+### Opdracht 2: Gamma met een trackbar (15 min)
 
-### Opdracht 2: Gamma correctie toepassen
-Pas gamma correctie toe op de ingelezen afbeelding. Vraag de gebruiker om een gamma-waarde in te voeren en gebruik deze waarde om de contrastverbetering toe te passen. Geef de aangepaste afbeelding weer. 
+1. Lees `horse.jpg` in als grijsbeeld.
+2. Maak een gamma-tabel (LUT) en pas die toe met `cv2.LUT`:
+   ```python
+   tabel = np.array([(i / 255) ** g * 255 for i in range(256)]).astype("uint8")
+   uit = cv2.LUT(grijs, tabel)
+   ```
+3. Maak een trackbar voor gamma van 0,2 tot 3,0. Zoek de gamma waarbij je het hoofdstel van het paard het best ziet.
+4. Toon voor en na het histogram. Wat is er veranderd? Blijven zwart (0) en wit (255) gelijk?
 
-### Opdracht 3: Verschillende gamma-waarden testen
-Test de gamma correctie met verschillende gamma-waarden (bijvoorbeeld 0.5, 1.0, 2.0) en observeer hoe de contrastverbetering verandert. Beschrijf de effecten van verschillende gamma-waarden op de afbeelding.
+> Vuistregel: donkere details zichtbaar maken: gamma onder 1. Overbelicht beeld: gamma boven 1. Begin rond 0,5 of 1,5.
 
-### Opdracht 4: Zelf afbeeldingen testen
-Gebruik zelfuitgezochtte afbeeldingen met verschillende kenmerken (zoals donkere afbeeldingen, lichte afbeeldingen, afbeeldingen met veel details) en pas gamma correctie toe. Analyseer en beschrijf hoe de verschillende gamma-waarden de afbeeldingen beïnvloeden.
+### Opdracht 3: Egalisatie (10 min)
 
-### Opdracht 5 (uitdaging): Interactieve gamma correctie GUI
-Maak een interactief (GUI)script waarbijje de gamma-waarde kunt aanpassen met een schuifbalk (slider) en de aangepaste afbeelding in realtime kunt bekijken. Gebruik hiervoor bijvoorbeeld de `cv2.createTrackbar()` functie van OpenCV.
+1. Pas `cv2.equalizeHist` toe op `weinig contrast.jpg`.
+2. Vergelijk het histogram voor en na. Wordt nu het hele bereik van 0 tot 255 gebruikt?
+3. Pas egalisatie ook toe op `horse.jpg`. Werkt gamma of egalisatie hier beter?
+
+### Opdracht 4: Munten drempelen (15 min)
+
+1. Lees `pennies.jpg` in als grijsbeeld en teken het histogram.
+2. Kies zelf een drempel met een trackbar (zie het voorbeeld hierboven). Leg de drempel in het dal tussen de twee bergen.
+3. Laat Otsu een drempel kiezen:
+   ```python
+   t, zw = cv2.threshold(grijs, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+   print("Otsu kiest", t)
+   ```
+   Hoeveel scheelt het met jouw keuze?
+
+> Vuistregel: leg de drempel in het dal van het histogram. Twijfel? Gebruik Otsu en print welke waarde hij kiest.
+
+### Opdracht 5: Als Otsu niet werkt (10 min)
+
+1. Probeer Otsu op `weinig contrast.jpg`. Wat gaat er mis?
+2. Los het op met egalisatie vóór het drempelen, of met `cv2.adaptiveThreshold`.
+3. Maak trackbars voor `blockSize` en `C` van de adaptieve drempel en zoek een goede instelling.
+
+> Vuistregel: `blockSize` groter dan het object (maar niet het halve beeld), en altijd oneven: 11, 31, 51. Veel spikkels in egale vlakken? Verhoog `C` met stappen van 2 tot 5.
+
+### In de praktijk: voorwerp los van de achtergrond
+
+1. Teken het histogram van je testbeeld uit werkcollege 1.
+2. Zie je twee bergen? Zo niet: kies een achtergrond met meer contrast. Een donker voorwerp op wit papier geeft de beste scheiding.
+3. Maak een binair beeld en bewaar het als PNG: dat is de basis voor volgende week.
+
+## Kennisvragen
+
+1. Hoe zie je aan een histogram dat een beeld weinig contrast heeft?
+2. Wat doet een gamma kleiner dan 1?
+3. Wanneer werkt Otsu goed en wanneer niet?

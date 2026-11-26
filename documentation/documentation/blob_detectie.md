@@ -1,51 +1,88 @@
-# Blob detectie
+# Werkcollege 5: Blobs en segmentatie
 
-In deze sectie behandelen we de concepten en technieken die worden gebruikt voor het detecteren van blobs in afbeeldingen. Blobs zijn gebieden in een afbeelding die verschillen van hun omgeving op basis van eigenschappen zoals helderheid, kleur of textuur. We zullen verschillende methoden voor blobdetectie bespreken, waaronder eenvoudige drempelwaarden, Laplacian of Gaussian (LoG), Difference of Gaussian (DoG) en Determinant of Hessian (DoH). Daarnaast zullen we praktische voorbeelden geven van hoe deze technieken kunnen worden geïmplementeerd met behulp van de OpenCV bibliotheek.
+Deze opdrachten horen bij **werkcollege 5 - Blobs en segmentatie**. In het werkcollege maak je opdracht 1 (euromunten sorteren) en opdracht 2 (aanliggende munten scheiden) in het Colab-notebook *Werkcollege 5 - Blobs en segmentatie*. Op deze pagina oefen je hetzelfde lokaal.
 
-## Inleiding
+In de vision-pipeline zit je bij **segmenteren**, **meten** en **beslissen**: voorwerpen vinden, meten en goed groen en fout rood tekenen.
 
+## Leerdoelen
+
+Na deze opdrachten kun je:
+
+- contouren vinden en tekenen;
+- oppervlakte, omtrek, zwaartepunt en omhullende rechthoek meten;
+- aanliggende objecten scheiden met watershed;
+- segmenteren op kleur met K-means;
+- een voorbeeld terugzoeken met template matching.
 
 ## Opdrachten
 
-Download voor deze opdrachten de afbeelding `pills-in-strip.jpg` vanaf de volgende link:[pills-in-strip.jpg](https://raw.githubusercontent.com/AvansMechatronica/CursusSupport/main/images/pills-in-strip.jpg)
+### Opdracht 1: Contouren vinden en tellen (15 min)
 
-> Om je pythonscript leesbaar en onderhpoudbaar te houden, is het aan te raden om functies te gebruiken voor verschillende onderdelen van je code. Bijvoorbeeld een functie voor het inlezen en weergeven van de afbeelding, een functie voor het uitvoeren van de kleurconversie, en aparte functies voor elke blobdetectiemethode.
+1. Lees `euromunten.jpg` in en maak een schoon zwart-witbeeld (grijs, filter, Otsu, opening of closing).
+2. Zoek de contouren:
+   ```python
+   cnts, _ = cv2.findContours(zw, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+   ```
+3. Filter kruimels weg op oppervlakte (`cv2.contourArea(c) < 2000`) en tel de munten.
+4. Teken alle contouren met `cv2.drawContours` op een kopie van het origineel en nummer elke munt.
 
-### Opdracht 1: Afbeelding inlezen en weergeven met GUI
-Maak een Python script dat de afbeelding `pills-in-strip.jpg` inleest en weergeeft. Gebruik hiervoor de OpenCV bibliotheek.
-Maak hiervoor een grafische gebruikersinterface (GUI) met bv. easygui, waarin de gebruiker een afbeelding kan selecteren vanaf zijn computer.
+> Vuistregel: objecten tellen met `RETR_EXTERNAL`. Gaten in objecten ook nodig: `RETR_TREE`. Methode: `CHAIN_APPROX_SIMPLE`.
 
-### Opdracht 2: Grijswaarden conversie
-Voer op de ingelezen afbeelding een kleurconversie naar een grijswaarden afbeelding uit. Gebruik hiervoor de functie `cv2.cvtColor()` met de parameter `cv2.COLOR_BGR2GRAY`. Geef de resulterende grijswaarden afbeelding weer.     
+### Opdracht 2: Meten (15 min)
 
-### Opdracht 3: Blob detectie met SimpleBlobDetector
-Gebruik de OpenCV `SimpleBlobDetector` om blobs in de grijswaarden afbeelding te detecteren. Stel de parameters van de detector in om blobs te vinden op basis van grootte, circulariteit en andere kenmerken. Geef de gedetecteerde blobs weer door cirkels rond hen te tekenen op de originele afbeelding.    
+1. Print van elke munt de oppervlakte (`cv2.contourArea`) en de omtrek (`cv2.arcLength(c, True)`).
+2. Bereken het zwaartepunt met moments:
+   ```python
+   M = cv2.moments(c)
+   cx = int(M["m10"] / M["m00"])
+   cy = int(M["m01"] / M["m00"])
+   ```
+3. Teken het zwaartepunt en de omhullende rechthoek (`cv2.boundingRect`) in het beeld.
 
-#### Opdracht 3a: Parameterafstemming SimpleBlobDetector
-Experimenteer met verschillende instellingen van de `SimpleBlobDetector` parameters, zoals `minThreshold`, `maxThreshold`, `filterByArea`, `minArea`, `filterByCircularity`, en andere. Observeer hoe deze wijzigingen de gedetecteerde blobs beïnvloeden en documenteer je bevindingen.
+### Opdracht 3: Goed of fout: euro's en centen (15 min)
 
-#### Opdracht 3b: Overlay van gedetecteerde blobs
-Pas je script aan zodat de gedetecteerde blobs worden weergegeven als een overlay op de originele afbeelding. Gebruik verschillende kleuren of vormen om de blobs te markeren, afhankelijk van hun eigenschappen zoals grootte of circulariteit. Geef zowel de originele afbeelding als de afbeelding met de overlay weer in de GUI.
+1. Kies een grens op oppervlakte: euro's groen omlijnen, centen rood.
+2. Maak een trackbar voor de grens, zodat je ziet waar de indeling omslaat.
+3. Waarom wordt de zilveren rand van de 2 euro slecht gevonden? Wat zou je aan het licht of de drempel kunnen veranderen?
 
-#### Opdracht 3c: Blob eigenschappen weergeven
-Breid je script uit om de eigenschappen van elke gedetecteerde blob weer te geven, zoals hun coördinaten, grootte en circulariteit.
+### Opdracht 4: Aanliggende munten scheiden met watershed (20 min)
 
-#### Opdracht 3d: Bepalen van het zwaartelpunt van blobs
-Voeg functionaliteit toe aan je script om het zwaartepunt van elke gedetecteerde blob te berekenen en weer te geven. Markeer het zwaartepunt op de originele afbeelding en geef de coördinaten ervan weer in de GUI.
+1. Lees `overlap_coins.jpg` in en maak een zwart-witbeeld. Hoeveel contouren vind je? Klopt dat met het aantal munten?
+2. Volg de stappen van het notebook:
+   ```python
+   dist = cv2.distanceTransform(zw, cv2.DIST_L2, 5)
+   _, zeker = cv2.threshold(dist, 0.6 * dist.max(), 255, 0)
+   n, labels = cv2.connectedComponents(zeker.astype("uint8"))
+   ```
+   Maak daarna het onbekende gebied en de markers, en roep `cv2.watershed` aan.
+3. Maak een trackbar voor de factor op de afstandskaart (0,4 tot 0,8). Bij welke factor vind je precies het juiste aantal munten?
 
-### Opdracht 4: Blob detectie met Laplacian of Gaussian (LoG)
-Implementeer blobdetectie met behulp van de Laplacian of Gaussian (LoG) methode. Gebruik de functie `cv2.GaussianBlur()` om de afbeelding te vervagen en vervolgens de Laplacian operator toe te passen met `cv2.Laplacian()`. Identificeer de lokale maxima in het resultaat als blobs en geef deze weer op de originele afbeelding.   
+> Vuistregel: tel eerst zelf hoeveel objecten er zijn en kies de factor die precies dat aantal kernen geeft. Meestal 0,5 tot 0,7.
 
-### Opdracht 5: Blob detectie met Difference of Gaussian (DoG)
-Implementeer blobdetectie met behulp van de Difference of Gaussian (DoG) methode. Maak twee vervaagde versies van de grijswaarden afbeelding met verschillende sigma-waarden en trek deze van elkaar af. Identificeer de lokale maxima in het resultaat als blobs en geef deze weer op de originele afbeelding.
+### Opdracht 5: K-means op kleur (10 min)
 
-### Opdracht 6: Blob detectie met Determinant of Hessian (DoH)
-Implementeer blobdetectie met behulp van de Determinant of Hessian (DoH) methode. Bereken de Hessiaan matrix van de grijswaarden afbeelding en bepaal de determinant op elk pixel. Identificeer de lokale maxima in het resultaat als blobs en geef deze weer op de originele afbeelding.
+1. Pas K-means toe op `kerstballen.bmp` met `cv2.kmeans`, met K = 2, 4 en 8.
+2. Maak per groep een masker. Welke K scheidt de rode ballen het best van de rest?
 
-### Opdracht 7: Vergelijking van blobdetectiemethoden
-Vergelijk de resultaten van de verschillende blobdetectiemethoden (SimpleBlobDetector, LoG, DoG, DoH) en beschrijf de voor- en nadelen van elke methode. Welke methode presteert het beste voor de gegeven afbeelding en waarom?
+### Opdracht 6: Template matching (10 min)
 
-### Opdracht 8: Blob detectie op eigen afbeeldingen
-Gebruik eigen afbeeldingen met verschillende kenmerken (zoals ruis, scherpe randen, zachte randen) en pas de verschillende blobdetectiemethoden toe. Analyseer en beschrijf hoe de verschillende methoden de afbeeldingen beïnvloeden en welke het meest effectief zijn voor jouw afbeeldingen.
+1. Snij uit `euromunten.jpg` één munt uit als template.
+2. Zoek die terug met `cv2.matchTemplate(img, template, cv2.TM_CCOEFF_NORMED)` en teken een rechthoek bij elke plek met een score boven een minimale score.
+3. Maak een trackbar voor de minimale score. Wat gebeurt er met vals alarm en gemiste munten?
+4. Draai het template 45 graden. Werkt het nog?
 
+> Vuistregel: begin bij een score van 0,8 en kijk naar vals alarm en gemiste objecten. Template matching werkt alleen als grootte en draaiing gelijk blijven.
 
+### In de praktijk: goed of fout, groen of rood
+
+1. Zoek de contouren van de voorwerpen in je testbeeld.
+2. Meet oppervlakte, omtrek en de verhouding van de omhullende rechthoek.
+3. Kies grenzen met een paar goede voorbeelden: wat is goed?
+4. Teken goed groen en fout rood over het origineel. Liggen voorwerpen tegen elkaar? Gebruik watershed.
+
+## Kennisvragen
+
+1. Wat is het verschil tussen `cnts` en `c`?
+2. Hoe bereken je met OpenCV het zwaartepunt van een contour?
+3. Wanneer heb je watershed nodig?
+4. Waarom werkt template matching slecht als voorwerpen gedraaid liggen?

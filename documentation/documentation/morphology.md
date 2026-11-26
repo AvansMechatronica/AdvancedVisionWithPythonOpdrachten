@@ -1,58 +1,78 @@
-# Morphology
+# Werkcollege 3: NumPy en morfologie
 
-In deze sectie behandelen we morfologische bewerkingen die vaak worden gebruikt in de beeldverwerking. Morfologie is een verzameling van niet-lineaire bewerkingen die gebaseerd zijn op de vorm van structuren in een afbeelding. De meest gebruikte morfologische operaties zijn erosie, dilatatie, opening en sluiting.
+Deze opdrachten horen bij **werkcollege 3 - NumPy en morfologie**. In het werkcollege maak je opdracht 1 (pallet meten met NumPy) en opdracht 2 (ruis opruimen) in het Colab-notebook *Werkcollege 3 - NumPy en morfologie*. Op deze pagina oefen je hetzelfde lokaal.
 
-## Inleiding
+In de vision-pipeline zit je bij **voorbewerken** (een uitsnede nemen, rekenen met maskers) en **segmenteren** (het zwart-witbeeld opruimen, zodat elke BLOB één voorwerp is).
 
-Morfologische bewerkingen zijn technieken in de beeldverwerking die gebaseerd zijn op de vorm en structuur van objecten in een afbeelding. Ze worden vaak toegepast op binaire afbeeldingen om ruis te verwijderen, objecten te scheiden of juist te verbinden, en om de structuur van objecten te analyseren. De belangrijkste morfologische operaties zijn erosie (het verkleinen van objecten), dilatatie (het vergroten van objecten), opening (ruis verwijderen) en sluiting (gaten opvullen). Deze bewerkingen zijn essentieel bij het voorbereiden van afbeeldingen voor verdere analyse, zoals objectherkenning of contourdetectie.
+## Leerdoelen
+
+Na deze opdrachten kun je:
+
+- een uitsnede (ROI) uit een beeld nemen met NumPy;
+- met een masker pixels tellen en een percentage berekenen;
+- erosie, dilatatie, opening en closing toepassen en uitleggen waarvoor;
+- de juiste kernelvorm en -grootte kiezen.
 
 ## Opdrachten
 
-Download voor deze opdrachten de afbeelding `stars_1.png` vanaf de volgende link:
+### Opdracht 1: Een uitsnede nemen (ROI) (10 min)
 
-https://raw.githubusercontent.com/AvansMechatronica/CursusSupport/main/images/stars_1.png
+1. Lees `pallet.bmp` in als grijsbeeld en print `shape` en `dtype`.
+2. Snij een uitsnede uit met `roi = img[y1:y2, x1:x2]`. Let op: eerst de rijen (y), dan de kolommen (x).
+3. Teken de ROI als rechthoek in een kopie van het originele beeld, zodat je ziet welk deel je hebt gekozen.
 
-> Om je pythonscript leesbaar en onderhoudbaar te houden, is het aan te raden om functies te gebruiken voor verschillende onderdelen van je code. Bijvoorbeeld een functie voor het inlezen en weergeven van de afbeelding, een functie voor het uitvoeren van de kleurconversie, en aparte functies voor elke morfologische bewerking.
+### Opdracht 2: Meten met een masker (15 min)
 
-### Opdracht 1: Afbeelding inlezen en weergeven
-Maak een Python script dat de afbeelding `stars_1.png` inleest en weergeeft. Gebruik hiervoor de OpenCV bibliotheek.
+1. Maak een masker van de lichte planken: `masker = roi > 150`.
+2. Bereken het percentage hout:
+   ```python
+   pct = 100 * np.count_nonzero(masker) / roi.size
+   print(f"{pct:.1f} % hout")
+   ```
+3. Doe dit voor de linker- en de rechterhelft van de pallet. Welke kant heeft meer hout?
+4. Bereken met `img[masker].mean()` de gemiddelde helderheid van alleen het hout.
 
-### Opdracht 2: Grijswaarden conversie
-Voer op de ingelezen afbeelding een color conversie naar een grijswaarden afbeelding uit. Gebruik hiervoor de functie `cv2.cvtColor()` met de parameter `cv2.COLOR_BGR2GRAY`. Geef de resulterende grijswaarden afbeelding weer.
+### Opdracht 3: Rekenen met uint8 (5 min)
 
-### Opdracht 3: Drempelbewerking
-Voer een drempelbewerking (thresholding) uit op de grijswaarden afbeelding om een binaire afbeelding te verkrijgen. Gebruik hiervoor de functie `cv2.threshold()`. Experimenteer met verschillende drempelwaarden en geef de binaire afbeelding weer.
+1. Tel 100 op bij het beeld met `img + 100` en met `cv2.add(img, 100)`.
+2. Toon beide. Wat is het verschil? Waarom is `250 + 10` gelijk aan `4` bij een `uint8`-beeld?
 
-### Opdracht 4: Structurerend element aanmaken
-Maak een structurerend element (kernel) aan met behulp van numpy, bijvoorbeeld een vierkante kernel van 5x5 pixels:
+### Opdracht 4: Erosie en dilatatie (10 min)
 
-```python
-import numpy as np
-kernel = np.ones((5,5), np.uint8)
-```
+1. Lees `stars_1.png` in als grijsbeeld en maak er een zwart-witbeeld van met Otsu (zie werkcollege 2).
+2. Maak een kernel met `cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))`.
+3. Pas `cv2.erode` en `cv2.dilate` toe. Wat gebeurt er met de punten van de sterren?
 
-### Opdracht 5: Erosie toepassen
-Voer een erosie uit op de binaire afbeelding met behulp van de functie `cv2.erode()`. Experimenteer met verschillende structurerende elementen (kernels) en geef de geërodeerde afbeelding weer.
+### Opdracht 5: Ruis opruimen met een trackbar (20 min)
 
-### Opdracht 6: Dilatatie toepassen
-Voer een dilatatie uit op de binaire afbeelding met behulp van de functie `cv2.dilate()`. Experimenteer met verschillende structurerende elementen (kernels) en geef de gedilateerde afbeelding weer.
+1. Voeg zelf witte en zwarte ruis toe aan het zwart-witbeeld:
+   ```python
+   r = np.random.rand(*zw.shape)
+   ruis = zw.copy()
+   ruis[r < 0.02] = 0      # zwarte gaatjes
+   ruis[r > 0.98] = 255    # witte kruimels
+   ```
+2. Maak een trackbar voor de kernelgrootte (alleen oneven waarden: 3, 5, 7, 9, ...) en een trackbar voor de bewerking: opening of closing (`cv2.morphologyEx` met `cv2.MORPH_OPEN` of `cv2.MORPH_CLOSE`).
+3. Welke kernel haalt alle kruimels weg zonder de vormen te beschadigen? Vul daarna de gaatjes met closing.
+4. Vergelijk de kernelvormen `MORPH_RECT`, `MORPH_ELLIPSE` en `MORPH_CROSS`. Welke houdt de punten van de sterren het best heel?
 
-### Opdracht 7: Opening toepassen
-Voer een opening uit op de binaire afbeelding met behulp van de functie `cv2.morphologyEx()` met de parameter `cv2.MORPH_OPEN`. Geef de resulterende afbeelding weer.
+> Vuistregel: kies de kernel groter dan de ruis en duidelijk kleiner dan het kleinste object dat je wilt houden. Liever één keer een passende kernel dan veel iteraties.
 
-### Opdracht 8: Sluiting toepassen
-Voer een sluiting uit op de binaire afbeelding met behulp van de functie `cv2.morphologyEx()` met de parameter `cv2.MORPH_CLOSE`. Geef de resulterende afbeelding weer.
+### Opdracht 6: De rand van een object (10 min)
 
-### Opdracht 9: Resultaten vergelijken
-Vergelijk de resultaten van de verschillende morfologische bewerkingen en beschrijf de effecten die ze hebben op de binaire afbeelding. Welke bewerking is het meest geschikt voor het verwijderen van ruis? Welke bewerking is het meest geschikt voor het verbinden van objecten in de afbeelding?
+1. Bepaal de rand van elke ster: het zwart-witbeeld min het geërodeerde beeld.
+2. Teken de rand in kleur over het originele beeld.
 
-### Opdracht 10: Eigen afbeeldingen analyseren
-Gebruik eigen afbeeldingen met verschillende kenmerken (zoals ruis, gaten, verbonden objecten) en pas de morfologische bewerkingen toe. Analyseer en beschrijf hoe de verschillende bewerkingen de afbeeldingen beïnvloeden.
+### In de praktijk: een schoon zwart-witbeeld
 
-### Opdracht 11 (uitdaging): Interactief GUI-script
-Maak een interactief (GUI)script waarbij je de volgende invoervelden hebt:
-* Selectie van het bestand (gebruik bijvoorbeeld `easygui.fileopenbox()`).
-* Invoer van dremplewaarde voor de binaire drempelbewerking.
-* Keuze van de morfologische bewerking (erosie, dilatatie, opening, sluiting).
-* Keuze van de grootte van het structurerend element (kernel).  
-Voer de geselecteerde morfologische bewerking uit op de afbeelding met de opgegeven kernel grootte en geef het resultaat weer.
+1. Neem het zwart-witbeeld van je testbeeld van vorige week.
+2. Gebruik opening tegen kruimels en stof, en closing tegen gaatjes door glimlicht op het voorwerp.
+3. Kies de kleinste kern die het werk doet en sla het resultaat op als PNG.
+
+## Kennisvragen
+
+1. Wat geeft `img[100:200, 50:150]` terug?
+2. Waarom is `250 + 10` gelijk aan `4` bij een `uint8`-beeld?
+3. Wat betekent BLOB, en waarom wil je dat elke BLOB één voorwerp is?
+4. Wanneer gebruik je opening en wanneer closing?
+5. Welke kernelvorm kies je voor ronde objecten, en welke voor horizontale lijnen?

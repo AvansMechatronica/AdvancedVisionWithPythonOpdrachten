@@ -1,162 +1,107 @@
-# Basis beeldverwerking
+# Werkcollege 1: Python en OpenCV
 
-In deze module leer je de basisprincipes van beeldverwerking met behulp van de OpenCV bibliotheek in Python. We behandelen het inlezen, weergeven, bewerken en analyseren van afbeeldingen. Er worden in deze opdrachten allemaal verwijzingen gegeven naar welke functies je zou kunnen toepassen. Zelf dien je dan uit te zoeken hoe je deze functies precies toepast. 
-Je kunt hiervoor de officiële documentatie van OpenCV raadplegen: https://docs.opencv.org/
+Deze opdrachten horen bij **werkcollege 1 - Python en OpenCV**. In het werkcollege maak je opdracht 1 (kerstballen) en opdracht 2 (Sammy schalen en labelen) in het Colab-notebook *Werkcollege 1 - Python en OpenCV*. Met de opdrachten op deze pagina oefen je dezelfde stof lokaal op je eigen computer, in Visual Studio Code.
 
-## Opdrachten
+In de vision-pipeline (beeld opnemen, voorbewerken, segmenteren, meten, beslissen) zit je nu bij de eerste stap: **een beeld in Python krijgen** en begrijpen wat er in het geheugen staat.
 
-### Opdracht 1: Beelden inlezen en weergeven
+## Leerdoelen
 
-Maak een pythhon script in pyCharm die een afbeelding inleest, en vervolgens in een nieuw venster weergeeft. 
-Doe dat in de volgende stappen:
-1. Maak een nieuw python project aan in PyCharm op een voor jou bekende plaats op je computer.
-2. Maak in het project een nieuwe map met de naam `images`.
-3. Installeer de OpenCV bibliotheek via pip als je dat nog niet gedaan hebt (in de terminal van PyCharm):
+Na deze opdrachten kun je:
+
+- een afbeelding inlezen, tonen en opslaan met OpenCV;
+- uitleggen dat een afbeelding een tabel met getallen van 0 tot 255 is;
+- de grootte opvragen, het beeld schalen en omzetten naar grijs;
+- vormen en tekst in een beeld tekenen en het resultaat opslaan.
+
+## Voorbereiding: van Colab naar lokaal
+
+1. Zorg dat Python en Visual Studio Code klaarstaan, zie [Voorbereidingen](voorbereidingen.md).
+2. Installeer in je virtuele omgeving de bibliotheken:
    ```bash
-   pip install opencv-python
+   pip install opencv-python numpy matplotlib
    ```
-4. Download de afbeelding `00-puppy.jpg` vanaf de volgende link: 
-   https://raw.githubusercontent.com/AvansMechatronica/CursusSupport/main/images/00-puppy.jpg
+3. Maak in je projectmap een map `images`. Download [images.zip](https://raw.githubusercontent.com/AvansMechatronica/CursusSupport/main/images/images.zip) en pak het uit in die map. Dit zijn dezelfde testbeelden als in de werkcolleges.
 
-   Sla de afbeelding op in de `images` map.
+De code uit de notebooks werkt lokaal bijna één op één. Er zijn drie verschillen:
 
-5. Maak een nieuw python bestand aan met de naam `opencv_image_display.py`. 
-6. Voeg python code toe die de volgende stappen uitvoert:
-* Importeer de OpenCV bibliotheek met
+| In Colab | Lokaal |
+|---|---|
+| `cv2_imshow(img)` | `cv2.imshow("naam", img)` gevolgd door `cv2.waitKey(0)` |
+| `interact(...)` met een schuifregelaar | `cv2.createTrackbar(...)` in een OpenCV-venster, zie werkcollege 2 |
+| `/content/sammy.jpg` | `images/sammy.jpg` (pad vanaf je projectmap) |
+
+Een minimaal lokaal script ziet er zo uit:
+
 ```python
 import cv2
-```
 
-* Lees de afbeelding in een varaible `img` vanuit de `images` map, gebruikmakend van
-```python
-cv2.imread()
-```
-> Tip: je kunt het bestand wat je wilt lezen ook met een grafische bestandskiezer selecteren. Hiervoor kun je de `filename_to_load= easygui.fileopenbox()` functie uit de `easygui` bibliotheek gebruiken. 
+img = cv2.imread("images/kerstballen.bmp")
+if img is None:
+    print("Bestand niet gevonden: controleer het pad")
+    exit()
 
-* Toon de afbeelding in een nieuw venster, gebruikmakend van
-```python
-cv2.imshow()
-```
-* Wacht tot een toets wordt ingedrukt met
-```python
-cv2.waitKey(0)
-```
-
-* Sluit alle geopende vensters met
-```python
+cv2.imshow("kerstballen", img)
+cv2.waitKey(0)            # wacht op een toets
 cv2.destroyAllWindows()
 ```
 
-7. Test je script door het uit te voeren en controleer of de afbeelding correct wordt weergegeven in een nieuw venster. Wat valt je op over de kleuren van de afbeelding?
-> OpenCV leest afbeeldingen standaard in het BGR-kleurformaat in, wat kan resulteren in afwijkende kleuren bij weergave.
+> Klopt het pad niet, dan geeft `cv2.imread` `None` terug en **geen** foutmelding. Controleer daarom altijd of `img is None`.
 
-Je kunt de kleuren corrigeren door de afbeelding om te zetten naar het RGB-kleurformaat met behulp van de volgende functie:
-```python
-img_rgb = cv2.cvtColor()
-```
-Gebruik voor de conversie de `cv2.COLOR_BGR2RGB` parameter in de `cv2.cvtColor()` functie.
+## Opdrachten
 
-8. Pas je script aan om de afbeelding in het RGB-kleurformaat weer te geven en test het opnieuw.
+### Opdracht 1: Een beeld is een tabel met getallen (10 min)
 
-### Opdracht 2: Elementen aan de afbeelding toevoegen
-Bewerk de afbeelding door tekst en een rechthoek toe te voegen. Volg de onderstaande stappen:
-1. Open het eerder gemaakte `opencv_image_display.py` bestand.
-2. Voeg rechthoek toe aan de afbeelding met behulp van
-```python
-cv2.rectangle()
-```
-3. Voeg tekst toe aan de afbeelding met behulp van
-```python
-cv2.putText()
-```
+Maak een script `wc1_beeld.py`.
 
-4. Test je script door het uit te voeren en controleer of de rechthoek en tekst correct worden weergegeven op de afbeelding.
+1. Lees `kerstballen.bmp` in en toon het in een venster.
+2. Print `img.shape` en `img.dtype`. Hoeveel pixels heeft het beeld, en hoeveel getallen staan er in het geheugen?
+3. Lees de pixel op rij 50, kolom 100 uit met `b, g, r = img[50, 100]`. Let op: eerst de rij (y), dan de kolom (x).
+4. Kies zelf een pixel midden op een rode bal. Is de rode waarde hoog en zijn blauw en groen laag?
 
-### Opdracht 3: Beeld opslaan
-Schrijf een script dat de bewerkte afbeelding opslaat. Volg de onderstaande stappen:
-1. Open het eerder gemaakte `opencv_image_display.py` bestand. 
-2. Voeg code toe om de bewerkte afbeelding op te slaan in de `images` map met een nieuwe naam, bijvoorbeeld `00-puppy-edited.jpg`, gebruikmakend van
-```python
-cv2.imwrite()
-```
-< Tip: je kunt het bestand wat je wilt opslaan ook met een grafische bestandskiezer selecteren. Hiervoor kun je de `filename_to_save= easygui.filesavebox()` functie uit de `easygui` bibliotheek gebruiken.
+> OpenCV gebruikt de volgorde **BGR**, niet RGB.
 
-### Opdracht 4: Informatie over de afbeelding verkrijgen
-Schrijf een script dat informatie over de afbeelding verkrijgt en weergeeft. Volg de onderstaande stappen:
-1. Open het eerder gemaakte `opencv_image_display.py` bestand.
-2. Voeg code toe om de volgende informatie over de afbeelding te verkrijgen:
-   * Afmetingen (hoogte, breedte, aantal kanalen)
-   * Datatype van de pixelwaarden
-gebruik daarvoor de volgende code:
-```python
-dimensions = img.shape
-height = dimensions[0]
-width = dimensions[1]
-channels = dimensions[2]
-```
-3. Print deze informatie naar de console.
-4. Test je script door het uit te voeren en controleer of de juiste informatie wordt weergegeven in de console.
-5. Maak van deze functionalistet een functie genaamd `print_image_info(img)` die je kunt hergebruiken in andere opdrachten die hierop volgen
+### Opdracht 2: De vlag van imread (10 min)
 
-### Opdracht 5: Beeld scalen
-Schrijf een script dat de afbeelding schaalt naar een nieuwe grootte. Volg de onderstaande stappen:
-1. Open het eerder gemaakte `opencv_image_display.py` bestand.
-2. Voeg code toe om de afbeelding te schalen naar een nieuwe grootte, bijvoorbeeld 300x300 pixels, met behulp van
+1. Lees `sammy.jpg` twee keer in: met `cv2.IMREAD_COLOR` en met `cv2.IMREAD_GRAYSCALE`.
+2. Vergelijk de `shape` van beide. Hoeveel lagen heeft elk beeld?
+3. Maak ook een grijze versie met `cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)`. Is het resultaat gelijk aan direct grijs inlezen?
 
-```python
-cv2.resize()
-```
+> Vuistregel: ga je alleen helderheid meten of drempelen? Lees dan meteen in als grijs: drie keer minder data.
 
-3. Toon de geschaalde afbeelding in een nieuw venster.
-4. Test je script door het uit te voeren en controleer of de afbeelding correct is geschaald en weergegeven. Doe dat voor verschillende schalingsfactoren. Gebryuik ook de `print_image_info(img)` functie om de nieuwe afmetingen van de afbeelding te controleren.
+### Opdracht 3: Schalen en interpolatie (15 min)
 
-### Opdracht 6: Beeld conversie naar grijswaarden
-Schrijf een script dat de afbeelding converteert naar grijswaarden. Volg de onderstaande stappen:
-1. Open het eerder gemaakte `opencv_image_display.py` bestand. 
-2. Voeg code toe om de afbeelding te converteren naar grijswaarden met behulp van
-```python
-img_gray = cv2.cvtColor()
-```
-Zoek zelf uit weleke parameter je hiervoor moet gebruiken.
+1. Verklein `sammy.jpg` naar 25% met `cv2.resize(img, None, fx=0.25, fy=0.25, interpolation=...)`. Doe dit met `cv2.INTER_NEAREST` en met `cv2.INTER_AREA` en toon beide naast elkaar.
+2. Snij een uitsnede van het oog uit (bijvoorbeeld `img[y1:y2, x1:x2]`) en vergroot die 8 keer met `INTER_NEAREST`, `INTER_LINEAR` en `INTER_CUBIC`.
+3. Beschrijf in een paar zinnen wat je ziet. Welke interpolatie kies je bij verkleinen en welke bij vergroten?
 
-3. Toon de grijswaarden afbeelding in een nieuw venster.
-4. Test je script door het uit te voeren en controleer of de afbeelding correct is geconverteerd en weergegeven.
+> Vuistregel: verkleinen met `INTER_AREA`. Vergroten met `INTER_LINEAR` of `INTER_CUBIC`. `INTER_NEAREST` alleen voor maskers en labels.
 
-### Opdracht 7: Histogram van de afbeelding weergeven
-Schrijf een script dat het histogram van de afbeelding weergeeft. Volg de onderstaande stappen:
-1. Maak een nieuw python bestand aan met de naam `opencv_image_histogram.py`.
-2. Download de afbeelding `auto.jpg` vanaf de volgende link: 
-   https://github.com/AvansMechatronica/CursusSupport/blob/main/images/auto.jpg
+### Opdracht 4: Overlays tekenen (15 min)
 
-   Sla de afbeelding op in een nieuwe map `images` binnen je project.
+1. Maak een kopie: `uit = img.copy()`.
+2. Teken op `kerstballen.bmp` een rechthoek (`cv2.rectangle`) om een kerstbal, een cirkel (`cv2.circle`) om een andere bal en een lijn (`cv2.line`).
+3. Zet bij elke vorm een label met `cv2.putText`. Speel met `fontScale` en de dikte.
+4. Punten zijn `(x, y)` vanaf linksboven, kleuren zijn `(B, G, R)`. Teken één vorm in rood, één in groen en één in wit.
 
-3. Maak het programma zo dat de aflbeelding van d auto in grijswaarden wordt getoond
+> Vuistregel: teken altijd op `uit = img.copy()`. Anders meet je straks je eigen kaders en tekst mee.
 
-4. Voeg code toe om het histogram van de afbeelding te berekenen en weer te geven met behulp van
-```python
-   cv2.calcHist()
-```
-   Druk de waardes van het histogram af in de console.
+### Opdracht 5: Opslaan als PNG en JPG (10 min)
 
-5. Gebruik eventueel de `matplotlib` bibliotheek om het histogram grafisch weer te geven. Installeer deze bibliotheek via pip als je dat nog niet gedaan hebt:
-   ```bash
-   pip install matplotlib
-   ```
-   Zet vervolgens de volgende code op de juiste plek in je script om het histogram weer te geven:
-   ```python
-   import matplotlib.pyplot as plt
+1. Sla je beeld met overlays op als `kerstballen_label.png` en als `kerstballen_label.jpg` met `cv2.imwrite`.
+2. Vergelijk de bestandsgrootte met `os.path.getsize`. Welk bestand is kleiner, en waarom?
+3. Maak van opdracht 1 een functie `print_image_info(img)` die je in de volgende werkcolleges hergebruikt.
 
-   plt.plot(histogram)
-   plt.title('Histogram')
-   plt.xlabel('Pixelwaarde')
-   plt.ylabel('Aantal pixels')
-   plt.show()
-   ```   
+### In de praktijk: je eerste testbeeld
 
-6. Test je script door het uit te voeren en controleer of het histogram correct wordt weergegeven.
+Kies uit de testbeelden een beeld met losse voorwerpen op een effen ondergrond, zoals `euromunten.jpg` of `TestShapes.jpg`.
 
-7. Test het programma ook met de volgende afbeedlingen:
-   * https://github.com/AvansMechatronica/CursusSupport/blob/main/images/veel%20contrast.jpg
-   * https://github.com/AvansMechatronica/CursusSupport/blob/main/images/weinig%20contrast.jpg
+1. Lees het in, bekijk de `shape` en sla een grijze versie op als PNG.
+2. Noteer wat je wilt vinden: hoeveel voorwerpen, welke kleur, welke vorm.
 
-Wat valt je op aan de histogrammen van deze afbeeldingen? Hoe verhouden deze zich tot de visuele waarneming van de afbeeldingen?
+Dit beeld gebruik je de komende werkcolleges als testbeeld.
+
+## Kennisvragen
+
+1. Waarom heeft een kleurenbeeld drie getallen per pixel, en in welke volgorde staan ze in OpenCV?
+2. Wat betekent `img.shape = (480, 640, 3)`?
+3. Welke interpolatie kies je bij verkleinen, en waarom?

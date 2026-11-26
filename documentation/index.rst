@@ -21,7 +21,7 @@ Welkom bij de Advanced Vision With Python opdrachten
 
 .. toctree::
    :maxdepth: 3
-   :caption: Optica:
+   :caption: LU1 Optica:
 
    documentation/optica.md
    documentation/brandpuntsafstand.md
@@ -30,19 +30,21 @@ Welkom bij de Advanced Vision With Python opdrachten
 
 .. toctree::
    :maxdepth: 3
-   :caption: OpenCV:
+   :caption: LU2 Machine Vision:
 
    documentation/basis_beeld_verwerking.md
    documentation/contrast_verbetering.md
    documentation/morphology.md
    documentation/filters.md
    documentation/blob_detectie.md
-   documentation/feature_detectie.md
+   documentation/kleurdomeinen.md
+   documentation/edge_detectie.md
+   documentation/stappenplan.md
    documentation/daheng.md
 
 .. toctree::
    :maxdepth: 3
-   :caption: AI:
+   :caption: LU3 Vision with AI:
 
    documentation/ai.md
    documentation/ai_verzamelen_afbeeldingen.md
