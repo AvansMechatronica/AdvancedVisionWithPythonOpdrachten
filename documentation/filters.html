@@ -1,0 +1,259 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="nl" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Werkcollege 4: Filters en convolutie &mdash; Advanced Vision With Python opdrachten 0.1 documentatie</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a57088fb"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/translations.js?v=e4d38c6a"></script>
+      <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Zoeken" href="../search.html" />
+    <link rel="next" title="Werkcollege 5: Blobs en segmentatie" href="blob_detectie.html" />
+    <link rel="prev" title="Werkcollege 3: NumPy en morfologie" href="morphology.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Advanced Vision With Python opdrachten
+              <img src="../_static/avans-hogeschool-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Zoek in documentatie" aria-label="Zoek in documentatie" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigatiemenu">
+              <p class="caption" role="heading"><span class="caption-text">Inhoudsopgave:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="inleiding.html">Inleiding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voorbereidingen.html">Voorbereidingen voor de Opdrachten</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LU1 Optica:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="optica.html">Optica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand.html">Rekentool brandpuntsafstand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand_extended.html">Rekentool brandpuntsafstand 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optica_rekentool.html">Rekentool optica</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LU2 Machine Vision:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="basis_beeld_verwerking.html">Werkcollege 1: Python en OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrast_verbetering.html">Werkcollege 2: Histogram en contrast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="morphology.html">Werkcollege 3: NumPy en morfologie</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Werkcollege 4: Filters en convolutie</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#leerdoelen">Leerdoelen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opdrachten">Opdrachten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-1-drie-filters-naast-elkaar-15-min">Opdracht 1: Drie filters naast elkaar (15 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-2-filtergrootte-met-een-trackbar-15-min">Opdracht 2: Filtergrootte met een trackbar (15 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-3-verscherpen-met-een-eigen-kernel-10-min">Opdracht 3: Verscherpen met een eigen kernel (10 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-4-zout-en-peperruis-en-de-mediaan-15-min">Opdracht 4: Zout-en-peperruis en de mediaan (15 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-5-filteren-voor-het-drempelen-10-min">Opdracht 5: Filteren vóór het drempelen (10 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#in-de-praktijk-ruis-weg-voor-het-drempelen">In de praktijk: ruis weg vóór het drempelen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#kennisvragen">Kennisvragen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="blob_detectie.html">Werkcollege 5: Blobs en segmentatie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kleurdomeinen.html">Werkcollege 6: Kleurdomeinen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="edge_detectie.html">Werkcollege 7: Edge detectie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stappenplan.html">Recap en stappenplan machine vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daheng.html">Gebruik van de Daheng camera met Python (Prakticum)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LU3 Vision with AI:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ai.html">AI (Artificial Intelligence)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_verzamelen_afbeeldingen.html">Verzamelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_labelen_afbeeldingen.html">Labelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_trainen_netwerk.html">Trainen van een Neuraal Netwerk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_uitrollen_netwerk.html">Uitrollen van een Neuraal Netwerk</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referenties:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installatie_visual_code_python.html">Installatie Python en Visual Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referenties.html">Referenties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internal_use.html">Werken met wiskunde in Sphinx</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Navigatiemenu voor mobiel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Advanced Vision With Python opdrachten</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Paginanavigatie">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Werkcollege 4: Filters en convolutie</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/documentation/filters.md.txt" rel="nofollow"> Bekijk paginabron</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="werkcollege-4-filters-en-convolutie">
+<h1>Werkcollege 4: Filters en convolutie<a class="headerlink" href="#werkcollege-4-filters-en-convolutie" title="Link to this heading"></a></h1>
+<p>Deze opdrachten horen bij <strong>werkcollege 4 - Filters en convolutie</strong>. In het werkcollege maak je opdracht 1 (vervagen in drie groottes) en opdracht 2 (ruis toevoegen en wegfilteren) in het Colab-notebook <em>Werkcollege 4 - Filters en convolutie</em>. Op deze pagina oefen je hetzelfde lokaal.</p>
+<p>In de vision-pipeline zit je bij <strong>voorbewerken</strong>: ruis weghalen vóórdat je gaat drempelen.</p>
+<section id="leerdoelen">
+<h2>Leerdoelen<a class="headerlink" href="#leerdoelen" title="Link to this heading"></a></h2>
+<p>Na deze opdrachten kun je:</p>
+<ul class="simple">
+<li><p>uitleggen hoe een filter elke pixel opnieuw berekent uit zijn buren;</p></li>
+<li><p>een gemiddelde-, Gauss- en mediaanfilter toepassen;</p></li>
+<li><p>het juiste filter kiezen voor het soort ruis;</p></li>
+<li><p>het effect van de filtergrootte voorspellen.</p></li>
+</ul>
+</section>
+<section id="opdrachten">
+<h2>Opdrachten<a class="headerlink" href="#opdrachten" title="Link to this heading"></a></h2>
+<section id="opdracht-1-drie-filters-naast-elkaar-15-min">
+<h3>Opdracht 1: Drie filters naast elkaar (15 min)<a class="headerlink" href="#opdracht-1-drie-filters-naast-elkaar-15-min" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Lees <code class="docutils literal notranslate"><span class="pre">sammy_noise.jpg</span></code> in.</p></li>
+<li><p>Pas toe en toon naast elkaar:</p>
+<ul class="simple">
+<li><p>gemiddelde: <code class="docutils literal notranslate"><span class="pre">cv2.blur(img,</span> <span class="pre">(5,</span> <span class="pre">5))</span></code></p></li>
+<li><p>Gauss: <code class="docutils literal notranslate"><span class="pre">cv2.GaussianBlur(img,</span> <span class="pre">(5,</span> <span class="pre">5),</span> <span class="pre">0)</span></code></p></li>
+<li><p>mediaan: <code class="docutils literal notranslate"><span class="pre">cv2.medianBlur(img,</span> <span class="pre">5)</span></code></p></li>
+</ul>
+</li>
+<li><p>Zoom in op de ogen. Welk filter haalt de ruis weg en houdt de ogen het scherpst?</p></li>
+</ol>
+</section>
+<section id="opdracht-2-filtergrootte-met-een-trackbar-15-min">
+<h3>Opdracht 2: Filtergrootte met een trackbar (15 min)<a class="headerlink" href="#opdracht-2-filtergrootte-met-een-trackbar-15-min" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Maak een trackbar voor de kernelgrootte (alleen oneven: 3, 5, 7, …, 15) en een trackbar om te kiezen tussen blur, Gauss en mediaan.</p></li>
+<li><p>Wat gebeurt er met de ruis, en wat met de randen, als je het venster groter maakt?</p></li>
+<li><p>Zet bij <code class="docutils literal notranslate"><span class="pre">GaussianBlur</span></code> sigma eens op een vaste waarde in plaats van 0. Wat verandert er?</p></li>
+</ol>
+<blockquote>
+<div><p>Vuistregel: begin met 5 x 5. Alleen groter maken als de ruis nog zichtbaar is. Altijd oneven. Geef bij Gauss sigma 0 op: dan rekent OpenCV hem zelf uit.</p>
+</div></blockquote>
+</section>
+<section id="opdracht-3-verscherpen-met-een-eigen-kernel-10-min">
+<h3>Opdracht 3: Verscherpen met een eigen kernel (10 min)<a class="headerlink" href="#opdracht-3-verscherpen-met-een-eigen-kernel-10-min" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Maak een verscherpingsfilter en pas het toe met <code class="docutils literal notranslate"><span class="pre">cv2.filter2D</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scherp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">uit</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">scherp</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Pas het toe op <code class="docutils literal notranslate"><span class="pre">sammy.jpg</span></code> en op <code class="docutils literal notranslate"><span class="pre">sammy_noise.jpg</span></code>. Wat gebeurt er met de ruis?</p></li>
+</ol>
+</section>
+<section id="opdracht-4-zout-en-peperruis-en-de-mediaan-15-min">
+<h3>Opdracht 4: Zout-en-peperruis en de mediaan (15 min)<a class="headerlink" href="#opdracht-4-zout-en-peperruis-en-de-mediaan-15-min" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Lees <code class="docutils literal notranslate"><span class="pre">sudoku.jpg</span></code> in als grijsbeeld en voeg zelf zout-en-peperruis toe:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="o">*</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">ruis</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">ruis</span><span class="p">[</span><span class="n">r</span> <span class="o">&lt;</span> <span class="mf">0.04</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>      <span class="c1"># peper</span>
+<span class="n">ruis</span><span class="p">[</span><span class="n">r</span> <span class="o">&gt;</span> <span class="mf">0.96</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span>    <span class="c1"># zout</span>
+</pre></div>
+</div>
+</li>
+<li><p>Filter met gemiddelde en mediaan van dezelfde grootte. Welk filter laat de cijfers het best leesbaar?</p></li>
+<li><p>Waarom werkt de mediaan beter tegen losse witte en zwarte pixels?</p></li>
+</ol>
+<blockquote>
+<div><p>Vuistregel: mediaan 3 of 5 is meestal genoeg. Verdwijnen er details? Ga terug naar een kleiner venster.</p>
+</div></blockquote>
+</section>
+<section id="opdracht-5-filteren-voor-het-drempelen-10-min">
+<h3>Opdracht 5: Filteren vóór het drempelen (10 min)<a class="headerlink" href="#opdracht-5-filteren-voor-het-drempelen-10-min" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Drempel het ruizige sudokubeeld met Otsu: zonder filter, na <code class="docutils literal notranslate"><span class="pre">blur</span></code> en na <code class="docutils literal notranslate"><span class="pre">medianBlur</span></code>.</p></li>
+<li><p>Tel de losse vlekjes in elk zwart-witbeeld met <code class="docutils literal notranslate"><span class="pre">n,</span> <span class="pre">labels</span> <span class="pre">=</span> <span class="pre">cv2.connectedComponents(zw)</span></code>.</p></li>
+<li><p>Met welk filter krijg je de minste kruimels?</p></li>
+</ol>
+</section>
+<section id="in-de-praktijk-ruis-weg-voor-het-drempelen">
+<h3>In de praktijk: ruis weg vóór het drempelen<a class="headerlink" href="#in-de-praktijk-ruis-weg-voor-het-drempelen" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Zet een filter vóór het drempelen in de pipeline van je testbeeld.</p></li>
+<li><p>Stof of glimlicht: probeer <code class="docutils literal notranslate"><span class="pre">medianBlur</span></code> 5. Korrelig camerabeeld: probeer <code class="docutils literal notranslate"><span class="pre">GaussianBlur</span></code> 5.</p></li>
+<li><p>Vergelijk het aantal kruimels met en zonder filter.</p></li>
+</ol>
+</section>
+</section>
+<section id="kennisvragen">
+<h2>Kennisvragen<a class="headerlink" href="#kennisvragen" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Wat gebeurt er als je het filtervenster groter maakt?</p></li>
+<li><p>Waarom werkt de mediaan beter tegen losse witte en zwarte pixels?</p></li>
+<li><p>Waarom zet je een filter vóór het drempelen en niet erna?</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Voettekst">
+        <a href="morphology.html" class="btn btn-neutral float-left" title="Werkcollege 3: NumPy en morfologie" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Vorige</a>
+        <a href="blob_detectie.html" class="btn btn-neutral float-right" title="Werkcollege 5: Blobs en segmentatie" accesskey="n" rel="next">Volgende <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Gerard Harkema.</p>
+  </div>
+
+  Gebouwd met <a href="https://www.sphinx-doc.org/">Sphinx</a> met een
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thema</a>
+    geleverd door <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

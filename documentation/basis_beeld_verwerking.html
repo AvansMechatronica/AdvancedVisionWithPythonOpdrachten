@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="nl" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Werkcollege 1: Python en OpenCV &mdash; Advanced Vision With Python opdrachten 0.1 documentatie</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a57088fb"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/translations.js?v=e4d38c6a"></script>
+      <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Zoeken" href="../search.html" />
+    <link rel="next" title="Werkcollege 2: Histogram en contrast" href="contrast_verbetering.html" />
+    <link rel="prev" title="Rekentool optica" href="optica_rekentool.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Advanced Vision With Python opdrachten
+              <img src="../_static/avans-hogeschool-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Zoek in documentatie" aria-label="Zoek in documentatie" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigatiemenu">
+              <p class="caption" role="heading"><span class="caption-text">Inhoudsopgave:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="inleiding.html">Inleiding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voorbereidingen.html">Voorbereidingen voor de Opdrachten</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LU1 Optica:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="optica.html">Optica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand.html">Rekentool brandpuntsafstand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand_extended.html">Rekentool brandpuntsafstand 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optica_rekentool.html">Rekentool optica</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LU2 Machine Vision:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Werkcollege 1: Python en OpenCV</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#leerdoelen">Leerdoelen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#voorbereiding-van-colab-naar-lokaal">Voorbereiding: van Colab naar lokaal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opdrachten">Opdrachten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-1-een-beeld-is-een-tabel-met-getallen-10-min">Opdracht 1: Een beeld is een tabel met getallen (10 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-2-de-vlag-van-imread-10-min">Opdracht 2: De vlag van imread (10 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-3-schalen-en-interpolatie-15-min">Opdracht 3: Schalen en interpolatie (15 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-4-overlays-tekenen-15-min">Opdracht 4: Overlays tekenen (15 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-5-opslaan-als-png-en-jpg-10-min">Opdracht 5: Opslaan als PNG en JPG (10 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#in-de-praktijk-je-eerste-testbeeld">In de praktijk: je eerste testbeeld</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#kennisvragen">Kennisvragen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contrast_verbetering.html">Werkcollege 2: Histogram en contrast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="morphology.html">Werkcollege 3: NumPy en morfologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Werkcollege 4: Filters en convolutie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blob_detectie.html">Werkcollege 5: Blobs en segmentatie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kleurdomeinen.html">Werkcollege 6: Kleurdomeinen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="edge_detectie.html">Werkcollege 7: Edge detectie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stappenplan.html">Recap en stappenplan machine vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daheng.html">Gebruik van de Daheng camera met Python (Prakticum)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LU3 Vision with AI:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ai.html">AI (Artificial Intelligence)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_verzamelen_afbeeldingen.html">Verzamelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_labelen_afbeeldingen.html">Labelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_trainen_netwerk.html">Trainen van een Neuraal Netwerk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_uitrollen_netwerk.html">Uitrollen van een Neuraal Netwerk</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referenties:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installatie_visual_code_python.html">Installatie Python en Visual Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referenties.html">Referenties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internal_use.html">Werken met wiskunde in Sphinx</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Navigatiemenu voor mobiel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Advanced Vision With Python opdrachten</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Paginanavigatie">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Werkcollege 1: Python en OpenCV</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/documentation/basis_beeld_verwerking.md.txt" rel="nofollow"> Bekijk paginabron</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="werkcollege-1-python-en-opencv">
+<h1>Werkcollege 1: Python en OpenCV<a class="headerlink" href="#werkcollege-1-python-en-opencv" title="Link to this heading"></a></h1>
+<p>Deze opdrachten horen bij <strong>werkcollege 1 - Python en OpenCV</strong>. In het werkcollege maak je opdracht 1 (kerstballen) en opdracht 2 (Sammy schalen en labelen) in het Colab-notebook <em>Werkcollege 1 - Python en OpenCV</em>. Met de opdrachten op deze pagina oefen je dezelfde stof lokaal op je eigen computer, in Visual Studio Code.</p>
+<p>In de vision-pipeline (beeld opnemen, voorbewerken, segmenteren, meten, beslissen) zit je nu bij de eerste stap: <strong>een beeld in Python krijgen</strong> en begrijpen wat er in het geheugen staat.</p>
+<section id="leerdoelen">
+<h2>Leerdoelen<a class="headerlink" href="#leerdoelen" title="Link to this heading"></a></h2>
+<p>Na deze opdrachten kun je:</p>
+<ul class="simple">
+<li><p>een afbeelding inlezen, tonen en opslaan met OpenCV;</p></li>
+<li><p>uitleggen dat een afbeelding een tabel met getallen van 0 tot 255 is;</p></li>
+<li><p>de grootte opvragen, het beeld schalen en omzetten naar grijs;</p></li>
+<li><p>vormen en tekst in een beeld tekenen en het resultaat opslaan.</p></li>
+</ul>
+</section>
+<section id="voorbereiding-van-colab-naar-lokaal">
+<h2>Voorbereiding: van Colab naar lokaal<a class="headerlink" href="#voorbereiding-van-colab-naar-lokaal" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Zorg dat Python en Visual Studio Code klaarstaan, zie <a class="reference internal" href="voorbereidingen.html"><span class="std std-doc">Voorbereidingen</span></a>.</p></li>
+<li><p>Installeer in je virtuele omgeving de bibliotheken:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>opencv-python<span class="w"> </span>numpy<span class="w"> </span>matplotlib
+</pre></div>
+</div>
+</li>
+<li><p>Maak in je projectmap een map <code class="docutils literal notranslate"><span class="pre">images</span></code>. Download <a class="reference external" href="https://raw.githubusercontent.com/AvansMechatronica/CursusSupport/main/images/images.zip">images.zip</a> en pak het uit in die map. Dit zijn dezelfde testbeelden als in de werkcolleges.</p></li>
+</ol>
+<p>De code uit de notebooks werkt lokaal bijna één op één. Er zijn drie verschillen:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>In Colab</p></th>
+<th class="head"><p>Lokaal</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cv2_imshow(img)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cv2.imshow(&quot;naam&quot;,</span> <span class="pre">img)</span></code> gevolgd door <code class="docutils literal notranslate"><span class="pre">cv2.waitKey(0)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">interact(...)</span></code> met een schuifregelaar</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cv2.createTrackbar(...)</span></code> in een OpenCV-venster, zie werkcollege 2</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/content/sammy.jpg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">images/sammy.jpg</span></code> (pad vanaf je projectmap)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Een minimaal lokaal script ziet er zo uit:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;images/kerstballen.bmp&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">img</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bestand niet gevonden: controleer het pad&quot;</span><span class="p">)</span>
+    <span class="n">exit</span><span class="p">()</span>
+
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;kerstballen&quot;</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>            <span class="c1"># wacht op een toets</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Klopt het pad niet, dan geeft <code class="docutils literal notranslate"><span class="pre">cv2.imread</span></code> <code class="docutils literal notranslate"><span class="pre">None</span></code> terug en <strong>geen</strong> foutmelding. Controleer daarom altijd of <code class="docutils literal notranslate"><span class="pre">img</span> <span class="pre">is</span> <span class="pre">None</span></code>.</p>
+</div></blockquote>
+</section>
+<section id="opdrachten">
+<h2>Opdrachten<a class="headerlink" href="#opdrachten" title="Link to this heading"></a></h2>
+<section id="opdracht-1-een-beeld-is-een-tabel-met-getallen-10-min">
+<h3>Opdracht 1: Een beeld is een tabel met getallen (10 min)<a class="headerlink" href="#opdracht-1-een-beeld-is-een-tabel-met-getallen-10-min" title="Link to this heading"></a></h3>
+<p>Maak een script <code class="docutils literal notranslate"><span class="pre">wc1_beeld.py</span></code>.</p>
+<ol class="arabic simple">
+<li><p>Lees <code class="docutils literal notranslate"><span class="pre">kerstballen.bmp</span></code> in en toon het in een venster.</p></li>
+<li><p>Print <code class="docutils literal notranslate"><span class="pre">img.shape</span></code> en <code class="docutils literal notranslate"><span class="pre">img.dtype</span></code>. Hoeveel pixels heeft het beeld, en hoeveel getallen staan er in het geheugen?</p></li>
+<li><p>Lees de pixel op rij 50, kolom 100 uit met <code class="docutils literal notranslate"><span class="pre">b,</span> <span class="pre">g,</span> <span class="pre">r</span> <span class="pre">=</span> <span class="pre">img[50,</span> <span class="pre">100]</span></code>. Let op: eerst de rij (y), dan de kolom (x).</p></li>
+<li><p>Kies zelf een pixel midden op een rode bal. Is de rode waarde hoog en zijn blauw en groen laag?</p></li>
+</ol>
+<blockquote>
+<div><p>OpenCV gebruikt de volgorde <strong>BGR</strong>, niet RGB.</p>
+</div></blockquote>
+</section>
+<section id="opdracht-2-de-vlag-van-imread-10-min">
+<h3>Opdracht 2: De vlag van imread (10 min)<a class="headerlink" href="#opdracht-2-de-vlag-van-imread-10-min" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Lees <code class="docutils literal notranslate"><span class="pre">sammy.jpg</span></code> twee keer in: met <code class="docutils literal notranslate"><span class="pre">cv2.IMREAD_COLOR</span></code> en met <code class="docutils literal notranslate"><span class="pre">cv2.IMREAD_GRAYSCALE</span></code>.</p></li>
+<li><p>Vergelijk de <code class="docutils literal notranslate"><span class="pre">shape</span></code> van beide. Hoeveel lagen heeft elk beeld?</p></li>
+<li><p>Maak ook een grijze versie met <code class="docutils literal notranslate"><span class="pre">cv2.cvtColor(img,</span> <span class="pre">cv2.COLOR_BGR2GRAY)</span></code>. Is het resultaat gelijk aan direct grijs inlezen?</p></li>
+</ol>
+<blockquote>
+<div><p>Vuistregel: ga je alleen helderheid meten of drempelen? Lees dan meteen in als grijs: drie keer minder data.</p>
+</div></blockquote>
+</section>
+<section id="opdracht-3-schalen-en-interpolatie-15-min">
+<h3>Opdracht 3: Schalen en interpolatie (15 min)<a class="headerlink" href="#opdracht-3-schalen-en-interpolatie-15-min" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Verklein <code class="docutils literal notranslate"><span class="pre">sammy.jpg</span></code> naar 25% met <code class="docutils literal notranslate"><span class="pre">cv2.resize(img,</span> <span class="pre">None,</span> <span class="pre">fx=0.25,</span> <span class="pre">fy=0.25,</span> <span class="pre">interpolation=...)</span></code>. Doe dit met <code class="docutils literal notranslate"><span class="pre">cv2.INTER_NEAREST</span></code> en met <code class="docutils literal notranslate"><span class="pre">cv2.INTER_AREA</span></code> en toon beide naast elkaar.</p></li>
+<li><p>Snij een uitsnede van het oog uit (bijvoorbeeld <code class="docutils literal notranslate"><span class="pre">img[y1:y2,</span> <span class="pre">x1:x2]</span></code>) en vergroot die 8 keer met <code class="docutils literal notranslate"><span class="pre">INTER_NEAREST</span></code>, <code class="docutils literal notranslate"><span class="pre">INTER_LINEAR</span></code> en <code class="docutils literal notranslate"><span class="pre">INTER_CUBIC</span></code>.</p></li>
+<li><p>Beschrijf in een paar zinnen wat je ziet. Welke interpolatie kies je bij verkleinen en welke bij vergroten?</p></li>
+</ol>
+<blockquote>
+<div><p>Vuistregel: verkleinen met <code class="docutils literal notranslate"><span class="pre">INTER_AREA</span></code>. Vergroten met <code class="docutils literal notranslate"><span class="pre">INTER_LINEAR</span></code> of <code class="docutils literal notranslate"><span class="pre">INTER_CUBIC</span></code>. <code class="docutils literal notranslate"><span class="pre">INTER_NEAREST</span></code> alleen voor maskers en labels.</p>
+</div></blockquote>
+</section>
+<section id="opdracht-4-overlays-tekenen-15-min">
+<h3>Opdracht 4: Overlays tekenen (15 min)<a class="headerlink" href="#opdracht-4-overlays-tekenen-15-min" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Maak een kopie: <code class="docutils literal notranslate"><span class="pre">uit</span> <span class="pre">=</span> <span class="pre">img.copy()</span></code>.</p></li>
+<li><p>Teken op <code class="docutils literal notranslate"><span class="pre">kerstballen.bmp</span></code> een rechthoek (<code class="docutils literal notranslate"><span class="pre">cv2.rectangle</span></code>) om een kerstbal, een cirkel (<code class="docutils literal notranslate"><span class="pre">cv2.circle</span></code>) om een andere bal en een lijn (<code class="docutils literal notranslate"><span class="pre">cv2.line</span></code>).</p></li>
+<li><p>Zet bij elke vorm een label met <code class="docutils literal notranslate"><span class="pre">cv2.putText</span></code>. Speel met <code class="docutils literal notranslate"><span class="pre">fontScale</span></code> en de dikte.</p></li>
+<li><p>Punten zijn <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code> vanaf linksboven, kleuren zijn <code class="docutils literal notranslate"><span class="pre">(B,</span> <span class="pre">G,</span> <span class="pre">R)</span></code>. Teken één vorm in rood, één in groen en één in wit.</p></li>
+</ol>
+<blockquote>
+<div><p>Vuistregel: teken altijd op <code class="docutils literal notranslate"><span class="pre">uit</span> <span class="pre">=</span> <span class="pre">img.copy()</span></code>. Anders meet je straks je eigen kaders en tekst mee.</p>
+</div></blockquote>
+</section>
+<section id="opdracht-5-opslaan-als-png-en-jpg-10-min">
+<h3>Opdracht 5: Opslaan als PNG en JPG (10 min)<a class="headerlink" href="#opdracht-5-opslaan-als-png-en-jpg-10-min" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Sla je beeld met overlays op als <code class="docutils literal notranslate"><span class="pre">kerstballen_label.png</span></code> en als <code class="docutils literal notranslate"><span class="pre">kerstballen_label.jpg</span></code> met <code class="docutils literal notranslate"><span class="pre">cv2.imwrite</span></code>.</p></li>
+<li><p>Vergelijk de bestandsgrootte met <code class="docutils literal notranslate"><span class="pre">os.path.getsize</span></code>. Welk bestand is kleiner, en waarom?</p></li>
+<li><p>Maak van opdracht 1 een functie <code class="docutils literal notranslate"><span class="pre">print_image_info(img)</span></code> die je in de volgende werkcolleges hergebruikt.</p></li>
+</ol>
+</section>
+<section id="in-de-praktijk-je-eerste-testbeeld">
+<h3>In de praktijk: je eerste testbeeld<a class="headerlink" href="#in-de-praktijk-je-eerste-testbeeld" title="Link to this heading"></a></h3>
+<p>Kies uit de testbeelden een beeld met losse voorwerpen op een effen ondergrond, zoals <code class="docutils literal notranslate"><span class="pre">euromunten.jpg</span></code> of <code class="docutils literal notranslate"><span class="pre">TestShapes.jpg</span></code>.</p>
+<ol class="arabic simple">
+<li><p>Lees het in, bekijk de <code class="docutils literal notranslate"><span class="pre">shape</span></code> en sla een grijze versie op als PNG.</p></li>
+<li><p>Noteer wat je wilt vinden: hoeveel voorwerpen, welke kleur, welke vorm.</p></li>
+</ol>
+<p>Dit beeld gebruik je de komende werkcolleges als testbeeld.</p>
+</section>
+</section>
+<section id="kennisvragen">
+<h2>Kennisvragen<a class="headerlink" href="#kennisvragen" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Waarom heeft een kleurenbeeld drie getallen per pixel, en in welke volgorde staan ze in OpenCV?</p></li>
+<li><p>Wat betekent <code class="docutils literal notranslate"><span class="pre">img.shape</span> <span class="pre">=</span> <span class="pre">(480,</span> <span class="pre">640,</span> <span class="pre">3)</span></code>?</p></li>
+<li><p>Welke interpolatie kies je bij verkleinen, en waarom?</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Voettekst">
+        <a href="optica_rekentool.html" class="btn btn-neutral float-left" title="Rekentool optica" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Vorige</a>
+        <a href="contrast_verbetering.html" class="btn btn-neutral float-right" title="Werkcollege 2: Histogram en contrast" accesskey="n" rel="next">Volgende <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Gerard Harkema.</p>
+  </div>
+
+  Gebouwd met <a href="https://www.sphinx-doc.org/">Sphinx</a> met een
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thema</a>
+    geleverd door <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

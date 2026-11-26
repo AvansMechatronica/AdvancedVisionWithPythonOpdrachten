@@ -1,0 +1,260 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="nl" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Werkcollege 3: NumPy en morfologie &mdash; Advanced Vision With Python opdrachten 0.1 documentatie</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a57088fb"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/translations.js?v=e4d38c6a"></script>
+      <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Zoeken" href="../search.html" />
+    <link rel="next" title="Werkcollege 4: Filters en convolutie" href="filters.html" />
+    <link rel="prev" title="Werkcollege 2: Histogram en contrast" href="contrast_verbetering.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Advanced Vision With Python opdrachten
+              <img src="../_static/avans-hogeschool-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Zoek in documentatie" aria-label="Zoek in documentatie" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigatiemenu">
+              <p class="caption" role="heading"><span class="caption-text">Inhoudsopgave:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="inleiding.html">Inleiding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voorbereidingen.html">Voorbereidingen voor de Opdrachten</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LU1 Optica:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="optica.html">Optica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand.html">Rekentool brandpuntsafstand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand_extended.html">Rekentool brandpuntsafstand 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optica_rekentool.html">Rekentool optica</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LU2 Machine Vision:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="basis_beeld_verwerking.html">Werkcollege 1: Python en OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrast_verbetering.html">Werkcollege 2: Histogram en contrast</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Werkcollege 3: NumPy en morfologie</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#leerdoelen">Leerdoelen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opdrachten">Opdrachten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-1-een-uitsnede-nemen-roi-10-min">Opdracht 1: Een uitsnede nemen (ROI) (10 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-2-meten-met-een-masker-15-min">Opdracht 2: Meten met een masker (15 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-3-rekenen-met-uint8-5-min">Opdracht 3: Rekenen met uint8 (5 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-4-erosie-en-dilatatie-10-min">Opdracht 4: Erosie en dilatatie (10 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-5-ruis-opruimen-met-een-trackbar-20-min">Opdracht 5: Ruis opruimen met een trackbar (20 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-6-de-rand-van-een-object-10-min">Opdracht 6: De rand van een object (10 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#in-de-praktijk-een-schoon-zwart-witbeeld">In de praktijk: een schoon zwart-witbeeld</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#kennisvragen">Kennisvragen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Werkcollege 4: Filters en convolutie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blob_detectie.html">Werkcollege 5: Blobs en segmentatie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kleurdomeinen.html">Werkcollege 6: Kleurdomeinen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="edge_detectie.html">Werkcollege 7: Edge detectie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stappenplan.html">Recap en stappenplan machine vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daheng.html">Gebruik van de Daheng camera met Python (Prakticum)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LU3 Vision with AI:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ai.html">AI (Artificial Intelligence)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_verzamelen_afbeeldingen.html">Verzamelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_labelen_afbeeldingen.html">Labelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_trainen_netwerk.html">Trainen van een Neuraal Netwerk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_uitrollen_netwerk.html">Uitrollen van een Neuraal Netwerk</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referenties:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installatie_visual_code_python.html">Installatie Python en Visual Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referenties.html">Referenties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internal_use.html">Werken met wiskunde in Sphinx</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Navigatiemenu voor mobiel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Advanced Vision With Python opdrachten</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Paginanavigatie">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Werkcollege 3: NumPy en morfologie</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/documentation/morphology.md.txt" rel="nofollow"> Bekijk paginabron</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="werkcollege-3-numpy-en-morfologie">
+<h1>Werkcollege 3: NumPy en morfologie<a class="headerlink" href="#werkcollege-3-numpy-en-morfologie" title="Link to this heading"></a></h1>
+<p>Deze opdrachten horen bij <strong>werkcollege 3 - NumPy en morfologie</strong>. In het werkcollege maak je opdracht 1 (pallet meten met NumPy) en opdracht 2 (ruis opruimen) in het Colab-notebook <em>Werkcollege 3 - NumPy en morfologie</em>. Op deze pagina oefen je hetzelfde lokaal.</p>
+<p>In de vision-pipeline zit je bij <strong>voorbewerken</strong> (een uitsnede nemen, rekenen met maskers) en <strong>segmenteren</strong> (het zwart-witbeeld opruimen, zodat elke BLOB één voorwerp is).</p>
+<section id="leerdoelen">
+<h2>Leerdoelen<a class="headerlink" href="#leerdoelen" title="Link to this heading"></a></h2>
+<p>Na deze opdrachten kun je:</p>
+<ul class="simple">
+<li><p>een uitsnede (ROI) uit een beeld nemen met NumPy;</p></li>
+<li><p>met een masker pixels tellen en een percentage berekenen;</p></li>
+<li><p>erosie, dilatatie, opening en closing toepassen en uitleggen waarvoor;</p></li>
+<li><p>de juiste kernelvorm en -grootte kiezen.</p></li>
+</ul>
+</section>
+<section id="opdrachten">
+<h2>Opdrachten<a class="headerlink" href="#opdrachten" title="Link to this heading"></a></h2>
+<section id="opdracht-1-een-uitsnede-nemen-roi-10-min">
+<h3>Opdracht 1: Een uitsnede nemen (ROI) (10 min)<a class="headerlink" href="#opdracht-1-een-uitsnede-nemen-roi-10-min" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Lees <code class="docutils literal notranslate"><span class="pre">pallet.bmp</span></code> in als grijsbeeld en print <code class="docutils literal notranslate"><span class="pre">shape</span></code> en <code class="docutils literal notranslate"><span class="pre">dtype</span></code>.</p></li>
+<li><p>Snij een uitsnede uit met <code class="docutils literal notranslate"><span class="pre">roi</span> <span class="pre">=</span> <span class="pre">img[y1:y2,</span> <span class="pre">x1:x2]</span></code>. Let op: eerst de rijen (y), dan de kolommen (x).</p></li>
+<li><p>Teken de ROI als rechthoek in een kopie van het originele beeld, zodat je ziet welk deel je hebt gekozen.</p></li>
+</ol>
+</section>
+<section id="opdracht-2-meten-met-een-masker-15-min">
+<h3>Opdracht 2: Meten met een masker (15 min)<a class="headerlink" href="#opdracht-2-meten-met-een-masker-15-min" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Maak een masker van de lichte planken: <code class="docutils literal notranslate"><span class="pre">masker</span> <span class="pre">=</span> <span class="pre">roi</span> <span class="pre">&gt;</span> <span class="pre">150</span></code>.</p></li>
+<li><p>Bereken het percentage hout:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pct</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">masker</span><span class="p">)</span> <span class="o">/</span> <span class="n">roi</span><span class="o">.</span><span class="n">size</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pct</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> % hout&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Doe dit voor de linker- en de rechterhelft van de pallet. Welke kant heeft meer hout?</p></li>
+<li><p>Bereken met <code class="docutils literal notranslate"><span class="pre">img[masker].mean()</span></code> de gemiddelde helderheid van alleen het hout.</p></li>
+</ol>
+</section>
+<section id="opdracht-3-rekenen-met-uint8-5-min">
+<h3>Opdracht 3: Rekenen met uint8 (5 min)<a class="headerlink" href="#opdracht-3-rekenen-met-uint8-5-min" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Tel 100 op bij het beeld met <code class="docutils literal notranslate"><span class="pre">img</span> <span class="pre">+</span> <span class="pre">100</span></code> en met <code class="docutils literal notranslate"><span class="pre">cv2.add(img,</span> <span class="pre">100)</span></code>.</p></li>
+<li><p>Toon beide. Wat is het verschil? Waarom is <code class="docutils literal notranslate"><span class="pre">250</span> <span class="pre">+</span> <span class="pre">10</span></code> gelijk aan <code class="docutils literal notranslate"><span class="pre">4</span></code> bij een <code class="docutils literal notranslate"><span class="pre">uint8</span></code>-beeld?</p></li>
+</ol>
+</section>
+<section id="opdracht-4-erosie-en-dilatatie-10-min">
+<h3>Opdracht 4: Erosie en dilatatie (10 min)<a class="headerlink" href="#opdracht-4-erosie-en-dilatatie-10-min" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Lees <code class="docutils literal notranslate"><span class="pre">stars_1.png</span></code> in als grijsbeeld en maak er een zwart-witbeeld van met Otsu (zie werkcollege 2).</p></li>
+<li><p>Maak een kernel met <code class="docutils literal notranslate"><span class="pre">cv2.getStructuringElement(cv2.MORPH_RECT,</span> <span class="pre">(5,</span> <span class="pre">5))</span></code>.</p></li>
+<li><p>Pas <code class="docutils literal notranslate"><span class="pre">cv2.erode</span></code> en <code class="docutils literal notranslate"><span class="pre">cv2.dilate</span></code> toe. Wat gebeurt er met de punten van de sterren?</p></li>
+</ol>
+</section>
+<section id="opdracht-5-ruis-opruimen-met-een-trackbar-20-min">
+<h3>Opdracht 5: Ruis opruimen met een trackbar (20 min)<a class="headerlink" href="#opdracht-5-ruis-opruimen-met-een-trackbar-20-min" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Voeg zelf witte en zwarte ruis toe aan het zwart-witbeeld:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="o">*</span><span class="n">zw</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">ruis</span> <span class="o">=</span> <span class="n">zw</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">ruis</span><span class="p">[</span><span class="n">r</span> <span class="o">&lt;</span> <span class="mf">0.02</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>      <span class="c1"># zwarte gaatjes</span>
+<span class="n">ruis</span><span class="p">[</span><span class="n">r</span> <span class="o">&gt;</span> <span class="mf">0.98</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span>    <span class="c1"># witte kruimels</span>
+</pre></div>
+</div>
+</li>
+<li><p>Maak een trackbar voor de kernelgrootte (alleen oneven waarden: 3, 5, 7, 9, …) en een trackbar voor de bewerking: opening of closing (<code class="docutils literal notranslate"><span class="pre">cv2.morphologyEx</span></code> met <code class="docutils literal notranslate"><span class="pre">cv2.MORPH_OPEN</span></code> of <code class="docutils literal notranslate"><span class="pre">cv2.MORPH_CLOSE</span></code>).</p></li>
+<li><p>Welke kernel haalt alle kruimels weg zonder de vormen te beschadigen? Vul daarna de gaatjes met closing.</p></li>
+<li><p>Vergelijk de kernelvormen <code class="docutils literal notranslate"><span class="pre">MORPH_RECT</span></code>, <code class="docutils literal notranslate"><span class="pre">MORPH_ELLIPSE</span></code> en <code class="docutils literal notranslate"><span class="pre">MORPH_CROSS</span></code>. Welke houdt de punten van de sterren het best heel?</p></li>
+</ol>
+<blockquote>
+<div><p>Vuistregel: kies de kernel groter dan de ruis en duidelijk kleiner dan het kleinste object dat je wilt houden. Liever één keer een passende kernel dan veel iteraties.</p>
+</div></blockquote>
+</section>
+<section id="opdracht-6-de-rand-van-een-object-10-min">
+<h3>Opdracht 6: De rand van een object (10 min)<a class="headerlink" href="#opdracht-6-de-rand-van-een-object-10-min" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Bepaal de rand van elke ster: het zwart-witbeeld min het geërodeerde beeld.</p></li>
+<li><p>Teken de rand in kleur over het originele beeld.</p></li>
+</ol>
+</section>
+<section id="in-de-praktijk-een-schoon-zwart-witbeeld">
+<h3>In de praktijk: een schoon zwart-witbeeld<a class="headerlink" href="#in-de-praktijk-een-schoon-zwart-witbeeld" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Neem het zwart-witbeeld van je testbeeld van vorige week.</p></li>
+<li><p>Gebruik opening tegen kruimels en stof, en closing tegen gaatjes door glimlicht op het voorwerp.</p></li>
+<li><p>Kies de kleinste kern die het werk doet en sla het resultaat op als PNG.</p></li>
+</ol>
+</section>
+</section>
+<section id="kennisvragen">
+<h2>Kennisvragen<a class="headerlink" href="#kennisvragen" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Wat geeft <code class="docutils literal notranslate"><span class="pre">img[100:200,</span> <span class="pre">50:150]</span></code> terug?</p></li>
+<li><p>Waarom is <code class="docutils literal notranslate"><span class="pre">250</span> <span class="pre">+</span> <span class="pre">10</span></code> gelijk aan <code class="docutils literal notranslate"><span class="pre">4</span></code> bij een <code class="docutils literal notranslate"><span class="pre">uint8</span></code>-beeld?</p></li>
+<li><p>Wat betekent BLOB, en waarom wil je dat elke BLOB één voorwerp is?</p></li>
+<li><p>Wanneer gebruik je opening en wanneer closing?</p></li>
+<li><p>Welke kernelvorm kies je voor ronde objecten, en welke voor horizontale lijnen?</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Voettekst">
+        <a href="contrast_verbetering.html" class="btn btn-neutral float-left" title="Werkcollege 2: Histogram en contrast" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Vorige</a>
+        <a href="filters.html" class="btn btn-neutral float-right" title="Werkcollege 4: Filters en convolutie" accesskey="n" rel="next">Volgende <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Gerard Harkema.</p>
+  </div>
+
+  Gebouwd met <a href="https://www.sphinx-doc.org/">Sphinx</a> met een
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thema</a>
+    geleverd door <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="nl" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recap en stappenplan machine vision &mdash; Advanced Vision With Python opdrachten 0.1 documentatie</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a57088fb"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/translations.js?v=e4d38c6a"></script>
+      <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Zoeken" href="../search.html" />
+    <link rel="next" title="Gebruik van de Daheng camera met Python (Prakticum)" href="daheng.html" />
+    <link rel="prev" title="Werkcollege 7: Edge detectie" href="edge_detectie.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Advanced Vision With Python opdrachten
+              <img src="../_static/avans-hogeschool-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Zoek in documentatie" aria-label="Zoek in documentatie" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigatiemenu">
+              <p class="caption" role="heading"><span class="caption-text">Inhoudsopgave:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="inleiding.html">Inleiding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voorbereidingen.html">Voorbereidingen voor de Opdrachten</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LU1 Optica:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="optica.html">Optica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand.html">Rekentool brandpuntsafstand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand_extended.html">Rekentool brandpuntsafstand 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optica_rekentool.html">Rekentool optica</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LU2 Machine Vision:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="basis_beeld_verwerking.html">Werkcollege 1: Python en OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrast_verbetering.html">Werkcollege 2: Histogram en contrast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="morphology.html">Werkcollege 3: NumPy en morfologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Werkcollege 4: Filters en convolutie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blob_detectie.html">Werkcollege 5: Blobs en segmentatie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kleurdomeinen.html">Werkcollege 6: Kleurdomeinen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="edge_detectie.html">Werkcollege 7: Edge detectie</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Recap en stappenplan machine vision</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#het-stappenplan-in-zes-stappen">Het stappenplan in zes stappen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#welke-techniek-kies-je">Welke techniek kies je?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opdrachten">Opdrachten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-1-het-uitgewerkte-voorbeeld-lokaal-20-min">Opdracht 1: Het uitgewerkte voorbeeld lokaal (20 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-2-het-stappenplan-op-je-testbeeld-30-min">Opdracht 2: Het stappenplan op je testbeeld (30 min)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#checklist">Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="daheng.html">Gebruik van de Daheng camera met Python (Prakticum)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LU3 Vision with AI:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ai.html">AI (Artificial Intelligence)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_verzamelen_afbeeldingen.html">Verzamelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_labelen_afbeeldingen.html">Labelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_trainen_netwerk.html">Trainen van een Neuraal Netwerk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_uitrollen_netwerk.html">Uitrollen van een Neuraal Netwerk</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referenties:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installatie_visual_code_python.html">Installatie Python en Visual Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referenties.html">Referenties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internal_use.html">Werken met wiskunde in Sphinx</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Navigatiemenu voor mobiel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Advanced Vision With Python opdrachten</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Paginanavigatie">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Recap en stappenplan machine vision</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/documentation/stappenplan.md.txt" rel="nofollow"> Bekijk paginabron</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="recap-en-stappenplan-machine-vision">
+<h1>Recap en stappenplan machine vision<a class="headerlink" href="#recap-en-stappenplan-machine-vision" title="Link to this heading"></a></h1>
+<p>Deze pagina hoort bij de presentatie <strong>Recap en stappenplan machine vision</strong>. Elk vision-vraagstuk doorloopt dezelfde vijf stappen: beeld opnemen, voorbewerken, segmenteren, meten en beslissen. Elk werkcollege vulde één of meer van die stappen in.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Werkcollege</p></th>
+<th class="head"><p>Onderwerp</p></th>
+<th class="head"><p>Wat je ermee kunt</p></th>
+<th class="head"><p>Pipeline-stap</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Python en OpenCV</p></td>
+<td><p>Beeld inlezen, tonen, schalen, tekenen</p></td>
+<td><p>Beeld opnemen</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Histogram en contrast</p></td>
+<td><p>Contrast verbeteren, drempelen (Otsu)</p></td>
+<td><p>Voorbewerken, segmenteren</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>NumPy en morfologie</p></td>
+<td><p>ROI, maskers, ruis opruimen in zwart-wit</p></td>
+<td><p>Voorbewerken, segmenteren</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Filters en convolutie</p></td>
+<td><p>Ruis wegfilteren met blur, Gauss, mediaan</p></td>
+<td><p>Voorbewerken</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Blobs en segmentatie</p></td>
+<td><p>Objecten vinden, meten, scheiden</p></td>
+<td><p>Segmenteren, meten, beslissen</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Kleurdomeinen</p></td>
+<td><p>Selecteren op kleur, PNG of JPEG</p></td>
+<td><p>Voorbewerken, segmenteren</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>Edge detectie</p></td>
+<td><p>Randen vinden met Sobel en Canny</p></td>
+<td><p>Voorbewerken, meten</p></td>
+</tr>
+</tbody>
+</table>
+<section id="het-stappenplan-in-zes-stappen">
+<h2>Het stappenplan in zes stappen<a class="headerlink" href="#het-stappenplan-in-zes-stappen" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Vraag.</strong> Wat is goed, wat is fout? Maak het meetbaar, bijvoorbeeld: oppervlakte kleiner dan 7000 pixels is afkeur.</p></li>
+<li><p><strong>Beelden.</strong> Verzamel minstens 10 goede en 10 foute voorbeelden, met vast licht, vaste afstand en een achtergrond die contrasteert. Sla op als PNG.</p></li>
+<li><p><strong>Voorbewerken.</strong> Grijs als alleen helderheid telt, HSV als kleur telt. Filter tegen ruis, snij een ROI uit.</p></li>
+<li><p><strong>Segmenteren.</strong> Een zwart-witbeeld met wit is object: drempel met Otsu of <code class="docutils literal notranslate"><span class="pre">inRange</span></code> in HSV, daarna opening en closing. Raken objecten elkaar? Watershed.</p></li>
+<li><p><strong>Meten.</strong> <code class="docutils literal notranslate"><span class="pre">findContours</span></code>, kruimels wegfilteren op oppervlakte, en de maat kiezen die bij je vraag past.</p></li>
+<li><p><strong>Beslissen.</strong> Kies de grens tussen de goede en foute waarden in, teken goed groen en fout rood en test op álle beelden.</p></li>
+</ol>
+<p>Werkt het niet? Ga een stap terug. Bijna altijd zit de oorzaak eerder in de keten dan je denkt.</p>
+</section>
+<section id="welke-techniek-kies-je">
+<h2>Welke techniek kies je?<a class="headerlink" href="#welke-techniek-kies-je" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Probleem</p></th>
+<th class="head"><p>Techniek</p></th>
+<th class="head"><p>OpenCV</p></th>
+<th class="head"><p>Werkcollege</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Te donker of weinig contrast</p></td>
+<td><p>Gamma, egalisatie</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cv2.LUT</span></code>, <code class="docutils literal notranslate"><span class="pre">cv2.equalizeHist</span></code></p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Korrelige ruis</p></td>
+<td><p>Gauss-filter</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cv2.GaussianBlur</span></code></p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>Losse witte en zwarte stipjes</p></td>
+<td><p>Mediaanfilter</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cv2.medianBlur</span></code></p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>Object anders van helderheid</p></td>
+<td><p>Drempelen met Otsu</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cv2.threshold</span></code></p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>Object anders van kleur</p></td>
+<td><p>HSV en inRange</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cv2.cvtColor</span></code>, <code class="docutils literal notranslate"><span class="pre">cv2.inRange</span></code></p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kruimels of gaatjes in zwart-wit</p></td>
+<td><p>Opening, closing</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cv2.morphologyEx</span></code></p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>Objecten raken elkaar</p></td>
+<td><p>Watershed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cv2.distanceTransform</span></code>, <code class="docutils literal notranslate"><span class="pre">cv2.watershed</span></code></p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rafelige of gebroken rand</p></td>
+<td><p>Canny, randen tellen</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cv2.Canny</span></code></p></td>
+<td><p>7</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="opdrachten">
+<h2>Opdrachten<a class="headerlink" href="#opdrachten" title="Link to this heading"></a></h2>
+<section id="opdracht-1-het-uitgewerkte-voorbeeld-lokaal-20-min">
+<h3>Opdracht 1: Het uitgewerkte voorbeeld lokaal (20 min)<a class="headerlink" href="#opdracht-1-het-uitgewerkte-voorbeeld-lokaal-20-min" title="Link to this heading"></a></h3>
+<p>In de presentatie worden augurken op grootte gesorteerd. Werk dit voorbeeld lokaal uit met <code class="docutils literal notranslate"><span class="pre">augurken.bmp</span></code> (in <code class="docutils literal notranslate"><span class="pre">images.zip</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;images/augurken.bmp&quot;</span><span class="p">)</span>             <span class="c1"># 2 beelden</span>
+<span class="n">hsv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2HSV</span><span class="p">)</span>          <span class="c1"># 3 voorbewerken</span>
+<span class="n">blauw</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">inRange</span><span class="p">(</span><span class="n">hsv</span><span class="p">,</span> <span class="p">(</span><span class="mi">95</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="p">(</span><span class="mi">135</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+<span class="n">zw</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_not</span><span class="p">(</span><span class="n">blauw</span><span class="p">)</span>                         <span class="c1"># 4 segmenteren</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getStructuringElement</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_ELLIPSE</span><span class="p">,</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">zw</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">morphologyEx</span><span class="p">(</span><span class="n">zw</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_OPEN</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+<span class="n">zw</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">morphologyEx</span><span class="p">(</span><span class="n">zw</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_CLOSE</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+<span class="n">cnts</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">findContours</span><span class="p">(</span><span class="n">zw</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">RETR_EXTERNAL</span><span class="p">,</span>   <span class="c1"># 5 meten</span>
+                           <span class="n">cv2</span><span class="o">.</span><span class="n">CHAIN_APPROX_SIMPLE</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Maak het script af: teken elke augurk die te klein is rood en de rest groen (stap 6). In de presentatie ligt de grens op 7000 pixels. Print eerst de oppervlaktes: past die grens ook bij jouw beeld, of moet je hem aanpassen?</p></li>
+<li><p>Toon na elke stap het tussenbeeld. Bij welke stap zie je het meeste verschil?</p></li>
+<li><p>Verander de grens en de kleurgrenzen. Hoe gevoelig is het resultaat?</p></li>
+</ol>
+</section>
+<section id="opdracht-2-het-stappenplan-op-je-testbeeld-30-min">
+<h3>Opdracht 2: Het stappenplan op je testbeeld (30 min)<a class="headerlink" href="#opdracht-2-het-stappenplan-op-je-testbeeld-30-min" title="Link to this heading"></a></h3>
+<p>Pas de zes stappen toe op het testbeeld dat je sinds werkcollege 1 gebruikt.</p>
+<ol class="arabic simple">
+<li><p>Schrijf eerst stap 1 op: wat is goed en fout, uitgedrukt in een getal?</p></li>
+<li><p>Maak één script waarin elke regel bij een stap van het plan hoort, net als in het voorbeeld.</p></li>
+<li><p>Print de meetwaarden van je goede en foute voorbeelden naast elkaar en kies de grens.</p></li>
+</ol>
+</section>
+</section>
+<section id="checklist">
+<h2>Checklist<a class="headerlink" href="#checklist" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Wat is goed en fout, uitgedrukt in een getal?</p></li>
+<li><p>Genoeg testbeelden, met vast licht?</p></li>
+<li><p>Klopt het zwart-witbeeld voordat ik meet?</p></li>
+<li><p>Welke maat en grens scheiden goed en fout?</p></li>
+<li><p>Hoeveel fouten op de hele testset?</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Voettekst">
+        <a href="edge_detectie.html" class="btn btn-neutral float-left" title="Werkcollege 7: Edge detectie" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Vorige</a>
+        <a href="daheng.html" class="btn btn-neutral float-right" title="Gebruik van de Daheng camera met Python (Prakticum)" accesskey="n" rel="next">Volgende <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Gerard Harkema.</p>
+  </div>
+
+  Gebouwd met <a href="https://www.sphinx-doc.org/">Sphinx</a> met een
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thema</a>
+    geleverd door <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

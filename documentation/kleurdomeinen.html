@@ -1,0 +1,253 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="nl" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Werkcollege 6: Kleurdomeinen &mdash; Advanced Vision With Python opdrachten 0.1 documentatie</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a57088fb"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/translations.js?v=e4d38c6a"></script>
+      <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Zoeken" href="../search.html" />
+    <link rel="next" title="Werkcollege 7: Edge detectie" href="edge_detectie.html" />
+    <link rel="prev" title="Werkcollege 5: Blobs en segmentatie" href="blob_detectie.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Advanced Vision With Python opdrachten
+              <img src="../_static/avans-hogeschool-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Zoek in documentatie" aria-label="Zoek in documentatie" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigatiemenu">
+              <p class="caption" role="heading"><span class="caption-text">Inhoudsopgave:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="inleiding.html">Inleiding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voorbereidingen.html">Voorbereidingen voor de Opdrachten</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LU1 Optica:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="optica.html">Optica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand.html">Rekentool brandpuntsafstand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand_extended.html">Rekentool brandpuntsafstand 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optica_rekentool.html">Rekentool optica</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LU2 Machine Vision:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="basis_beeld_verwerking.html">Werkcollege 1: Python en OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrast_verbetering.html">Werkcollege 2: Histogram en contrast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="morphology.html">Werkcollege 3: NumPy en morfologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Werkcollege 4: Filters en convolutie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blob_detectie.html">Werkcollege 5: Blobs en segmentatie</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Werkcollege 6: Kleurdomeinen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#leerdoelen">Leerdoelen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opdrachten">Opdrachten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-1-kanalen-splitsen-10-min">Opdracht 1: Kanalen splitsen (10 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-2-stippen-zoeken-op-kleur-20-min">Opdracht 2: Stippen zoeken op kleur (20 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-3-robuust-bij-ander-licht-10-min">Opdracht 3: Robuust bij ander licht (10 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-4-rood-de-kleur-aan-twee-kanten-10-min">Opdracht 4: Rood: de kleur aan twee kanten (10 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-5-compressie-meten-15-min">Opdracht 5: Compressie meten (15 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#in-de-praktijk-sorteren-op-kleur">In de praktijk: sorteren op kleur</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#kennisvragen">Kennisvragen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="edge_detectie.html">Werkcollege 7: Edge detectie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stappenplan.html">Recap en stappenplan machine vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daheng.html">Gebruik van de Daheng camera met Python (Prakticum)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LU3 Vision with AI:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ai.html">AI (Artificial Intelligence)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_verzamelen_afbeeldingen.html">Verzamelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_labelen_afbeeldingen.html">Labelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_trainen_netwerk.html">Trainen van een Neuraal Netwerk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_uitrollen_netwerk.html">Uitrollen van een Neuraal Netwerk</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referenties:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installatie_visual_code_python.html">Installatie Python en Visual Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referenties.html">Referenties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internal_use.html">Werken met wiskunde in Sphinx</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Navigatiemenu voor mobiel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Advanced Vision With Python opdrachten</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Paginanavigatie">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Werkcollege 6: Kleurdomeinen</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/documentation/kleurdomeinen.md.txt" rel="nofollow"> Bekijk paginabron</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="werkcollege-6-kleurdomeinen">
+<h1>Werkcollege 6: Kleurdomeinen<a class="headerlink" href="#werkcollege-6-kleurdomeinen" title="Link to this heading"></a></h1>
+<p>Deze opdrachten horen bij <strong>werkcollege 6 - Kleurdomeinen</strong>. In het werkcollege maak je opdracht 1 (stippen zoeken op kleur) en opdracht 2 (compressie meten) in het Colab-notebook <em>Werkcollege 6 - Kleurdomeinen</em>. Op deze pagina oefen je hetzelfde lokaal.</p>
+<p>In de vision-pipeline zit je bij <strong>voorbewerken</strong> en <strong>segmenteren</strong>: als de kleur het verschil maakt, segmenteer je in HSV in plaats van op helderheid.</p>
+<section id="leerdoelen">
+<h2>Leerdoelen<a class="headerlink" href="#leerdoelen" title="Link to this heading"></a></h2>
+<p>Na deze opdrachten kun je:</p>
+<ul class="simple">
+<li><p>uitleggen hoe een camera kleur meet met R, G en B;</p></li>
+<li><p>het verschil tussen RGB en HSV benoemen;</p></li>
+<li><p>een kleur selecteren met <code class="docutils literal notranslate"><span class="pre">inRange</span></code> in HSV, ook rood;</p></li>
+<li><p>uitleggen waarom je in machine vision PNG gebruikt en geen JPEG.</p></li>
+</ul>
+</section>
+<section id="opdrachten">
+<h2>Opdrachten<a class="headerlink" href="#opdrachten" title="Link to this heading"></a></h2>
+<section id="opdracht-1-kanalen-splitsen-10-min">
+<h3>Opdracht 1: Kanalen splitsen (10 min)<a class="headerlink" href="#opdracht-1-kanalen-splitsen-10-min" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Lees <code class="docutils literal notranslate"><span class="pre">kerstballen.bmp</span></code> in en splits het in drie kanalen met <code class="docutils literal notranslate"><span class="pre">b,</span> <span class="pre">g,</span> <span class="pre">r</span> <span class="pre">=</span> <span class="pre">cv2.split(img)</span></code>. Toon ze als drie grijsbeelden.</p></li>
+<li><p>Zet het beeld om naar HSV met <code class="docutils literal notranslate"><span class="pre">cv2.cvtColor(img,</span> <span class="pre">cv2.COLOR_BGR2HSV)</span></code> en splits ook dat in H, S en V.</p></li>
+<li><p>In welk kanaal zie je de rode ballen het duidelijkst?</p></li>
+</ol>
+<blockquote>
+<div><p>In OpenCV loopt H van 0 tot 179 (de halve kleurencirkel van 0 tot 360 graden). S (hoe fel) en V (hoe licht) lopen van 0 tot 255.</p>
+</div></blockquote>
+</section>
+<section id="opdracht-2-stippen-zoeken-op-kleur-20-min">
+<h3>Opdracht 2: Stippen zoeken op kleur (20 min)<a class="headerlink" href="#opdracht-2-stippen-zoeken-op-kleur-20-min" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Lees <code class="docutils literal notranslate"><span class="pre">damien_hirst_dot.jpg</span></code> in en zet het om naar HSV.</p></li>
+<li><p>Maak trackbars voor de ondergrens en bovengrens van H en voor de ondergrens van S:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">masker</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">inRange</span><span class="p">(</span><span class="n">hsv</span><span class="p">,</span> <span class="p">(</span><span class="n">h1</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="p">(</span><span class="n">h2</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+<li><p>Zoek alle blauwe stippen. Tel ze met contouren (zie werkcollege 5). Hoeveel zijn het?</p></li>
+</ol>
+<blockquote>
+<div><p>Vuistregel: meet de H van je object op een paar pixels en neem ongeveer 5 tot 10 aan beide kanten. Begin met S vanaf 80 tot 100.</p>
+</div></blockquote>
+</section>
+<section id="opdracht-3-robuust-bij-ander-licht-10-min">
+<h3>Opdracht 3: Robuust bij ander licht (10 min)<a class="headerlink" href="#opdracht-3-robuust-bij-ander-licht-10-min" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Maak het beeld donkerder, bijvoorbeeld met <code class="docutils literal notranslate"><span class="pre">cv2.convertScaleAbs(img,</span> <span class="pre">alpha=0.5,</span> <span class="pre">beta=0)</span></code>.</p></li>
+<li><p>Werkt je HSV-selectie nog? Maak dezelfde selectie in BGR met <code class="docutils literal notranslate"><span class="pre">cv2.inRange(img,</span> <span class="pre">...)</span></code> en vergelijk.</p></li>
+<li><p>Welk kanaal verandert het meest als het licht minder wordt?</p></li>
+</ol>
+</section>
+<section id="opdracht-4-rood-de-kleur-aan-twee-kanten-10-min">
+<h3>Opdracht 4: Rood: de kleur aan twee kanten (10 min)<a class="headerlink" href="#opdracht-4-rood-de-kleur-aan-twee-kanten-10-min" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Selecteer de rode stippen. Rood zit aan beide kanten van H: rond 0 en rond 179.</p></li>
+<li><p>Maak twee maskers en combineer ze met <code class="docutils literal notranslate"><span class="pre">cv2.bitwise_or</span></code>.</p></li>
+<li><p>Alternatief: draai H een halve slag (<code class="docutils literal notranslate"><span class="pre">(h</span> <span class="pre">+</span> <span class="pre">90)</span> <span class="pre">%</span> <span class="pre">180</span></code>), zodat rood in het midden komt te liggen.</p></li>
+</ol>
+</section>
+<section id="opdracht-5-compressie-meten-15-min">
+<h3>Opdracht 5: Compressie meten (15 min)<a class="headerlink" href="#opdracht-5-compressie-meten-15-min" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Sla een testbeeld op als PNG en als JPEG met kwaliteit 90, 50 en 10:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;test.jpg&quot;</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="p">[</span><span class="n">cv2</span><span class="o">.</span><span class="n">IMWRITE_JPEG_QUALITY</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</li>
+<li><p>Vergelijk de bestandsgroottes.</p></li>
+<li><p>Lees de JPEG’s weer in en bereken het verschil met het origineel met <code class="docutils literal notranslate"><span class="pre">cv2.absdiff</span></code>. Tel hoeveel pixels meer dan 10 grijswaarden zijn veranderd.</p></li>
+<li><p>Doe je kleurselectie op de JPEG van kwaliteit 10. Wat gaat er mis?</p></li>
+</ol>
+<blockquote>
+<div><p>Vuistregel: beelden om te meten sla je op als PNG (zonder verlies). JPEG alleen voor opslag of overzicht, met kwaliteit 90 of hoger.</p>
+</div></blockquote>
+</section>
+<section id="in-de-praktijk-sorteren-op-kleur">
+<h3>In de praktijk: sorteren op kleur<a class="headerlink" href="#in-de-praktijk-sorteren-op-kleur" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Zoek één kleur in je testbeeld met HSV.</p></li>
+<li><p>Bepaal de H-, S- en V-grenzen met een paar goede voorbeelden.</p></li>
+<li><p>Combineer kleur met de vormmetingen van werkcollege 5.</p></li>
+<li><p>Sla al je testbeelden op als PNG.</p></li>
+</ol>
+</section>
+</section>
+<section id="kennisvragen">
+<h2>Kennisvragen<a class="headerlink" href="#kennisvragen" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Wat betekenen H, S en V?</p></li>
+<li><p>Waarom is HSV robuuster dan RGB bij wisselend licht?</p></li>
+<li><p>Waarom sla je beelden voor machine vision op als PNG?</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Voettekst">
+        <a href="blob_detectie.html" class="btn btn-neutral float-left" title="Werkcollege 5: Blobs en segmentatie" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Vorige</a>
+        <a href="edge_detectie.html" class="btn btn-neutral float-right" title="Werkcollege 7: Edge detectie" accesskey="n" rel="next">Volgende <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Gerard Harkema.</p>
+  </div>
+
+  Gebouwd met <a href="https://www.sphinx-doc.org/">Sphinx</a> met een
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thema</a>
+    geleverd door <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

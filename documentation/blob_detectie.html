@@ -1,0 +1,273 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="nl" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Werkcollege 5: Blobs en segmentatie &mdash; Advanced Vision With Python opdrachten 0.1 documentatie</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a57088fb"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/translations.js?v=e4d38c6a"></script>
+      <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Zoeken" href="../search.html" />
+    <link rel="next" title="Werkcollege 6: Kleurdomeinen" href="kleurdomeinen.html" />
+    <link rel="prev" title="Werkcollege 4: Filters en convolutie" href="filters.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Advanced Vision With Python opdrachten
+              <img src="../_static/avans-hogeschool-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Zoek in documentatie" aria-label="Zoek in documentatie" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigatiemenu">
+              <p class="caption" role="heading"><span class="caption-text">Inhoudsopgave:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="inleiding.html">Inleiding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voorbereidingen.html">Voorbereidingen voor de Opdrachten</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LU1 Optica:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="optica.html">Optica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand.html">Rekentool brandpuntsafstand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brandpuntsafstand_extended.html">Rekentool brandpuntsafstand 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optica_rekentool.html">Rekentool optica</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LU2 Machine Vision:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="basis_beeld_verwerking.html">Werkcollege 1: Python en OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrast_verbetering.html">Werkcollege 2: Histogram en contrast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="morphology.html">Werkcollege 3: NumPy en morfologie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Werkcollege 4: Filters en convolutie</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Werkcollege 5: Blobs en segmentatie</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#leerdoelen">Leerdoelen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opdrachten">Opdrachten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-1-contouren-vinden-en-tellen-15-min">Opdracht 1: Contouren vinden en tellen (15 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-2-meten-15-min">Opdracht 2: Meten (15 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-3-goed-of-fout-euro-s-en-centen-15-min">Opdracht 3: Goed of fout: euro’s en centen (15 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-4-aanliggende-munten-scheiden-met-watershed-20-min">Opdracht 4: Aanliggende munten scheiden met watershed (20 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-5-k-means-op-kleur-10-min">Opdracht 5: K-means op kleur (10 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opdracht-6-template-matching-10-min">Opdracht 6: Template matching (10 min)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#in-de-praktijk-goed-of-fout-groen-of-rood">In de praktijk: goed of fout, groen of rood</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#kennisvragen">Kennisvragen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="kleurdomeinen.html">Werkcollege 6: Kleurdomeinen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="edge_detectie.html">Werkcollege 7: Edge detectie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stappenplan.html">Recap en stappenplan machine vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daheng.html">Gebruik van de Daheng camera met Python (Prakticum)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">LU3 Vision with AI:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ai.html">AI (Artificial Intelligence)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_verzamelen_afbeeldingen.html">Verzamelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_labelen_afbeeldingen.html">Labelen van Afbeeldingen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_trainen_netwerk.html">Trainen van een Neuraal Netwerk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_uitrollen_netwerk.html">Uitrollen van een Neuraal Netwerk</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referenties:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installatie_visual_code_python.html">Installatie Python en Visual Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referenties.html">Referenties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internal_use.html">Werken met wiskunde in Sphinx</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Navigatiemenu voor mobiel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Advanced Vision With Python opdrachten</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Paginanavigatie">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Werkcollege 5: Blobs en segmentatie</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/documentation/blob_detectie.md.txt" rel="nofollow"> Bekijk paginabron</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="werkcollege-5-blobs-en-segmentatie">
+<h1>Werkcollege 5: Blobs en segmentatie<a class="headerlink" href="#werkcollege-5-blobs-en-segmentatie" title="Link to this heading"></a></h1>
+<p>Deze opdrachten horen bij <strong>werkcollege 5 - Blobs en segmentatie</strong>. In het werkcollege maak je opdracht 1 (euromunten sorteren) en opdracht 2 (aanliggende munten scheiden) in het Colab-notebook <em>Werkcollege 5 - Blobs en segmentatie</em>. Op deze pagina oefen je hetzelfde lokaal.</p>
+<p>In de vision-pipeline zit je bij <strong>segmenteren</strong>, <strong>meten</strong> en <strong>beslissen</strong>: voorwerpen vinden, meten en goed groen en fout rood tekenen.</p>
+<section id="leerdoelen">
+<h2>Leerdoelen<a class="headerlink" href="#leerdoelen" title="Link to this heading"></a></h2>
+<p>Na deze opdrachten kun je:</p>
+<ul class="simple">
+<li><p>contouren vinden en tekenen;</p></li>
+<li><p>oppervlakte, omtrek, zwaartepunt en omhullende rechthoek meten;</p></li>
+<li><p>aanliggende objecten scheiden met watershed;</p></li>
+<li><p>segmenteren op kleur met K-means;</p></li>
+<li><p>een voorbeeld terugzoeken met template matching.</p></li>
+</ul>
+</section>
+<section id="opdrachten">
+<h2>Opdrachten<a class="headerlink" href="#opdrachten" title="Link to this heading"></a></h2>
+<section id="opdracht-1-contouren-vinden-en-tellen-15-min">
+<h3>Opdracht 1: Contouren vinden en tellen (15 min)<a class="headerlink" href="#opdracht-1-contouren-vinden-en-tellen-15-min" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Lees <code class="docutils literal notranslate"><span class="pre">euromunten.jpg</span></code> in en maak een schoon zwart-witbeeld (grijs, filter, Otsu, opening of closing).</p></li>
+<li><p>Zoek de contouren:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cnts</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">findContours</span><span class="p">(</span><span class="n">zw</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">RETR_EXTERNAL</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CHAIN_APPROX_SIMPLE</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Filter kruimels weg op oppervlakte (<code class="docutils literal notranslate"><span class="pre">cv2.contourArea(c)</span> <span class="pre">&lt;</span> <span class="pre">2000</span></code>) en tel de munten.</p></li>
+<li><p>Teken alle contouren met <code class="docutils literal notranslate"><span class="pre">cv2.drawContours</span></code> op een kopie van het origineel en nummer elke munt.</p></li>
+</ol>
+<blockquote>
+<div><p>Vuistregel: objecten tellen met <code class="docutils literal notranslate"><span class="pre">RETR_EXTERNAL</span></code>. Gaten in objecten ook nodig: <code class="docutils literal notranslate"><span class="pre">RETR_TREE</span></code>. Methode: <code class="docutils literal notranslate"><span class="pre">CHAIN_APPROX_SIMPLE</span></code>.</p>
+</div></blockquote>
+</section>
+<section id="opdracht-2-meten-15-min">
+<h3>Opdracht 2: Meten (15 min)<a class="headerlink" href="#opdracht-2-meten-15-min" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Print van elke munt de oppervlakte (<code class="docutils literal notranslate"><span class="pre">cv2.contourArea</span></code>) en de omtrek (<code class="docutils literal notranslate"><span class="pre">cv2.arcLength(c,</span> <span class="pre">True)</span></code>).</p></li>
+<li><p>Bereken het zwaartepunt met moments:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">moments</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="n">cx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">M</span><span class="p">[</span><span class="s2">&quot;m10&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">M</span><span class="p">[</span><span class="s2">&quot;m00&quot;</span><span class="p">])</span>
+<span class="n">cy</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">M</span><span class="p">[</span><span class="s2">&quot;m01&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">M</span><span class="p">[</span><span class="s2">&quot;m00&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</li>
+<li><p>Teken het zwaartepunt en de omhullende rechthoek (<code class="docutils literal notranslate"><span class="pre">cv2.boundingRect</span></code>) in het beeld.</p></li>
+</ol>
+</section>
+<section id="opdracht-3-goed-of-fout-euro-s-en-centen-15-min">
+<h3>Opdracht 3: Goed of fout: euro’s en centen (15 min)<a class="headerlink" href="#opdracht-3-goed-of-fout-euro-s-en-centen-15-min" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Kies een grens op oppervlakte: euro’s groen omlijnen, centen rood.</p></li>
+<li><p>Maak een trackbar voor de grens, zodat je ziet waar de indeling omslaat.</p></li>
+<li><p>Waarom wordt de zilveren rand van de 2 euro slecht gevonden? Wat zou je aan het licht of de drempel kunnen veranderen?</p></li>
+</ol>
+</section>
+<section id="opdracht-4-aanliggende-munten-scheiden-met-watershed-20-min">
+<h3>Opdracht 4: Aanliggende munten scheiden met watershed (20 min)<a class="headerlink" href="#opdracht-4-aanliggende-munten-scheiden-met-watershed-20-min" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Lees <code class="docutils literal notranslate"><span class="pre">overlap_coins.jpg</span></code> in en maak een zwart-witbeeld. Hoeveel contouren vind je? Klopt dat met het aantal munten?</p></li>
+<li><p>Volg de stappen van het notebook:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dist</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">distanceTransform</span><span class="p">(</span><span class="n">zw</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">DIST_L2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">zeker</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="mf">0.6</span> <span class="o">*</span> <span class="n">dist</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">n</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">connectedComponents</span><span class="p">(</span><span class="n">zeker</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Maak daarna het onbekende gebied en de markers, en roep <code class="docutils literal notranslate"><span class="pre">cv2.watershed</span></code> aan.</p>
+</li>
+<li><p>Maak een trackbar voor de factor op de afstandskaart (0,4 tot 0,8). Bij welke factor vind je precies het juiste aantal munten?</p></li>
+</ol>
+<blockquote>
+<div><p>Vuistregel: tel eerst zelf hoeveel objecten er zijn en kies de factor die precies dat aantal kernen geeft. Meestal 0,5 tot 0,7.</p>
+</div></blockquote>
+</section>
+<section id="opdracht-5-k-means-op-kleur-10-min">
+<h3>Opdracht 5: K-means op kleur (10 min)<a class="headerlink" href="#opdracht-5-k-means-op-kleur-10-min" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Pas K-means toe op <code class="docutils literal notranslate"><span class="pre">kerstballen.bmp</span></code> met <code class="docutils literal notranslate"><span class="pre">cv2.kmeans</span></code>, met K = 2, 4 en 8.</p></li>
+<li><p>Maak per groep een masker. Welke K scheidt de rode ballen het best van de rest?</p></li>
+</ol>
+</section>
+<section id="opdracht-6-template-matching-10-min">
+<h3>Opdracht 6: Template matching (10 min)<a class="headerlink" href="#opdracht-6-template-matching-10-min" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Snij uit <code class="docutils literal notranslate"><span class="pre">euromunten.jpg</span></code> één munt uit als template.</p></li>
+<li><p>Zoek die terug met <code class="docutils literal notranslate"><span class="pre">cv2.matchTemplate(img,</span> <span class="pre">template,</span> <span class="pre">cv2.TM_CCOEFF_NORMED)</span></code> en teken een rechthoek bij elke plek met een score boven een minimale score.</p></li>
+<li><p>Maak een trackbar voor de minimale score. Wat gebeurt er met vals alarm en gemiste munten?</p></li>
+<li><p>Draai het template 45 graden. Werkt het nog?</p></li>
+</ol>
+<blockquote>
+<div><p>Vuistregel: begin bij een score van 0,8 en kijk naar vals alarm en gemiste objecten. Template matching werkt alleen als grootte en draaiing gelijk blijven.</p>
+</div></blockquote>
+</section>
+<section id="in-de-praktijk-goed-of-fout-groen-of-rood">
+<h3>In de praktijk: goed of fout, groen of rood<a class="headerlink" href="#in-de-praktijk-goed-of-fout-groen-of-rood" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Zoek de contouren van de voorwerpen in je testbeeld.</p></li>
+<li><p>Meet oppervlakte, omtrek en de verhouding van de omhullende rechthoek.</p></li>
+<li><p>Kies grenzen met een paar goede voorbeelden: wat is goed?</p></li>
+<li><p>Teken goed groen en fout rood over het origineel. Liggen voorwerpen tegen elkaar? Gebruik watershed.</p></li>
+</ol>
+</section>
+</section>
+<section id="kennisvragen">
+<h2>Kennisvragen<a class="headerlink" href="#kennisvragen" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Wat is het verschil tussen <code class="docutils literal notranslate"><span class="pre">cnts</span></code> en <code class="docutils literal notranslate"><span class="pre">c</span></code>?</p></li>
+<li><p>Hoe bereken je met OpenCV het zwaartepunt van een contour?</p></li>
+<li><p>Wanneer heb je watershed nodig?</p></li>
+<li><p>Waarom werkt template matching slecht als voorwerpen gedraaid liggen?</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Voettekst">
+        <a href="filters.html" class="btn btn-neutral float-left" title="Werkcollege 4: Filters en convolutie" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Vorige</a>
+        <a href="kleurdomeinen.html" class="btn btn-neutral float-right" title="Werkcollege 6: Kleurdomeinen" accesskey="n" rel="next">Volgende <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Gerard Harkema.</p>
+  </div>
+
+  Gebouwd met <a href="https://www.sphinx-doc.org/">Sphinx</a> met een
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thema</a>
+    geleverd door <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
